@@ -1,4 +1,4 @@
-package pl.coderslab.model;
+package pl.coderslab.user;
 
 public class User {
     private long id;
@@ -6,6 +6,6 @@ public class User {
     private String surname;
     private String email;
     private String password;
-
+    private boolean admin;
 
 }

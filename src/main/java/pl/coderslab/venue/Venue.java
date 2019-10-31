@@ -1,11 +1,11 @@
-package pl.coderslab.model;
+package pl.coderslab.venue;
 
 public class Venue {
-    private long venueId;
+    private long id;
     private String venueName;
     private String city;
     private String street;
     private String number;
     private String zip;
-    private long event_id;
+
 }

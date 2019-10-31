@@ -1,4 +1,4 @@
-package pl.coderslab.model;
+package pl.coderslab.task;
 
 public class Task {
     private long id;
