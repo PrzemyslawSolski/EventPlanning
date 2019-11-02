@@ -1,5 +1,3 @@
-<%@ taglib prefix="form"
-           uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%--
   Created by IntelliJ IDEA.
@@ -11,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Ślub@wanie</title>
+    <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -35,13 +33,13 @@
 
 <div class="d-flex justify-content-center align-items-center container">
 
-    <form:form method="post" id="edit-form" modelAttribute="user">
+    <form method="get" id="edit-form">
         <div>
             <h2><br><br></h2>
         </div>
         <div class="row">
             <div class="form-group col-md-10">
-                <label><h3>Podaj dane</h3></label><br>
+                <label><h3>Podaj dane</h3></label>
             </div>
 
         </div>
@@ -50,26 +48,26 @@
         <div class="row">
             <div class="form-group col-md-5">
                 <label>Imię:</label>
-                <form:input path="name" type="text" placeholder="imię" id="formName" class="form-control"/>
+                <input type="text" placeholder="imię" id="formName" class="form-control">
             </div>
 <%--        </div>--%>
 
 <%--        <div class="row">--%>
             <div class="form-group col-md-5">
                 <label>Nazwisko:</label>
-                <form:input path="surname" type="text" placeholder="nazwisko" id="formSurname" class="form-control"/>
+                <input type="text" placeholder="nazwisko" id="formSurname" class="form-control">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-10">
                 <label>Email:</label>
-                <form:input path="email" type="text" placeholder="adres email" id="formEmail" class="form-control"/>
+                <input type="text" placeholder="adres email" id="formEmail" class="form-control">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-5">
                 <label>Hasło:</label>
-                <form:input path="password" type="password" placeholder="hasło" id="formPassword" class="form-control password"/>
+                <input type="password" placeholder="hasło" id="formPassword" class="form-control password">
             </div>
 <%--        </div>--%>
 <%--        <div class="row">--%>
@@ -89,7 +87,7 @@
         <input type="submit" id="submitBtn" class="btn btn-success"
                value="Zarejestruj">
         <h2><br><br></h2>
-    </form:form>
+    </form>
 </div>
 
 

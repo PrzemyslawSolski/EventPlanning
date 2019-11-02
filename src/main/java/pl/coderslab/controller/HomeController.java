@@ -26,10 +26,7 @@ public class HomeController {
         return "taskList";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
+
 
     @GetMapping("/login")
     public String login(){

@@ -12,16 +12,16 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer {
-    public void onStartup(ServletContext container) throws ServletException {
-        AnnotationConfigWebApplicationContext ctx =
-                new AnnotationConfigWebApplicationContext();
-        ctx.register(AppConfig.class);
-        ctx.setServletContext(container);
-        ServletRegistration.Dynamic servlet =
-                container.addServlet("dispatcher", new DispatcherServlet(ctx));
-        servlet.setLoadOnStartup(1);
-        servlet.addMapping("/");
-    }
+//    public void onStartup(ServletContext container) throws ServletException {
+//        AnnotationConfigWebApplicationContext ctx =
+//                new AnnotationConfigWebApplicationContext();
+//        ctx.register(AppConfig.class);
+//        ctx.setServletContext(container);
+//        ServletRegistration.Dynamic servlet =
+//                container.addServlet("dispatcher", new DispatcherServlet(ctx));
+//        servlet.setLoadOnStartup(1);
+//        servlet.addMapping("/");
+//    }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

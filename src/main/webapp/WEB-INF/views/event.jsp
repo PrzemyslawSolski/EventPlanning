@@ -36,11 +36,11 @@
 
     <form id="edit-form">
         <div>
-            <h3><br><br><br></h3>
+            <h3><br><br></h3>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
-                <label><h3>Szczegóły:</h3></label>
+                <label><h3>Szczegóły ślubu:</h3></label>
             </div>
 
         </div>
@@ -49,7 +49,8 @@
         <div class="row">
             <div class="form-group col-md-6">
                 <label>Nazwa:</label><br>
-                <input type="text" name="name" placeholder="np. Ślub Agaty i Adama" id="formEventName" class="form-control">
+                <input type="text" name="name" placeholder="np. Ślub Agaty i Adama" id="formEventName"
+                       class="form-control">
             </div>
 
 
@@ -66,49 +67,72 @@
 
         </div>
         <div class="row">
+            <div class="form-group col-md-3">
+                <label for="formCeremonyType"><b>Ślub:</b></label>
+                <%--                //*TODO dodać listę lokalizacji--%>
+            </div>
+        </div>
+        <div class="row">
+
             <div class="form-group col-md-2">
-                <label for="formEventDate" >Data</label><br>
-                <input type="date" name="date" placeholder="data" id="formEventDate" class="form-control">
+                <label for="formCeremonyDate">Data:</label><br>
+                <input type="date" name="date" placeholder="data" id="formCeremonyDate" class="form-control">
             </div>
             <div class="form-group col-md-2">
-                <label for="formEventTime" >Godzina:</label><br>
-                <input type="time" name="hour" placeholder="godzina" id="formEventTime" class="form-control">
+                <label for="formCeremonyTime">Godzina:</label><br>
+                <input type="time" name="hour" placeholder="godzina" id="formCeremonyTime" class="form-control">
             </div>
             <div class="form-group col-md-2">
-                <label for="formEventType" >Typ:</label><br>
-                <select type="text" name="type" placeholder="typ" id="formEventType" class="form-control">
-                    <option selected value="" >Wybierz...</option>
+                <label for="formCeremonyType">Typ:</label><br>
+                <select type="text" name="type" placeholder="typ" id="formCeremonyType" class="form-control">
+                    <option selected value="">Wybierz...</option>
                     <option value="r">kościelny</option>
                     <option value="c">cywilny</option>
                 </select>
             </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="formPartyDate"><b>Wesele:</b></label>
+                <%--                    //*TODO dodać listę lokalizacji--%>
+            </div>
+        </div>
+        <div class="row">
 
+            <div class="form-group col-md-2">
+                <label for="formPartyDate">Data:</label><br>
+                <input type="date" name="date" placeholder="data" id="formPartyDate" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="formPartyTime">Godzina:</label><br>
+                <input type="time" name="hour" placeholder="godzina" id="formPartyTime" class="form-control">
+            </div>
         </div>
         <label for="submitBtn"></label>
         <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success" value=" Zapisz ">
         <br><br>
     </form>
 
-<%--    <div>--%>
-<%--        <h2><br><br><br></h2>--%>
-<%--        <h2>Lista książek</h2><br>--%>
-<%--    </div>--%>
+    <%--    <div>--%>
+    <%--        <h2><br><br><br></h2>--%>
+    <%--        <h2>Lista książek</h2><br>--%>
+    <%--    </div>--%>
 
-<%--    <table class="table table-hover" id="header">--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th>Id</th>--%>
-<%--            <th>Autor</th>--%>
-<%--            <th>Tytuł</th>--%>
-<%--            <th>--%>
-<%--                <button class="btn btn-success" id="addBtn">Dodaj książkę</button>--%>
-<%--            </th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody id="tBody">--%>
+    <%--    <table class="table table-hover" id="header">--%>
+    <%--        <thead>--%>
+    <%--        <tr>--%>
+    <%--            <th>Id</th>--%>
+    <%--            <th>Autor</th>--%>
+    <%--            <th>Tytuł</th>--%>
+    <%--            <th>--%>
+    <%--                <button class="btn btn-success" id="addBtn">Dodaj książkę</button>--%>
+    <%--            </th>--%>
+    <%--        </tr>--%>
+    <%--        </thead>--%>
+    <%--        <tbody id="tBody">--%>
 
-<%--        </tbody>--%>
-<%--    </table>--%>
+    <%--        </tbody>--%>
+    <%--    </table>--%>
 
 
 </div>
