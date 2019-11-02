@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.app.DaoInterface;
-import pl.coderslab.user.User;
-import pl.coderslab.user.UserDao;
 
 import java.util.List;
 
 @Service
 @Transactional
-public class TaskService implements DaoInterface<Task> {
+public class TaskService {
 
     private final TaskDao taskDao;
 

@@ -17,4 +17,48 @@ public class Task {
     @ManyToOne
     private TaskGroup taskGroup;
 //    private long group_id;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public TaskGroup getTaskGroup() {
+        return taskGroup;
+    }
+
+    public void setTaskGroup(TaskGroup taskGroup) {
+        this.taskGroup = taskGroup;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", event=" + event +
+                ", taskGroup=" + taskGroup +
+                '}';
+    }
 }

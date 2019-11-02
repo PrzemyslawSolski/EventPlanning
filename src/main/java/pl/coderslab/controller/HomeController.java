@@ -8,40 +8,49 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.task.Task;
+import pl.coderslab.task.TaskService;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     private final UserService userService;
+    private final TaskService taskService;
 
     @Autowired
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, TaskService taskService) {
         this.userService = userService;
+        this.taskService = taskService;
     }
 
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return "home";
     }
 
     @GetMapping("/event")
-    public String eventGeneral(){
+    public String eventGeneral() {
         return "event";
     }
 
     @GetMapping("/venue")
-    public String venue(){
+    public String venue() {
         return "venue";
     }
 
     @GetMapping("/taskList")
-    public String taskList(){
-        return "taskList";
+    public String taskList(Model model) {
+        List<Task> tasks = new ArrayList<>();
+        tasks = taskService.findAll();
+        model.addAttribute("tasks", tasks);
+        return "tasks";
     }
 
     @GetMapping("/register")
@@ -68,7 +77,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
