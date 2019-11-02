@@ -1,8 +1,10 @@
 package pl.coderslab.user;
 
 import pl.coderslab.event.Event;
-
+import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -11,13 +13,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String surname;
+    @NotEmpty
+    @Email
     private String email;
+    @NotEmpty
     private String password;
     private boolean admin;
     @ManyToMany(mappedBy = "users")
     private List<Event> events;
+
+    public void setPasswordHash(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 
     public long getId() {
         return id;

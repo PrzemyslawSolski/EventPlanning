@@ -51,6 +51,7 @@
             <div class="form-group col-md-5">
                 <label>Imię:</label>
                 <form:input path="name" type="text" placeholder="imię" id="formName" class="form-control"/>
+                <form:errors path="name" element="div" cssClass="error"></form:errors>
             </div>
 <%--        </div>--%>
 
@@ -58,24 +59,28 @@
             <div class="form-group col-md-5">
                 <label>Nazwisko:</label>
                 <form:input path="surname" type="text" placeholder="nazwisko" id="formSurname" class="form-control"/>
+                <form:errors path="surname" element="div" cssClass="error"></form:errors>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-10">
                 <label>Email:</label>
                 <form:input path="email" type="text" placeholder="adres email" id="formEmail" class="form-control"/>
+                <form:errors path="email" element="div" cssClass="error"></form:errors>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-5">
                 <label>Hasło:</label>
                 <form:input path="password" type="password" placeholder="hasło" id="formPassword" class="form-control password"/>
+                <form:errors path="password" element="div" cssClass="error"></form:errors>
             </div>
 <%--        </div>--%>
 <%--        <div class="row">--%>
             <div class="form-group col-md-5">
                 <label>Powtórz hasło:</label>
-                <input type="password" placeholder="powtórz hasło" id="formPasswordConfirm" class="form-control password">
+                <input type="password" name="repeatPassword" placeholder="powtórz hasło" id="formPasswordConfirm" class="form-control password">
+<%--                <form:errors path="password" element="div" cssClass="error"></form:errors>--%>
             </div>
         </div>
         <div class="form-group">
