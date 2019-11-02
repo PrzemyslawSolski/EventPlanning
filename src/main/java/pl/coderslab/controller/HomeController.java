@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.task.Task;
 import pl.coderslab.task.TaskService;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +31,15 @@ public class HomeController {
 
 
     @GetMapping("/home")
+//    @ResponseBody
     public String home() {
+//        LocalDate date = LocalDate.now();
+//        LocalTime time = new LocalTime();
+//        LocalDateTime dateTime = LocalDateTime.of(date, time);
         return "home";
     }
 
-    @GetMapping("/event")
-    public String eventGeneral() {
-        return "event";
-    }
+
 
     @GetMapping("/venue")
     public String venue() {

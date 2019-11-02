@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: psolski
@@ -34,7 +35,7 @@
 
 <div class="container">
 
-    <form id="edit-form">
+    <form:form id="edit-form" method="post" modelAttribute="venue">
         <div>
             <h3><br><br><br></h3>
 <%--            <h3>Szczegóły</h3><br>--%>
@@ -52,7 +53,7 @@
 
             <div class="form-group col-md-6">
                 <label>Miejsce:</label>
-                <input type="text" name="place" placeholder="np. kościół NMP" id="formVenueName" class="form-control">
+                <form:input path="name" name="place" placeholder="np. kościół NMP" id="formVenueName" class="form-control"/>
             </div>
 
         </div>
@@ -60,22 +61,22 @@
 
             <div class="form-group col-md-3">
                 <label>Miejscowość:</label>
-                <input type="text" name="city" placeholder="np. Pcim" id="formEventCity" class="form-control">
+                <form:input path="city" type="text" name="city" placeholder="np. Pcim" id="formEventCity" class="form-control"/>
             </div>
             <div class="form-group col-md-2">
                 <label>Kod pocztowy:</label>
-                <input type="text" name="zip" pattern="^[0-9]{2}-[0-9]{3}$" oninput="if(this.value.length==2 && this.value.indexOf('-')==-1) this.value+='-';"placeholder="np. 02-345" id="formEventZip" class="form-control">
+                <form:input path="zip" name="zip" pattern="^[0-9]{2}-[0-9]{3}$" oninput="if(this.value.length==2 && this.value.indexOf('-')==-1) this.value+='-';" placeholder="np. 02-345" id="formEventZip" class="form-control"/>
             </div>
         </div>
         <div class="row">
 
             <div class="form-group col-md-3">
                 <label for="formVenueStreet" >Ulica:</label>
-                <input type="text" name="street" placeholder="np. Grochowska" id="formVenueStreet" class="form-control">
+                <form:input path="street" name="street" placeholder="np. Grochowska" id="formVenueStreet" class="form-control"/>
             </div>
             <div class="form-group col-md-2">
                 <label for="formVenueNumber" >Numer:</label>
-                <input type="text" name="number" placeholder="np. 3 lub 34/16" id="formVenueNumber" class="form-control">
+                <form:input path="number" name="number" placeholder="np. 3 lub 34/16" id="formVenueNumber" class="form-control"/>
             </div>
         </div>
 <%--        <div class="row">--%>
@@ -100,7 +101,7 @@
         <label for="submitBtn"></label>
         <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success" value=" Zapisz ">
         <br><br>
-    </form>
+    </form:form>
 
 <%--    <div>--%>
 <%--        <h2><br><br><br></h2>--%>

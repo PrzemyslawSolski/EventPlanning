@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class VenueService implements DaoInterface<Venue> {
+public class VenueService {
 
     private final VenueDao venueDao;
 
@@ -18,23 +18,23 @@ public class VenueService implements DaoInterface<Venue> {
         this.venueDao = venueDao;
     }
 
-    public void create(Venue venue){
+    public void create(Venue venue) {
         venueDao.create(venue);
     }
 
-    public void update(Venue venue){
+    public void update(Venue venue) {
         venueDao.update(venue);
     }
 
-    public Venue findOne(long id){
+    public Venue findOne(long id) {
         return venueDao.findOne(id);
     }
 
-    public List<Venue> findAll(){
+    public List<Venue> findAll() {
         return venueDao.findAll();
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
 //        venueDao.deleteVenueRelations(id);
         venueDao.delete(id);
     }

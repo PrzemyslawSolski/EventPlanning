@@ -180,6 +180,17 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
+                                <%--                                <tr role="row" class="odd">--%>
+                                <c:forEach items="${tasks}" var="task">
+                                    <tr role="row" class="odd">
+                                        <td>
+                                            <c:out value="${task.id}"></c:out>
+                                        </td>
+                                        <td>
+                                            <c:out value="${task.description}"></c:out>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 
 
                                 <tr role="row" class="odd">

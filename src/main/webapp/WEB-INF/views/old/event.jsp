@@ -51,98 +51,63 @@
         <div class="row">
             <div class="form-group col-md-6">
                 <label>Nazwa:</label><br>
-                <form:input path="name" placeholder="np. Ślub Agaty i Adama" id="formEventName" class="form-control"/>
-                <form:errors path="name" element="div" cssClass="error"></form:errors>
+                <form:input path="name" type="text" name="name" placeholder="np. Ślub Agaty i Adama" id="formEventName"
+                       class="form-control"/>
             </div>
 
 
-                <%--        </div>--%>
-                <%--        <div class="row">--%>
+        </div>
+        <div class="row">
             <div class="form-group col-md-3">
                 <label>Imię panny młodej:</label><br>
-                <form:input path="bride" type="text" name="bride" placeholder="np. Agata" id="formBride"
-                            class="form-control"/>
-                <form:errors path="bride" element="div" cssClass="error"></form:errors>
+                <form:input path="bride" type="text" name="bride" placeholder="np. Agata" id="formBride" class="form-control"/>
             </div>
             <div class="form-group col-md-3">
                 <label>Imię panna młodego:</label><br>
-                <form:input path="groom" type="text" name="groom" placeholder="np. Adam" id="formGroom"
-                            class="form-control"/>
-                <form:errors path="groom" element="div" cssClass="error"></form:errors>
+                <form:input path="groom" type="text" name="groom" placeholder="np. Adam" id="formGroom" class="form-control"/>
             </div>
 
         </div>
         <div class="row">
-
-            <div class="form-group col-md-1">
-                <label><b>Ślub:</b>
-                        <%--                //*TODO dodać listę lokalizacji--%>
-
-                </label>
-            </div>
-
-            <div class="form-group col-md-1"></div>
-            <div class="form-group col-md-4">
-                <label for="ceremonyVenue">Miejsce:</label><br>
-                <form:select id="ceremonyVenue" path="ceremonyVenue.id" items="${venues}"
-                             itemValue="id" itemLabel="fullName" class="form-control"/>
-                <form:errors path="ceremonyVenue" element="div" cssClass="error"/>
+            <div class="form-group col-md-3">
+                <label for="formCeremonyType"><b>Ślub:</b></label>
+                <%--                //*TODO dodać listę lokalizacji--%>
             </div>
         </div>
         <div class="row">
 
             <div class="form-group col-md-2">
-                <label for="formCeremonyDate">Data:</label>
-                <form:input type="date" path="ceremonyDate" id="formCeremonyDate" class="form-control"/>
-                <form:errors path="ceremonyDate" element="div" cssClass="error"></form:errors>
+                <label for="formCeremonyDate">Data:</label><br>
+                <input type="date" name="ceremonyDate" placeholder="data" id="formCeremonyDate" class="form-control">
             </div>
             <div class="form-group col-md-2">
                 <label for="formCeremonyTime">Godzina:</label><br>
-                <form:input path="ceremonyTime" type="time" name="ceremonyTime" placeholder="godzina"
-                            id="formCeremonyTime" class="form-control"/>
-                <form:errors path="name" element="div" cssClass="error"></form:errors>
+                <input type="time" name="hour" placeholder="godzina" id="formCeremonyTime" class="form-control">
             </div>
             <div class="form-group col-md-2">
-                <label for="formCeremonyType">Typ: </label><br>
-                <form:select path="type" type="text" name="type" placeholder="typ" id="formCeremonyType"
-                             class="form-control">
-                    <%--                    <option selected value="">Wybierz...</option>--%>
-                    <form:option value="0">nie wiem...</form:option>
-                    <form:option value="1">kościelny</form:option>
-                    <form:option value="2">cywilny</form:option>
-                </form:select>
-                <form:errors path="type" element="div" cssClass="error"></form:errors>
-
+                <label for="formCeremonyType">Typ:</label><br>
+                <select type="text" name="type" placeholder="typ" id="formCeremonyType" class="form-control">
+                    <option selected value="">Wybierz...</option>
+                    <option value="r">kościelny</option>
+                    <option value="c">cywilny</option>
+                </select>
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-1">
-                <label for="formPartyDate"><b>Wesele:</b>
-
-
-                </label>
-                    <%--                    //*TODO dodać listę lokalizacji--%>
+            <div class="form-group col-md-3">
+                <label for="formPartyDate"><b>Wesele:</b></label>
+                <%--                    //*TODO dodać listę lokalizacji--%>
             </div>
+        </div>
+        <div class="row">
 
-            <div class="form-group col-md-1"></div>
-            <div class="form-group col-md-4">
-                <label for="partyVenue">Miejsce:</label><br>
-                <form:select id="partyVenue" path="partyVenue.id" items="${venues}"
-                             itemValue="id" itemLabel="fullName" class="form-control"/>
-                <form:errors path="partyVenue" element="div" cssClass="error"/>
-            </div>
-                        </div>
-                        <div class="row">
             <div class="form-group col-md-2">
                 <label for="formPartyDate">Data:</label><br>
-                <form:input type="date" path="partyDate" placeholder="data" id="formPartyDate" class="form-control"/>
-                <form:errors path="partyDate" element="div" cssClass="error"></form:errors>
+                <input type="date" name="date" placeholder="data" id="formPartyDate" class="form-control">
             </div>
             <div class="form-group col-md-2">
                 <label for="formPartyTime">Godzina:</label><br>
-                <form:input path="partyTime" type="time" name="partyTime" placeholder="godzina" id="formPartyTime"
-                            class="form-control"/>
-                <form:errors path="partyTime" element="div" cssClass="error"></form:errors>
+                <input type="time" name="hour" placeholder="godzina" id="formPartyTime" class="form-control">
             </div>
         </div>
         <label for="submitBtn"></label>

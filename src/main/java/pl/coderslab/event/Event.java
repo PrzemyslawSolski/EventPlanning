@@ -1,10 +1,13 @@
 package pl.coderslab.event;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.user.User;
 import pl.coderslab.venue.Venue;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -17,8 +20,15 @@ public class Event {
     private String bride;//long brideId;
     private String groom; //long groomId;
     private long eventAdminId;
-    private LocalDateTime ceremonyDateTime;
-    private LocalDateTime partyDateTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate ceremonyDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime ceremonyTime;
+    //    private LocalDateTime ceremonyDateTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate partyDate;
+    private LocalTime partyTime;
+    //    private LocalDateTime partyDateTime;
     private byte type;// (c)ivil or (r)eligious
     @ManyToOne
     private Venue ceremonyVenue;
@@ -27,4 +37,128 @@ public class Event {
     @ManyToMany
     @JoinTable(name = "event_user")
     private List<User> users;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBride() {
+        return bride;
+    }
+
+    public void setBride(String bride) {
+        this.bride = bride;
+    }
+
+    public String getGroom() {
+        return groom;
+    }
+
+    public void setGroom(String groom) {
+        this.groom = groom;
+    }
+
+    public long getEventAdminId() {
+        return eventAdminId;
+    }
+
+    public void setEventAdminId(long eventAdminId) {
+        this.eventAdminId = eventAdminId;
+    }
+
+    public LocalDate getCeremonyDate() {
+        return ceremonyDate;
+    }
+
+    public void setCeremonyDate(LocalDate ceremonyDate) {
+        this.ceremonyDate = ceremonyDate;
+    }
+
+    public LocalTime getCeremonyTime() {
+        return ceremonyTime;
+    }
+
+    public void setCeremonyTime(LocalTime ceremonyTime) {
+        this.ceremonyTime = ceremonyTime;
+    }
+
+    public LocalDate getPartyDate() {
+        return partyDate;
+    }
+
+    public void setPartyDate(LocalDate partyDate) {
+        this.partyDate = partyDate;
+    }
+
+    public LocalTime getPartyTime() {
+        return partyTime;
+    }
+
+    public void setPartyTime(LocalTime partyTime) {
+        this.partyTime = partyTime;
+    }
+
+    public byte getType() {
+        return type;
+    }
+
+    public void setType(byte type) {
+        this.type = type;
+    }
+
+    public Venue getCeremonyVenue() {
+        return ceremonyVenue;
+    }
+
+    public void setCeremonyVenue(Venue ceremonyVenue) {
+        this.ceremonyVenue = ceremonyVenue;
+    }
+
+    public Venue getPartyVenue() {
+        return partyVenue;
+    }
+
+    public void setPartyVenue(Venue partyVenue) {
+        this.partyVenue = partyVenue;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", bride='" + bride + '\'' +
+                ", groom='" + groom + '\'' +
+                ", eventAdminId=" + eventAdminId +
+                ", ceremonyDate=" + ceremonyDate +
+                ", ceremonyTime=" + ceremonyTime +
+                ", partyDate=" + partyDate +
+                ", partyTime=" + partyTime +
+                ", type=" + type +
+                ", ceremonyVenue=" + ceremonyVenue +
+                ", partyVenue=" + partyVenue +
+                '}';
+    }
 }
