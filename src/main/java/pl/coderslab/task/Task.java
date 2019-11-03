@@ -51,7 +51,6 @@ public class Task {
         this.taskGroup = taskGroup;
     }
 
-
     @Override
     public String toString() {
         return "Task{" +

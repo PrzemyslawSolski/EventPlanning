@@ -27,7 +27,7 @@ public class TaskDao {
     }
 
     public List<Task> findAll() {
-        Query query = entityManager.createQuery("select t from Task t");
+        Query query = entityManager.createQuery("select t from Task t where t.event=null");
         return query.getResultList();
     }
 

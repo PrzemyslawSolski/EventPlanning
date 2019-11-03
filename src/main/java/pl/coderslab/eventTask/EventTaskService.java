@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class EventTaskService implements DaoInterface<EventTask> {
+public class EventTaskService {
 
     private final EventTaskDao eventTaskDao;
 

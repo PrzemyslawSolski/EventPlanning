@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TaskGroupService implements DaoInterface<TaskGroup> {
+public class TaskGroupService {
 
     private final TaskGroupDao taskGroupDao;
 

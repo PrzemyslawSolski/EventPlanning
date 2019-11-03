@@ -10,33 +10,28 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class EventDao implements DaoInterface <Event> {
+public class EventDao {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
     public void create(Event event) {
         entityManager.persist(event);
     }
 
-    @Override
     public void update(Event event) {
         entityManager.merge(event);
     }
 
-    @Override
     public Event findOne(long id) {
         return entityManager.find(Event.class, id);
     }
 
-    @Override
     public List<Event> findAll() {
         Query query = entityManager.createQuery("select e from Event e");
         return query.getResultList();
     }
 
-    @Override
     public void delete(Long id) {
         Event event = findOne(id);
         if (event != null){
