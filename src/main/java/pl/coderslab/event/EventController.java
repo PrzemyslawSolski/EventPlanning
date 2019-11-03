@@ -14,6 +14,7 @@ import pl.coderslab.taskToEvent.TaskToEventListContainer;
 import pl.coderslab.venue.Venue;
 import pl.coderslab.venue.VenueService;
 
+import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +53,24 @@ public class EventController {
         }
         eventService.create(event);
         return "event";
-
     }
+
+    @GetMapping("/edit/{id}")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
+    public String edit(Model model, @PathVariable long id){
+        model.addAttribute("event", eventService.findOne(id));
+        return "event";
+    }
+
+    @PostMapping("/edit/{id}")
+//    @ResponseBody
+    public String edit(@ModelAttribute Event event, BindingResult result){
+        if (result.hasErrors()) {
+            return "event";
+        }
+        eventService.update(event);
+        return "event";
+    }
+
 
     @GetMapping("/addTasks")
 //    @ResponseBody
