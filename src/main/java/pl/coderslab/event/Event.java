@@ -38,6 +38,12 @@ public class Event {
     @JoinTable(name = "event_user")
     private List<User> users;
 
+
+    public void changeDates(int shift){
+        this.setCeremonyDate(this.getCeremonyDate().plusDays(shift));
+        this.setPartyDate(this.getPartyDate().plusDays(shift));
+    }
+
     public long getId() {
         return id;
     }

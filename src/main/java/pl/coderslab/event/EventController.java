@@ -35,6 +35,7 @@ public class EventController {
         this.eventTaskService = eventTaskService;
     }
 
+//TODO daty przy zapisywaniu są o jeden dzień wcześniejsze
 
     @GetMapping("/add")
     public String add(Model model) {
@@ -51,7 +52,10 @@ public class EventController {
         if (result.hasErrors()) {
             return "event";
         }
+        event.changeDates(1);
+
         eventService.create(event);
+        event.changeDates(-1);
         return "event";
     }
 
@@ -67,7 +71,9 @@ public class EventController {
         if (result.hasErrors()) {
             return "event";
         }
+        event.changeDates(1);
         eventService.update(event);
+        event.changeDates(-1);
         return "event";
     }
 
