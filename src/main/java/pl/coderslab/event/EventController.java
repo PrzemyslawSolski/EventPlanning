@@ -58,11 +58,24 @@ public class EventController {
     @GetMapping("/addTasks")
 //    @ResponseBody
     public String addTasks(Model model) {
+        List<EventTask> eventTasks = eventTaskService.findAll();
+
+        //stworzenie listy tasksId istniejących dal bieżącego eventu
+        List<Long> eventTasksIds = new ArrayList<>();
+        for (EventTask eventTask : eventTasks) {
+            if(eventTask.getEvent().getId()==1){ //TODO change to real event
+                eventTasksIds.add(eventTask.getTask().getId());
+            }
+        }
         List<Task> tasks = taskService.findAll();
         List<TaskToEvent> taskToEvents = new ArrayList<>();
         for (Task task : tasks) {
             TaskToEvent taskToEvent = new TaskToEvent();
             taskToEvent.setTask(task);
+            //jeżeli task jest na liście zadań bieżącego eventu, ustawiamy toAdd na true
+            if(eventTasksIds.contains(task.getId())){
+                taskToEvent.setToAdd(true);
+            }
             taskToEvents.add(taskToEvent);
         }
         TaskToEventListContainer taskToEventList = new TaskToEventListContainer();
