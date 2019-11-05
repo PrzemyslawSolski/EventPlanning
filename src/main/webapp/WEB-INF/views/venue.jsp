@@ -12,7 +12,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Ślub/owanie</title>
+    <title>Ślub@wanie</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -25,6 +25,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href='<c:url value="/css/mystyle.css"/>' rel="stylesheet" type="text/css">
     <%--    <script src="js/books.js"></script>--%>
 </head>
 <body>
@@ -54,6 +55,7 @@
             <div class="form-group col-md-6">
                 <label>Miejsce:</label>
                 <form:input path="name" name="place" placeholder="np. kościół NMP" id="formVenueName" class="form-control"/>
+                <form:errors path="name" element="div" cssClass="error"></form:errors>
             </div>
 
         </div>
@@ -62,10 +64,12 @@
             <div class="form-group col-md-3">
                 <label>Miejscowość:</label>
                 <form:input path="city" type="text" name="city" placeholder="np. Pcim" id="formEventCity" class="form-control"/>
+                <form:errors path="city" element="div" cssClass="error"></form:errors>
             </div>
             <div class="form-group col-md-2">
                 <label>Kod pocztowy:</label>
                 <form:input path="zip" name="zip" pattern="^[0-9]{2}-[0-9]{3}$" oninput="if(this.value.length==2 && this.value.indexOf('-')==-1) this.value+='-';" placeholder="np. 02-345" id="formEventZip" class="form-control"/>
+                <form:errors path="zip" element="div" cssClass="error"></form:errors>
             </div>
         </div>
         <div class="row">
@@ -73,10 +77,12 @@
             <div class="form-group col-md-3">
                 <label for="formVenueStreet" >Ulica:</label>
                 <form:input path="street" name="street" placeholder="np. Grochowska" id="formVenueStreet" class="form-control"/>
+                <form:errors path="street" element="div" cssClass="error"></form:errors>
             </div>
             <div class="form-group col-md-2">
                 <label for="formVenueNumber" >Numer:</label>
                 <form:input path="number" name="number" placeholder="np. 3 lub 34/16" id="formVenueNumber" class="form-control"/>
+                <form:errors path="number" element="div" cssClass="error"></form:errors>
             </div>
         </div>
 <%--        <div class="row">--%>

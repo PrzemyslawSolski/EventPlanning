@@ -24,6 +24,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href='<c:url value="/css/mystyle.css"/>' rel="stylesheet" type="text/css">
     <%--    <script src="http://code.jquery.com/jquery-1.9.0rc1.js"></script>--%>
 
     <%--    <script src="http://code.jquery.com/jquery-migrate-1.0.0rc1.js"></script>--%>
