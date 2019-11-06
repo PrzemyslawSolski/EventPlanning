@@ -41,16 +41,24 @@
         <div>
             <h3><br><br></h3>
         </div>
-        <div class="card">
+        <div class="card bg-light mb-3">
 
-                <div class="card-header">
-<%--                <div class="row">--%>
+            <div class="card-header">
+                <div class="row">
                     <div class="form-group col-md-6">
-                        <label><h3>Szczegóły:</h3></label>
-                    </div>
+                        <label><h4>Szczegóły:</h4></label>
 
-<%--                </div>--%>
+
+                    </div>
+<%--                    <div class="form-group col-md-4">--%>
+<%--                            &lt;%&ndash;                        <label>Test</label>&ndash;%&gt;--%>
+<%--                    </div>--%>
+                    <div class="form-group col-md-6">
+                        <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success float-right"
+                               value=" Zapisz ">
+                    </div>
                 </div>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -79,14 +87,13 @@
             </div>
 
         </div>
-        <div><br></div>
-        <div class="card">
+        <%--        <div><br></div>--%>
+        <div class="card bg-light mt-3">
             <div class="card-body">
                 <div class="row">
 
                     <div class="form-group col-md-1">
                         <label><b>Ślub:</b>
-                                <%--                //*TODO dodać listę lokalizacji--%>
 
                         </label>
                     </div>
@@ -126,14 +133,13 @@
                 </div>
             </div>
         </div>
-        <div><br></div>
-        <div class="card">
+        <%--        <div><br></div>--%>
+        <div class="card bg-light mb-3 mt-3">
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-md-1">
                         <label for="formPartyDate"><b>Wesele:</b>
                         </label>
-                            <%--                    //*TODO dodać listę lokalizacji--%>
                     </div>
 
                     <div class="form-group col-md-1"></div>
@@ -161,10 +167,10 @@
                 </div>
             </div>
         </div>
-        <div><br></div>
-        <label for="submitBtn"></label>
-        <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success" value=" Zapisz ">
-        <br><br>
+        <%--        <div><br></div>--%>
+        <%--        <label for="submitBtn"></label>--%>
+        <%--        <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success" value=" Zapisz ">--%>
+        <%--        <br><br>--%>
     </form:form>
 
     <%--    <div>--%>

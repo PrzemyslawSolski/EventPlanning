@@ -79,42 +79,52 @@
         <input type="submit" id="submitBtn" data-method="POST" class="btn btn-success">
         <br><br>
     </form>--%>
-
-    <div>
-        <h2><br><br><br></h2>
-        <h2>Lista zadań</h2><br>
-    </div>
     <form:form method="post" modelAttribute="TaskToEvents">
-        <table class="table table-hover" id="header">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Opis</th>
-                <th>Dodaj
-                        <%--                    <button class="btn btn-success" id="addBtn">Dodaj zadanie</button>--%>
-                </th>
-            </tr>
-            </thead>
-            <tbody id="tBody">
-            <c:forEach items="${TaskToEvents.taskToEvents}" var="taskToEvent" varStatus="tagStatus">
-                <tr>
-                    <td>
-                            <%--                        <c:out value="${task.task.id}"></c:out>--%>
-                        <form:label path="taskToEvents[${tagStatus.index}].task.id" value="${taskToEvent.task.id}" >${taskToEvent.task.id}</form:label>
-                        <form:hidden path="taskToEvents[${tagStatus.index}].task.id"/>
-                    </td>
-                    <td>
-                            <%--                        <c:out value="${task.task.description}"></c:out>--%>
-                        <form:label path="taskToEvents[${tagStatus.index}].task.description" value="${taskToEvent.task.description}">${taskToEvent.task.description}</form:label>
-                    </td>
-                    <td>
-                        <form:checkbox path="taskToEvents[${tagStatus.index}].toAdd"></form:checkbox>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <input type="submit" value="Dodaj" class="btn btn-success">
+        <h2><br><br><br></h2>
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <div class="h-50">
+
+                    <h5 class="card-title">Wybierz zadania do swojego wydarzenia</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover" id="header">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Opis</th>
+                        <th>Zaznacz, aby dodać
+                                <%--                    <button class="btn btn-success" id="addBtn">Dodaj zadanie</button>--%>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="tBody">
+                    <c:forEach items="${TaskToEvents.taskToEvents}" var="taskToEvent" varStatus="tagStatus">
+                        <tr>
+                            <td>
+                                    <%--                        <c:out value="${task.task.id}"></c:out>--%>
+                                <form:label path="taskToEvents[${tagStatus.index}].task.id"
+                                            value="${taskToEvent.task.id}">${taskToEvent.task.id}</form:label>
+                                <form:hidden path="taskToEvents[${tagStatus.index}].task.id"/>
+                            </td>
+                            <td>
+                                    <%--                        <c:out value="${task.task.description}"></c:out>--%>
+                                <form:label path="taskToEvents[${tagStatus.index}].task.description"
+                                            value="${taskToEvent.task.description}">${taskToEvent.task.description}</form:label>
+                            </td>
+                            <td>
+                                <form:checkbox path="taskToEvents[${tagStatus.index}].toAdd"></form:checkbox>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+        <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-right mb-10">
+        </div>
+        </div>
     </form:form>
 
 

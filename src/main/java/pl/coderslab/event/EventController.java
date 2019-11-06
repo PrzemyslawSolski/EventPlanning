@@ -1,5 +1,7 @@
 package pl.coderslab.event;
 
+;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,9 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.eventTask.EventTask;
 import pl.coderslab.eventTask.EventTaskService;
-import pl.coderslab.taskToEvent.TaskToEvent;
+import pl.coderslab.price.Price;
 import pl.coderslab.task.Task;
 import pl.coderslab.task.TaskService;
+import pl.coderslab.taskToEvent.TaskToEvent;
 import pl.coderslab.taskToEvent.TaskToEventListContainer;
 import pl.coderslab.venue.Venue;
 import pl.coderslab.venue.VenueService;
@@ -53,7 +56,6 @@ public class EventController {
             return "event";
         }
         event.changeDates(1);
-
         eventService.create(event);
         event.changeDates(-1);
         return "event";
@@ -83,10 +85,10 @@ public class EventController {
     public String addTasks(Model model) {
         List<EventTask> eventTasks = eventTaskService.findAll();
 
-        //stworzenie listy tasksId istniejących dal bieżącego eventu
+        //stworzenie listy tasksId istniejących dla bieżącego eventu
         List<Long> eventTasksIds = new ArrayList<>();
         for (EventTask eventTask : eventTasks) {
-            if(eventTask.getEvent().getId()==1){ //TODO change to real event
+            if(eventTask.getEvent().getId()==2){ //TODO change to real event
                 eventTasksIds.add(eventTask.getTask().getId());
             }
         }
@@ -118,8 +120,9 @@ public class EventController {
             if(taskToEvent.isToAdd()){
                 EventTask eventTask = new EventTask();
                 eventTask.setTask(taskService.findOne(taskToEvent.getTask().getId()));
+//                eventTask.setPrice(new Price());
                 eventTask.setEvent(eventService.findOne(2));//TODO change event id to real one
-                eventTaskService.create(eventTask);
+                eventTaskService.save(eventTask);
             }
         }
     }
