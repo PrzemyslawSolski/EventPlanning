@@ -12,8 +12,6 @@ public class EventTaskService {
 
     private final EventTaskRepository eventTaskRepository;
 
-
-
     public EventTask getOne(long id) {
         return eventTaskRepository.getOne(id);
     }
