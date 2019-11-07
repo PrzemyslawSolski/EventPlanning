@@ -45,8 +45,8 @@
 
         <div class="card-header">
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label><h4>${eventTask.event.name}</h4></label>
+                <div class="form-group col-md-4">
+                    <label><h4>${eventTask.task.description}</h4></label>
 
 
                 </div>
@@ -62,27 +62,27 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label>Zadania</label><br>
-                    <form:label path="task.description" placeholder="np. Ślub Agaty i Adama" id="formEventName"
-                                class="form-control bg-light">${eventTask.task.description}</form:label>
-                        <%--                        <form:errors path="name" element="div" cssClass="error"></form:errors>--%>
+                <div class="form-group col-md-1">
+<%--                    <label>Zadania</label><br>--%>
+<%--                    <form:label path="task.description" placeholder="np. Ślub Agaty i Adama" id="formEventName"--%>
+<%--                                class="form-control bg-light">${eventTask.task.description}</form:label>--%>
                 </div>
 
 
                     <%--        </div>--%>
                     <%--        <div class="row">--%>
+                <div class="form-group col-md-3">
+                    <p/>
+                    <form:radiobutton path="price.type" value="0"></form:radiobutton>planowane
+                    <form:radiobutton path="price.type" value="1"></form:radiobutton>wykonane
+                </div>
                 <div class="form-group col-md-2">
-                    <label>Data wykonania:</label><br>
+                    <label>Data:</label><br>
                     <form:input path="date" type="date" name="date" placeholder="np. Agata" id="formDate"
                                 class="form-control"/>
                     <form:errors path="date" element="div" cssClass="error"></form:errors>
                 </div>
-                <div class="form-group col-md-4">
-                    <p/><p/>
-                    <form:radiobutton path="price.type" value="0"></form:radiobutton>planowane<p/>
-                    <form:radiobutton path="price.type" value="1"></form:radiobutton>wykonane
-                </div>
+
             </div>
             <div class="row">
                 <div class="form-group col-md-2">
