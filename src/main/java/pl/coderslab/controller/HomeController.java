@@ -1,5 +1,6 @@
 package pl.coderslab.controller;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import pl.coderslab.task.TaskService;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserService;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,15 +34,15 @@ public class HomeController {
     }
 
 
-    @GetMapping("/home")
+    @GetMapping("/")
 //    @ResponseBody
-    public String home() {
+    public String home(HttpSession session) {
+        session.setAttribute("eventId", 2);//TODO wprowadzić eventId od usera
 //        LocalDate date = LocalDate.now();
 //        LocalTime time = new LocalTime();
 //        LocalDateTime dateTime = LocalDateTime.of(date, time);
         return "home";
     }
-
 
 
     @GetMapping("/venue")

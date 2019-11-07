@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.price.Price;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/tasks")
 public class EventTaskController {
@@ -20,8 +22,8 @@ public class EventTaskController {
     }
 
     @GetMapping("/edit/{id}")
-    public String eventTaskEdit(Model model, @PathVariable long id) {
-        EventTask eventTask=eventTaskService.getOneByIdAndEventId(id, 2);
+    public String eventTaskEdit(HttpSession session, Model model, @PathVariable long id) {
+        EventTask eventTask=eventTaskService.getOneByIdAndEventId(id, (Integer)(session.getAttribute("eventId")));
         if(eventTask.getPrice()==null){
             eventTask.setPrice(new Price());
         }

@@ -17,6 +17,7 @@ import pl.coderslab.taskToEvent.TaskToEventListContainer;
 import pl.coderslab.venue.Venue;
 import pl.coderslab.venue.VenueService;
 
+import javax.servlet.http.HttpSession;
 import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,13 +83,13 @@ public class EventController {
 
     @GetMapping("/addTasks")
 //    @ResponseBody
-    public String addTasks(Model model) {
+    public String addTasks(Model model, HttpSession session) {
         List<EventTask> eventTasks = eventTaskService.findAll();
 
         //stworzenie listy tasksId istniejących dla bieżącego eventu
         List<Long> eventTasksIds = new ArrayList<>();
         for (EventTask eventTask : eventTasks) {
-            if(eventTask.getEvent().getId()==2){ //TODO change to real event
+            if(eventTask.getEvent().getId()==(Integer)(session.getAttribute("eventId"))){ //TODO eventId
                 eventTasksIds.add(eventTask.getTask().getId());
             }
         }
@@ -111,7 +112,7 @@ public class EventController {
     }
 
     @PostMapping("/addTasks")
-    public void addTasks(@ModelAttribute("TaskToEvents")
+    public void addTasks(HttpSession session, @ModelAttribute("TaskToEvents")
                                    TaskToEventListContainer taskToEventList,
                            BindingResult result) {
         List<TaskToEvent> taskToEvents = taskToEventList.getTaskToEvents();
@@ -121,7 +122,7 @@ public class EventController {
                 EventTask eventTask = new EventTask();
                 eventTask.setTask(taskService.findOne(taskToEvent.getTask().getId()));
 //                eventTask.setPrice(new Price());
-                eventTask.setEvent(eventService.findOne(2));//TODO change event id to real one
+                eventTask.setEvent(eventService.findOne((Integer)(session.getAttribute("eventId"))));//TODO eventId
                 eventTaskService.save(eventTask);
             }
         }

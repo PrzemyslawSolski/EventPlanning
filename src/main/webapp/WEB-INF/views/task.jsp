@@ -38,176 +38,93 @@
 <div class="container">
 
     <form:form method="post" modelAttribute="eventTask" id="edit-form">
-    <div>
-        <h3><br><br></h3>
-    </div>
-    <div class="card bg-light mb-3">
+        <div>
+            <h3><br><br></h3>
+        </div>
+        <div class="card bg-light mb-3">
 
-        <div class="card-header">
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label><h4>${eventTask.task.description}</h4></label>
+            <div class="card-header">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label><h4>${eventTask.task.description}</h4></label>
 
 
+                    </div>
+                        <%--                    <div class="form-group col-md-4">--%>
+                        <%--                            &lt;%&ndash;                        <label>Test</label>&ndash;%&gt;--%>
+                        <%--                    </div>--%>
+                    <div class="form-group col-md-3">
+                        <input type="submit" method="get" id="submitBtn" data-method="POST"
+                               class="btn btn-success float-right"
+                               value=" Zapisz ">
+                    </div>
                 </div>
-                    <%--                    <div class="form-group col-md-4">--%>
-                    <%--                            &lt;%&ndash;                        <label>Test</label>&ndash;%&gt;--%>
-                    <%--                    </div>--%>
-                <div class="form-group col-md-6">
-                    <input type="submit" method="get" id="submitBtn" data-method="POST"
-                           class="btn btn-success float-right"
-                           value=" Zapisz ">
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-1">
+                    </div>
+
+
+                        <%--        </div>--%>
+                        <%--        <div class="row">--%>
+                    <div class="form-group col-md-2">
+                        <p/>
+                        <p/>
+                        <form:radiobutton path="completed" value="0"></form:radiobutton>planowane
+                        <p/>
+                        <form:radiobutton path="completed" value="1"></form:radiobutton>wykonane
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Data:</label><br>
+                        <form:input path="date" type="date" name="date" placeholder="np. Agata" id="formDate"
+                                    class="form-control"/>
+                        <form:errors path="date" element="div" cssClass="error"></form:errors>
+                    </div>
+                    <div class="form-group col-md-1">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="form-group col-md-1">
-<%--                    <label>Zadania</label><br>--%>
-<%--                    <form:label path="task.description" placeholder="np. Ślub Agaty i Adama" id="formEventName"--%>
-<%--                                class="form-control bg-light">${eventTask.task.description}</form:label>--%>
-                </div>
-
-
-                    <%--        </div>--%>
-                    <%--        <div class="row">--%>
-                <div class="form-group col-md-3">
-                    <p/>
-                    <form:radiobutton path="price.type" value="0"></form:radiobutton>planowane
-                    <form:radiobutton path="price.type" value="1"></form:radiobutton>wykonane
-                </div>
-                <div class="form-group col-md-2">
-                    <label>Data:</label><br>
-                    <form:input path="date" type="date" name="date" placeholder="np. Agata" id="formDate"
-                                class="form-control"/>
-                    <form:errors path="date" element="div" cssClass="error"></form:errors>
-                </div>
+        <div class="card bg-light mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-1">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Cena:</label><br>
+                        <form:input path="price.amount" type="text" name="amount" placeholder="np. Agata"
+                                    id="formAmount"
+                                    class="form-control"/>
+                        <form:errors path="price.amount" element="div" cssClass="error"></form:errors>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <p/>
+                        <p/>
+                        <form:radiobutton path="price.type" value="0"></form:radiobutton>szacowana
+                        <p/>
+                        <form:radiobutton path="price.type" value="1"></form:radiobutton>potwierdzona
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="formCeremonyType">Podział w kosztorysie: </label><br>
+                        <form:select path="price.split" type="text" name="type" placeholder="typ" id="formCeremonyType"
+                                     class="form-control">
+                            <%--                    <option selected value="">Wybierz...</option>--%>
+                            <form:option value="0">nie wiem...</form:option>
+                            <form:option value="1">całość Pani młoda</form:option>
+                            <form:option value="2">całość Pan młody</form:option>
+                            <form:option value="3">równy podział</form:option>
+                            <form:option value="3">podział liczbą gości</form:option>
+                        </form:select>
+                        <form:errors path="price.split" element="div" cssClass="error"></form:errors>
+                    </div>
 
             </div>
-            <div class="row">
-                <div class="form-group col-md-2">
-                    <label>Cena:</label><br>
-                    <form:input path="price.amount" type="text" name="amount" placeholder="np. Agata" id="formAmount"
-                                class="form-control"/>
-                    <form:errors path="price.amount" element="div" cssClass="error"></form:errors>
-                </div>
-
-                    <%--                    <div class="form-group col-md-3">--%>
-                    <%--                        <label>Imię panna młodego:</label><br>--%>
-                    <%--                        <form:input path="groom" type="text" name="groom" placeholder="np. Adam" id="formGroom"--%>
-                    <%--                                    class="form-control"/>--%>
-                    <%--                        <form:errors path="groom" element="div" cssClass="error"></form:errors>--%>
-                    <%--                    </div>--%>
-            </div>
         </div>
-    </div>
-</div>
-    <%--        <div><br></div>--%>
-<div class="card bg-light mt-3">
-    <div class="card-body">
-        <div class="row">
 
-                <%--                    <div class="form-group col-md-1">--%>
-                <%--                        <label><b>Ślub:</b>--%>
+    </form:form>
 
-                <%--                        </label>--%>
-                <%--                    </div>--%>
 
-                <%--                    <div class="form-group col-md-1"></div>--%>
-                <%--                    <div class="form-group col-md-4">--%>
-                <%--                        <label for="ceremonyVenue">Miejsce:</label><br>--%>
-                <%--                        <form:select id="ceremonyVenue" path="ceremonyVenue.id" items="${venues}"--%>
-                <%--                                     itemValue="id" itemLabel="fullName" class="form-control"/>--%>
-                <%--                        <form:errors path="ceremonyVenue" element="div" cssClass="error"/>--%>
-                <%--                    </div>--%>
-                <%--                        &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                <div class="row">&ndash;%&gt;--%>
-
-                <%--                    <div class="form-group col-md-2">--%>
-                <%--                        <label for="formCeremonyDate">Data:</label>--%>
-                <%--                        <form:input type="date" path="ceremonyDate" id="formCeremonyDate" class="form-control"/>--%>
-                <%--                        <form:errors path="ceremonyDate" element="div" cssClass="error"></form:errors>--%>
-                <%--                    </div>--%>
-                <%--                    <div class="form-group col-md-2">--%>
-                <%--                        <label for="formCeremonyTime">Godzina:</label><br>--%>
-                <%--                        <form:input path="ceremonyTime" type="time" name="ceremonyTime" placeholder="godzina"--%>
-                <%--                                    id="formCeremonyTime" class="form-control"/>--%>
-                <%--                        <form:errors path="name" element="div" cssClass="error"></form:errors>--%>
-                <%--                    </div>--%>
-                <%--                    <div class="form-group col-md-2">--%>
-                <%--                        <label for="formCeremonyType">Typ: </label><br>--%>
-                <%--                        <form:select path="type" type="text" name="type" placeholder="typ" id="formCeremonyType"--%>
-                <%--                                     class="form-control">--%>
-                <%--                            &lt;%&ndash;                    <option selected value="">Wybierz...</option>&ndash;%&gt;--%>
-                <%--                            <form:option value="0">nie wiem...</form:option>--%>
-                <%--                            <form:option value="1">kościelny</form:option>--%>
-                <%--                            <form:option value="2">cywilny</form:option>--%>
-                <%--                        </form:select>--%>
-                <%--                        <form:errors path="type" element="div" cssClass="error"></form:errors>--%>
-                <%--                    </div>--%>
-        </div>
-    </div>
-</div>
-    <%--        <div><br></div>--%>
-<div class="card bg-light mb-3 mt-3">
-    <div class="card-body">
-        <div class="row">
-                <%--                    <div class="form-group col-md-1">--%>
-                <%--                        <label for="formPartyDate"><b>Wesele:</b>--%>
-                <%--                        </label>--%>
-                <%--                    </div>--%>
-
-                <%--                    <div class="form-group col-md-1"></div>--%>
-                <%--                    <div class="form-group col-md-4">--%>
-                <%--                        <label for="partyVenue">Miejsce:</label><br>--%>
-                <%--                        <form:select id="partyVenue" path="partyVenue.id" items="${venues}"--%>
-                <%--                                     itemValue="id" itemLabel="fullName" class="form-control"/>--%>
-                <%--                        <form:errors path="partyVenue" element="div" cssClass="error"/>--%>
-                <%--                    </div>--%>
-                <%--                        &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--                        &lt;%&ndash;                <div class="row">&ndash;%&gt;--%>
-                <%--                    <div class="form-group col-md-2">--%>
-                <%--                        <label for="formPartyDate">Data:</label><br>--%>
-                <%--                        <form:input type="date" path="partyDate" placeholder="data" id="formPartyDate"--%>
-                <%--                                    class="form-control"/>--%>
-                <%--                        <form:errors path="partyDate" element="div" cssClass="error"></form:errors>--%>
-                <%--                    </div>--%>
-                <%--                    <div class="form-group col-md-2">--%>
-                <%--                        <label for="formPartyTime">Godzina:</label><br>--%>
-                <%--                        <form:input path="partyTime" type="time" name="partyTime" placeholder="godzina"--%>
-                <%--                                    id="formPartyTime"--%>
-                <%--                                    class="form-control"/>--%>
-                <%--                        <form:errors path="partyTime" element="div" cssClass="error"></form:errors>--%>
-                <%--                    </div>--%>
-        </div>
-    </div>
-</div>
-    <%--        <div><br></div>--%>
-    <%--        <label for="submitBtn"></label>--%>
-    <%--        <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success" value=" Zapisz ">--%>
-    <%--        <br><br>--%>
-</form:form>
-
-<%--    <div>--%>
-<%--        <h2><br><br><br></h2>--%>
-<%--        <h2>Lista książek</h2><br>--%>
-<%--    </div>--%>
-
-<%--    <table class="table table-hover" id="header">--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th>Id</th>--%>
-<%--            <th>Autor</th>--%>
-<%--            <th>Tytuł</th>--%>
-<%--            <th>--%>
-<%--                <button class="btn btn-success" id="addBtn">Dodaj książkę</button>--%>
-<%--            </th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody id="tBody">--%>
-
-<%--        </tbody>--%>
-<%--    </table>--%>
 
 
 </div>
