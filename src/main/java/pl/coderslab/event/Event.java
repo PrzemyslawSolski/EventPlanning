@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,6 +28,7 @@ public class Event {
     //    private LocalDateTime ceremonyDateTime;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate partyDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime partyTime;
     //    private LocalDateTime partyDateTime;
     private byte type;// (c)ivil or (r)eligious
@@ -36,7 +38,7 @@ public class Event {
     private Venue partyVenue;
     @ManyToMany
     @JoinTable(name = "event_user")
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
 
     public void changeDates(int shift){

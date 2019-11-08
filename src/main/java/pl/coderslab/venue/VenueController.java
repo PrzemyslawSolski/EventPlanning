@@ -40,4 +40,23 @@ public class VenueController {
 
     }
 
+    @GetMapping("/addtmp")
+    public String addtmp(Model model) {
+        model.addAttribute("venue", new Venue());
+        return "venue";
+    }
+
+    @PostMapping("/addtmp")
+//    @ResponseBody
+    public String addtmp(
+            @ModelAttribute Venue venue, BindingResult result) {
+        if (result.hasErrors()) {
+            return "venue";
+        }
+        venue.setTmp((byte)1);
+        venueService.create(venue);
+        return "redirect:../events/add";
+
+    }
+
 }

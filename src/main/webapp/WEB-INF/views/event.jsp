@@ -32,15 +32,23 @@
             <div class="card-header">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label><h4>Szczegóły:</h4></label>
+                        <label><h4>Szczegóły: User: ${userId} Event: ${eventId}</h4>
+                            <c:if test="${empty venues}">
+                                <a style="color:red" href="/venues/addtmp">Brak lokalizacji! Dodaj nową lokalizację</a>
+                            </c:if>
+                            <c:if test="${venues.size()==1}">
+                                <a style="color:red" href="/venues/addtmp">Tylko jedna lokalizacja. Dodaj drugą lokalizację</a>
+                            </c:if>
+                        </label>
 
 
                     </div>
-<%--                    <div class="form-group col-md-4">--%>
-<%--                            &lt;%&ndash;                        <label>Test</label>&ndash;%&gt;--%>
-<%--                    </div>--%>
+                        <%--                    <div class="form-group col-md-4">--%>
+                        <%--                            &lt;%&ndash;                        <label>Test</label>&ndash;%&gt;--%>
+                        <%--                    </div>--%>
                     <div class="form-group col-md-6">
-                        <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success float-right"
+                        <input type="submit" method="get" id="submitBtn" data-method="POST"
+                               class="btn btn-success float-right"
                                value=" Zapisz ">
                     </div>
                 </div>
@@ -86,10 +94,11 @@
 
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-4">
-                        <label for="ceremonyVenue">Miejsce:</label><br>
+                        <label for="ceremonyVenue">Lokalizacja:</label><br>
                         <form:select id="ceremonyVenue" path="ceremonyVenue.id" items="${venues}"
                                      itemValue="id" itemLabel="fullName" class="form-control"/>
                         <form:errors path="ceremonyVenue" element="div" cssClass="error"/>
+                        <a href="/venues/addtmp">Dodaj nową lokalizację</a>
                     </div>
                         <%--                </div>--%>
                         <%--                <div class="row">--%>
@@ -130,10 +139,11 @@
 
                     <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-4">
-                        <label for="partyVenue">Miejsce:</label><br>
+                        <label for="partyVenue">Lokalizacja:</label><br>
                         <form:select id="partyVenue" path="partyVenue.id" items="${venues}"
                                      itemValue="id" itemLabel="fullName" class="form-control"/>
                         <form:errors path="partyVenue" element="div" cssClass="error"/>
+                        <a href="/venues/addtmp">Dodaj nową lokalizację</a>
                     </div>
                         <%--                </div>--%>
                         <%--                <div class="row">--%>
@@ -153,32 +163,8 @@
                 </div>
             </div>
         </div>
-        <%--        <div><br></div>--%>
-        <%--        <label for="submitBtn"></label>--%>
-        <%--        <input type="submit" method="get" id="submitBtn" data-method="POST" class="btn btn-success" value=" Zapisz ">--%>
-        <%--        <br><br>--%>
+
     </form:form>
-
-    <%--    <div>--%>
-    <%--        <h2><br><br><br></h2>--%>
-    <%--        <h2>Lista książek</h2><br>--%>
-    <%--    </div>--%>
-
-    <%--    <table class="table table-hover" id="header">--%>
-    <%--        <thead>--%>
-    <%--        <tr>--%>
-    <%--            <th>Id</th>--%>
-    <%--            <th>Autor</th>--%>
-    <%--            <th>Tytuł</th>--%>
-    <%--            <th>--%>
-    <%--                <button class="btn btn-success" id="addBtn">Dodaj książkę</button>--%>
-    <%--            </th>--%>
-    <%--        </tr>--%>
-    <%--        </thead>--%>
-    <%--        <tbody id="tBody">--%>
-
-    <%--        </tbody>--%>
-    <%--    </table>--%>
 
 
 </div>

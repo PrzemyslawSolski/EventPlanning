@@ -13,6 +13,7 @@ public class Venue {
     private String street;
     private String number;
     private String zip;
+    private byte tmp;
 
     public long getId() {
         return id;
@@ -66,6 +67,14 @@ public class Venue {
         return this.name + ", " + this.city;
     }
 
+    public byte getTmp() {
+        return tmp;
+    }
+
+    public void setTmp(byte tmp) {
+        this.tmp = tmp;
+    }
+
     @Override
     public String toString() {
         return "Venue{" +
@@ -75,6 +84,7 @@ public class Venue {
                 ", street='" + street + '\'' +
                 ", number='" + number + '\'' +
                 ", zip='" + zip + '\'' +
+                ", tmp=" + tmp +
                 '}';
     }
 }

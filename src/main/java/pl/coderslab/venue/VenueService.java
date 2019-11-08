@@ -3,7 +3,7 @@ package pl.coderslab.venue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.app.DaoInterface;
+import pl.coderslab.event.Event;
 
 import java.util.List;
 
@@ -12,10 +12,16 @@ import java.util.List;
 public class VenueService {
 
     private final VenueDao venueDao;
+    private final VenueRepository venueRepository;
 
     @Autowired
-    public VenueService(VenueDao venueDao) {
+    public VenueService(VenueDao venueDao, VenueRepository venueRepository) {
         this.venueDao = venueDao;
+        this.venueRepository = venueRepository;
+    }
+
+    public List<Venue> getVenuesByTmp (byte tmp){
+        return venueRepository.findByTmp(tmp);
     }
 
     public void create(Venue venue) {

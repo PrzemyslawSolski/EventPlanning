@@ -42,7 +42,7 @@ public class EventController {
 //TODO daty przy zapisywaniu są o jeden dzień wcześniejsze
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(HttpSession session, Model model) {
         model.addAttribute("event", new Event());
 //        List<Venue> venues = venueService.findAll();
 //        model.addAttribute("venues", venues);
@@ -51,26 +51,29 @@ public class EventController {
 
     @PostMapping("/add")
 //    @ResponseBody
-    public String add(
-            @ModelAttribute Event event, BindingResult result) {
+    public String add(HttpSession session,
+                      @ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
         }
         event.changeDates(1);
-        eventService.create(event);
+
+        eventService.saveEventWithVenues(session, event);
+
+        session.setAttribute("eventId", event.getId());
         event.changeDates(-1);
         return "event";
     }
 
     @GetMapping("/edit/{id}")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
-    public String edit(Model model, @PathVariable long id){
+    public String edit(Model model, @PathVariable long id) {
         model.addAttribute("event", eventService.findOne(id));
         return "event";
     }
 
     @PostMapping("/edit/{id}")
 //    @ResponseBody
-    public String edit(@ModelAttribute Event event, BindingResult result){
+    public String edit(@ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
         }
@@ -89,7 +92,7 @@ public class EventController {
         //stworzenie listy tasksId istniejących dla bieżącego eventu
         List<Long> eventTasksIds = new ArrayList<>();
         for (EventTask eventTask : eventTasks) {
-            if(eventTask.getEvent().getId()==(Integer)(session.getAttribute("eventId"))){ //TODO eventId
+            if (eventTask.getEvent().getId() == (Integer) (session.getAttribute("eventId"))) { //TODO eventId
                 eventTasksIds.add(eventTask.getTask().getId());
             }
         }
@@ -99,7 +102,7 @@ public class EventController {
             TaskToEvent taskToEvent = new TaskToEvent();
             taskToEvent.setTask(task);
             //jeżeli task jest na liście zadań bieżącego eventu, ustawiamy toAdd na true
-            if(eventTasksIds.contains(task.getId())){
+            if (eventTasksIds.contains(task.getId())) {
                 taskToEvent.setToAdd(true);
             }
             taskToEvents.add(taskToEvent);
@@ -113,16 +116,16 @@ public class EventController {
 
     @PostMapping("/addTasks")
     public void addTasks(HttpSession session, @ModelAttribute("TaskToEvents")
-                                   TaskToEventListContainer taskToEventList,
-                           BindingResult result) {
+            TaskToEventListContainer taskToEventList,
+                         BindingResult result) {
         List<TaskToEvent> taskToEvents = taskToEventList.getTaskToEvents();
         for (TaskToEvent taskToEvent : taskToEvents) {
 //            taskToEvent.setTask(taskService.findOne(taskToEvent.getTask().getId()));
-            if(taskToEvent.isToAdd()){
+            if (taskToEvent.isToAdd()) {
                 EventTask eventTask = new EventTask();
                 eventTask.setTask(taskService.findOne(taskToEvent.getTask().getId()));
 //                eventTask.setPrice(new Price());
-                eventTask.setEvent(eventService.findOne((Integer)(session.getAttribute("eventId"))));//TODO eventId
+                eventTask.setEvent(eventService.findOne((Integer) (session.getAttribute("eventId"))));//TODO eventId
                 eventTaskService.save(eventTask);
             }
         }
@@ -131,6 +134,6 @@ public class EventController {
 
     @ModelAttribute("venues")
     public List<Venue> getVenue() {
-        return venueService.findAll();
+        return venueService.getVenuesByTmp((byte)1);
     }
 }

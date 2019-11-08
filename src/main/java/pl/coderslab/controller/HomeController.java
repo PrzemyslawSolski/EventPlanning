@@ -34,10 +34,11 @@ public class HomeController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("**")
 //    @ResponseBody
     public String home(HttpSession session) {
-        session.setAttribute("eventId", 2);//TODO wprowadzić eventId od usera
+        session.setAttribute("userId", 3);//TODO wprowadzić userId po zalogowaniu
+        session.setAttribute("eventId", 2);//TODO wprowadzić eventId od usera po zalogowaniu
 //        LocalDate date = LocalDate.now();
 //        LocalTime time = new LocalTime();
 //        LocalDateTime dateTime = LocalDateTime.of(date, time);
