@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/events")
@@ -46,6 +47,12 @@ public class EventController {
         model.addAttribute("event", new Event());
 //        List<Venue> venues = venueService.findAll();
 //        model.addAttribute("venues", venues);
+        long userId = (Integer)session.getAttribute("userId");
+//        List<Venue> venuesTmp= venueService.getUserVenues(userId);
+
+//        Set<Venue> venuesAll = venueService.findDistinctByPartyVenueAndCeremonyVenueByUserId(userId);
+
+
         return "event";
     }
 
@@ -56,12 +63,12 @@ public class EventController {
         if (result.hasErrors()) {
             return "event";
         }
-        event.changeDates(1);
+//        event.changeDates(1);
 
         eventService.saveEventWithVenues(session, event);
 
         session.setAttribute("eventId", event.getId());
-        event.changeDates(-1);
+//        event.changeDates(-1);
         return "event";
     }
 
@@ -77,9 +84,9 @@ public class EventController {
         if (result.hasErrors()) {
             return "event";
         }
-        event.changeDates(1);
+//        event.changeDates(1);
         eventService.update(event);
-        event.changeDates(-1);
+//        event.changeDates(-1);
         return "event";
     }
 
@@ -133,7 +140,7 @@ public class EventController {
 
 
     @ModelAttribute("venues")
-    public List<Venue> getVenue() {
-        return venueService.getVenuesByTmp((byte)1);
+    public Set<Venue> getVenue(HttpSession session) {
+        return venueService.getUserVenues((Integer)session.getAttribute("userId"));
     }
 }

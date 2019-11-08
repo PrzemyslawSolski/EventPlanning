@@ -34,7 +34,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("**")
+    @GetMapping("/")
 //    @ResponseBody
     public String home(HttpSession session) {
         session.setAttribute("userId", 3);//TODO wprowadzić userId po zalogowaniu

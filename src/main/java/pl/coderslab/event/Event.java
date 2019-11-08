@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Event {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate ceremonyDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalTime ceremonyTime;
+    private LocalDate ceremonyTime;
     //    private LocalDateTime ceremonyDateTime;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate partyDate;
@@ -41,10 +42,10 @@ public class Event {
     private List<User> users = new ArrayList<>();
 
 
-    public void changeDates(int shift){
-        this.setCeremonyDate(this.getCeremonyDate().plusDays(shift));
-        this.setPartyDate(this.getPartyDate().plusDays(shift));
-    }
+//    public void changeDates(int shift){
+//        this.setCeremonyDate(this.getCeremonyDate().plusDays(shift));
+//        this.setPartyDate(this.getPartyDate().plusDays(shift));
+//    }
 
     public long getId() {
         return id;
@@ -94,11 +95,11 @@ public class Event {
         this.ceremonyDate = ceremonyDate;
     }
 
-    public LocalTime getCeremonyTime() {
+    public LocalDate getCeremonyTime() {
         return ceremonyTime;
     }
 
-    public void setCeremonyTime(LocalTime ceremonyTime) {
+    public void setCeremonyTime(LocalDate ceremonyTime) {
         this.ceremonyTime = ceremonyTime;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.event.Event;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -20,7 +21,28 @@ public class VenueService {
         this.venueRepository = venueRepository;
     }
 
-    public List<Venue> getVenuesByTmp (byte tmp){
+//    public List<Venue> getUserVenues(long userId){
+//        return venueRepository.getUserVenues(userId);
+//    }
+
+    public Set<Venue> getUserPartyVenuesSet(long userId){
+        return venueRepository.getUserPartyVenuesSet(userId);
+    }
+
+    public Set<Venue> getUserCeremonyVenuesSet(long userId){
+        return venueRepository.getUserCeremonyVenuesSet(userId);
+    }
+
+    public Set<Venue> getUserVenues(long userId){
+        Set<Venue> venuesCeremony = getUserCeremonyVenuesSet(userId);
+        Set<Venue> venuesParty = getUserPartyVenuesSet(userId);
+        venuesCeremony.addAll(venuesParty);
+        venuesCeremony.addAll(getVenuesByTmp((byte)1));
+        return venuesCeremony;
+    }
+
+
+    public Set<Venue> getVenuesByTmp (byte tmp){
         return venueRepository.findByTmp(tmp);
     }
 
