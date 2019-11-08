@@ -47,11 +47,8 @@ public class EventController {
         model.addAttribute("event", new Event());
 //        List<Venue> venues = venueService.findAll();
 //        model.addAttribute("venues", venues);
-        long userId = (Integer)session.getAttribute("userId");
-//        List<Venue> venuesTmp= venueService.getUserVenues(userId);
-
-//        Set<Venue> venuesAll = venueService.findDistinctByPartyVenueAndCeremonyVenueByUserId(userId);
-
+//        long userId = (Integer) session.getAttribute("userId");
+//        List<Venue> venues = venueService.getUserVenuesQuery(String.valueOf(userId));
 
         return "event";
     }
@@ -141,6 +138,6 @@ public class EventController {
 
     @ModelAttribute("venues")
     public Set<Venue> getVenue(HttpSession session) {
-        return venueService.getUserVenues((Integer)session.getAttribute("userId"));
+        return venueService.getUserVenues((Integer) session.getAttribute("userId"));
     }
 }

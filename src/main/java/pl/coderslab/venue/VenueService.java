@@ -21,9 +21,9 @@ public class VenueService {
         this.venueRepository = venueRepository;
     }
 
-//    public List<Venue> getUserVenues(long userId){
-//        return venueRepository.getUserVenues(userId);
-//    }
+    public List<Venue> getUserVenuesQuery(String userId){
+        return venueRepository.getUserVenues(userId);
+    }
 
     public Set<Venue> getUserPartyVenuesSet(long userId){
         return venueRepository.getUserPartyVenuesSet(userId);

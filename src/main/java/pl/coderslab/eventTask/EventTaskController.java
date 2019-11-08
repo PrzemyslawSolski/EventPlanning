@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.event.EventService;
 import pl.coderslab.price.Price;
 import pl.coderslab.price.PriceService;
 
@@ -16,11 +17,13 @@ public class EventTaskController {
 
     private final EventTaskService eventTaskService;
     private final PriceService priceService;
+    private final EventService eventService;
 
     @Autowired
-    public EventTaskController(EventTaskService eventTaskService, PriceService priceService) {
+    public EventTaskController(EventTaskService eventTaskService, PriceService priceService, EventService eventService) {
         this.eventTaskService = eventTaskService;
         this.priceService = priceService;
+        this.eventService = eventService;
     }
 
     @GetMapping("/edit/{id}")
@@ -41,6 +44,7 @@ public class EventTaskController {
         }
         //TODO czy należy pobrać task i event przed zapisem eventTask?
         priceService.save(eventTask.getPrice());
+//        eventTask.setEvent(eventService.findOne((Integer)session.getAttribute("eventId")));
         eventTaskService.save(eventTask);
         return eventTask.toString();
     }
