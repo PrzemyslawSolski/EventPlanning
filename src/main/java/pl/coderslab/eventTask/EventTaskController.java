@@ -57,7 +57,8 @@ public class EventTaskController {
             long eventId = (Integer) session.getAttribute("eventId");
 //        }
 //        if (eventId != 0) {
-            List<EventTask> eventTasks = eventTaskService.getEventTasksByEventIdOrderByDate(eventId);
+            List<EventTask> eventTasks = eventTaskService.
+                    getEventTasksByEventIdOrderByCompletedAscDateAsc(eventId);
             model.addAttribute("eventTasks", eventTasks);
         }
         return "schedule";

@@ -22,8 +22,8 @@ public class HomeController {
 //    @ResponseBody
     public String home(HttpSession session) {
         if(session.getAttribute("userId")==null || String.valueOf(session.getAttribute("userId")).isEmpty()) {
-            session.setAttribute("userId", 3);//TODO wprowadzić userId po zalogowaniu
-            session.setAttribute("eventId", 2);//TODO wprowadzić eventId od usera po zalogowaniu
+            session.setAttribute("userId", 3);//TODO usunąć
+            session.setAttribute("eventId", 2);//TODO usunąć
         }
 //        LocalDate date = LocalDate.now();
 //        LocalTime time = new LocalTime();
