@@ -10,6 +10,7 @@ import pl.coderslab.price.Price;
 import pl.coderslab.price.PriceService;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/tasks")
@@ -47,5 +48,23 @@ public class EventTaskController {
 //        eventTask.setEvent(eventService.findOne((Integer)session.getAttribute("eventId")));
         eventTaskService.save(eventTask);
         return eventTask.toString();
+    }
+
+    @GetMapping("/list")
+    public String showTasks(Model model, HttpSession session) {
+        if(session.getAttribute("eventId")!=null
+                && !String.valueOf(session.getAttribute("eventId")).isEmpty()) {
+            long eventId = (Integer) session.getAttribute("eventId");
+//        }
+//        if (eventId != 0) {
+            List<EventTask> eventTasks = eventTaskService.getEventTasksByEventIdOrderByDate(eventId);
+            model.addAttribute("eventTasks", eventTasks);
+        }
+        return "schedule";
+    }
+
+    @PostMapping("/list")
+    public String showTasks(){
+        return null;
     }
 }

@@ -12,6 +12,10 @@ public class EventTaskService {
 
     private final EventTaskRepository eventTaskRepository;
 
+    public List<EventTask> getEventTasksByEventIdOrderByDate(long eventId){
+        return eventTaskRepository.findByEventIdOrderByDate(eventId);
+    }
+
     public EventTask getOne(long id) {
         return eventTaskRepository.getOne(id);
     }
