@@ -24,7 +24,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("user", new User());
@@ -38,14 +37,11 @@ public class LoginController {
             return "login";
         }
 
-        boolean loggedIn = true;
+//        boolean loggedIn = true;
         User existingUser = userService.getFirstByEmail(user.getEmail());
         if (existingUser == null ||
                 !BCrypt.checkpw(user.getPassword(), existingUser.getPassword())) {
-            loggedIn = false;
-        }
-
-        if (!loggedIn) {
+//            loggedIn = false;
             result.addError(new FieldError("user", "email",
                     "Niepoprawny email lub hasło"));
             return "login";
@@ -57,10 +53,9 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @RequestMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-
         return "redirect:/";
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.coderslab.task.Task;
 import pl.coderslab.task.TaskService;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -19,7 +18,6 @@ public class HomeController {
         this.taskService = taskService;
     }
 
-
     @GetMapping("/")
 //    @ResponseBody
     public String home(HttpSession session) {
@@ -30,7 +28,6 @@ public class HomeController {
 //        LocalDateTime dateTime = LocalDateTime.of(date, time);
         return "home";
     }
-
 
     @GetMapping("/venue")
     public String venue() {
@@ -44,6 +41,5 @@ public class HomeController {
         model.addAttribute("tasks", taskService.findAll());
         return "tasks";
     }
-
 
 }

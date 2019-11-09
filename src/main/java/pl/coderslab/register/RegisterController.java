@@ -43,7 +43,7 @@ public class RegisterController {
         User existingUser = userService.getFirstByEmail(user.getEmail());
         if (existingUser != null) {
             result.addError(new FieldError("user", "email",
-                    "Błędny email"));
+                    "Błędny email lub użytkownik istnieje"));
             return "register";
         }
         user.setPasswordHash(user.getPassword());
