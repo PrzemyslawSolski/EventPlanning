@@ -61,7 +61,7 @@ public class EventController {
             return "event";
         }
 //        event.changeDates(1);
-
+//TODO dodać event do listy eventów zalogowanego użytkownika
         eventService.saveEventWithVenues(session, event);
 
         session.setAttribute("eventId", event.getId());

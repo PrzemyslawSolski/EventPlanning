@@ -13,14 +13,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotEmpty
+    @NotEmpty(groups={RegistrationValidationGroup.class})
     private String name;
-    @NotEmpty
+    @NotEmpty(groups={RegistrationValidationGroup.class})
     private String surname;
-    @NotEmpty
+    @NotEmpty(groups={RegistrationValidationGroup.class, LoginValidationGroup.class})
     @Email
     private String email;
-    @NotEmpty
+    @NotEmpty(groups={RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String password;
     private boolean admin;
     @ManyToMany(mappedBy = "users")

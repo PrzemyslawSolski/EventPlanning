@@ -32,12 +32,12 @@
             <div class="card-header">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label><h4>Szczegóły: User: ${userId} Event: ${eventId}</h4>
+                        <label><h4>Szczegóły:</h4>
                             <c:if test="${empty venues}">
-                                <a style="color:red" href="/venues/addtmp">Brak lokalizacji! Dodaj nową lokalizację</a>
+                                <a style="color:red; text-decoration: underline;" href="/venues/addtmp"><b>Brak lokalizacji! Dodaj nową lokalizację</b></a>
                             </c:if>
                             <c:if test="${venues.size()==1}">
-                                <a style="color:red" href="/venues/addtmp">Tylko jedna lokalizacja. Dodaj drugą lokalizację</a>
+                                <a style="color:red; text-decoration: underline;" href="/venues/addtmp"><b>Tylko jedna lokalizacja. Dodaj drugą lokalizację</b></a>
                             </c:if>
                         </label>
 

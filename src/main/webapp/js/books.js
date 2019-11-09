@@ -1,7 +1,7 @@
 $(function () {
 
     $('#edit-form').css('display', 'none');
-    $("#navbarName").text("Planowanie ślubu");
+    $("#navbarName").text("Ślub@wanie");
     $("#menuTaskList").text("Przykładowa lista zadań");
     $.ajax({
         url: "http://localhost:8282/books/",

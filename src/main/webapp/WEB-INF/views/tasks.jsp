@@ -10,6 +10,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <meta charset="UTF-8">
     <%@ include file="links.jspf" %>
     <%--    <script src="http://code.jquery.com/jquery-1.9.0rc1.js"></script>--%>
 

@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a id="menuTaskList" class="nav-link" href="/taskList">Przykładowa lista zadań <span class="sr-only">(current)</span></a>
+                <a id="menuTaskList" class="nav-link" href="/tasks">Przykładowa lista zadań <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/register">Rejestracja</a>
@@ -29,6 +29,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Wyloguj</a>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link active"> User: ${userId} Event: ${eventId}</div>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

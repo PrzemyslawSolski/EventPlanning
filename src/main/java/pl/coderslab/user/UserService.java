@@ -11,10 +11,17 @@ import java.util.List;
 public class UserService {
 
     private final UserDao userDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserDao userDao) {
+    public UserService(UserDao userDao, UserRepository userRepository) {
         this.userDao = userDao;
+
+        this.userRepository = userRepository;
+    }
+
+    public User getFirstByEmail(String email){
+        return userRepository.findFirstByEmail(email);
     }
 
     public void create(User user){
