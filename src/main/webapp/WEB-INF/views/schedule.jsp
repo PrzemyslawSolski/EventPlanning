@@ -20,56 +20,12 @@
 </head>
 <body>
 
-
 <%@ include file="header.jsp" %>
-
 
 <div class="container">
 
-    <%--    <form id="edit-form">--%>
-    <%--        <div id="tasksListHeader">--%>
-    <%--            <h2><br><br><br></h2>--%>
-    <%--            <h2>Dodaj zadanie</h2><br>--%>
-    <%--        </div>--%>
-
-
-    <%--        <div class="row">--%>
-    <%--            <div class="form-group col-md-6">--%>
-    <%--                <label>Autor:</label>--%>
-    <%--                <input type="text" placeholder="Podaj autora" id="formAuth" class="form-control">--%>
-    <%--            </div>--%>
-    <%--            <div class="form-group col-md-6">--%>
-    <%--                <label>Tytuł:</label>--%>
-    <%--                <input type="text" placeholder="Podaj tytuł" id="title" class="form-control">--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--        <div class="row">--%>
-    <%--            <div class="form-group col-md-6">--%>
-    <%--                <label>ISBN</label>--%>
-    <%--                <input type="text" placeholder="Podaj isbn" id="isbn" class="form-control">--%>
-    <%--            </div>--%>
-    <%--            <div class="form-group col-md-6">--%>
-    <%--                <label>Typ</label>--%>
-    <%--                <input type="text" placeholder="Podaj typ" id="type" class="form-control">--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--        <div class="row">--%>
-    <%--            <div class="form-group col-md-6">--%>
-    <%--                <label>Publisher</label>--%>
-    <%--                <input type="text" placeholder="Podaj isbn" id="publisher" class="form-control">--%>
-    <%--            </div>--%>
-    <%--            <div class="form-group col-md-6">--%>
-    <%--                <label hidden>Typ</label>--%>
-    <%--                <input type="text" placeholder="Podaj typ" id="backup" hidden class="form-control">--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--        <input type="submit" id="submitBtn" data-method="POST" class="btn btn-success">--%>
-    <%--        <br><br>--%>
-    <%--    </form>--%>
-
     <div>
         <h2><br><br><br></h2>
-
     </div>
 
     <div class="card bg-light mb-3">
@@ -79,26 +35,26 @@
         <div class="card-body">
             <table class="table table-hover" id="header">
                 <thead>
-                <tr>
-                    <th>Lp.</th>
-                    <th class="col-2">Zadanie</th>
-                    <th class="col-2">Termin</th>
-                    <th class="col-2">Wykonane</th>
-                    <th class="col-2"></th>
+                <tr class="d-flex">
+                    <th class="col-sm-1 text-center">Lp.</th>
+                    <th class="col-6">Zadanie</th>
+                    <th class="col-2 text-center">Termin</th>
+                    <th class="col-2 text-center">Wykonane</th>
+                    <th class="col-1"></th>
                 </tr>
                 </thead>
                 <tbody id="tBody">
                 <c:set var="count" value="0" scope="page"/>
                 <c:forEach items="${eventTasks}" var="task">
                     <c:set var="count" value="${count + 1}" scope="page"/>
-                    <tr>
-                        <td>
+                    <tr class="d-flex">
+                        <td class="col-sm-1 text-right">
                                 <%--                    <c:out value="${task.id}"></c:out>--%>
                             <c:out value="${count}"></c:out>
                         </td>
-                        <td><c:out value="${task.task.description}"></c:out></td>
-                        <td><c:out value="${task.date}"></c:out></td>
-                        <td>
+                        <td class="col-6"><c:out value="${task.task.description}"></c:out></td>
+                        <td class="col-2 text-center"><c:out value="${task.date}"></c:out></td>
+                        <td class="col-2 text-center">
                             <c:choose>
                                 <c:when test="${task.completed}">
                                     <c:out value="Tak"></c:out>
@@ -108,7 +64,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
-                        <td><a href="/tasks/edit/${task.id}">Zmień</a> </td>
+                        <td class="col-1 text-center"><a href="/tasks/edit/${task.id}">Zmień</a> </td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -18,7 +18,7 @@ public class User {
     @NotEmpty(groups={RegistrationValidationGroup.class})
     private String surname;
     @NotEmpty(groups={RegistrationValidationGroup.class, LoginValidationGroup.class})
-    @Email
+    @Email(groups={RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String email;
     @NotEmpty(groups={RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String password;
