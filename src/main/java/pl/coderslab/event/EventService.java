@@ -9,7 +9,6 @@ import pl.coderslab.venue.Venue;
 import pl.coderslab.venue.VenueService;
 
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
 import java.util.List;
 
 @Service
@@ -17,12 +16,14 @@ import java.util.List;
 public class EventService {
 
     private final EventDao eventDao;
+    private final EventRepository eventRepository;
     private final UserDao userDao;
     private final VenueService venueService;
 
     @Autowired
-    public EventService(EventDao eventDao, UserDao userDao, VenueService venueService) {
+    public EventService(EventDao eventDao, EventRepository eventRepository, UserDao userDao, VenueService venueService) {
         this.eventDao = eventDao;
+        this.eventRepository = eventRepository;
         this.userDao = userDao;
         this.venueService = venueService;
     }
@@ -30,6 +31,10 @@ public class EventService {
     public void addUser(HttpSession session, Event event) {
         User user = userDao.findOne((Integer) session.getAttribute("userId"));
         event.getUsers().add(user);
+    }
+
+    public Event getFirstByUsersId(long userId){
+        return eventRepository.findFirstByUsersId(userId);
     }
 
     public void saveEventWithVenues(HttpSession session, Event event) {

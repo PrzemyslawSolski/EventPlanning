@@ -8,7 +8,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.event.Event;
+import pl.coderslab.event.EventService;
 import pl.coderslab.user.LoginValidationGroup;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserService;
@@ -19,9 +20,11 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     private final UserService userService;
+    private final EventService eventService;
 
-    public LoginController(UserService userService) {
+    public LoginController(UserService userService, EventService eventService) {
         this.userService = userService;
+        this.eventService = eventService;
     }
 
     @GetMapping("/login")
@@ -49,6 +52,13 @@ public class LoginController {
 
         session.setAttribute("userId", existingUser.getId());
         session.setAttribute("firstName", existingUser.getName());
+
+        Event event = eventService.getFirstByUsersId(existingUser.getId());
+        if (event != null) {
+            session.setAttribute("eventId", event.getId());
+        }else{
+            session.removeAttribute("eventId");
+        }
 
         return "redirect:/";
     }
