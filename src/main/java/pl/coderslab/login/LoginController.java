@@ -45,7 +45,7 @@ public class LoginController {
         if (existingUser == null ||
                 !BCrypt.checkpw(user.getPassword(), existingUser.getPassword())) {
 //            loggedIn = false;
-            result.addError(new FieldError("user", "email",
+            result.addError(new FieldError("user", "password",
                     "Niepoprawny email lub hasło"));
             return "login";
         }

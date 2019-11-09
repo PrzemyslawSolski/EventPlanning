@@ -34,7 +34,7 @@
                 <a class="nav-link" href="/logout">Wyloguj</a>
             </li>
             <li class="nav-item">
-                <div class="nav-link active"> User: ${userId} Event: ${eventId}</div>
+                <div class="nav-link active"> User: ${userId} ${firstName} Event: ${eventId}</div>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
