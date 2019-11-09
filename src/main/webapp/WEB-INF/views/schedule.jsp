@@ -74,7 +74,7 @@
 
     <div class="card bg-light mb-3">
         <div class="card-header">
-            <h2>Harmonogram</h2><br>
+            <h4>Harmonogram</h4>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="header">
@@ -84,6 +84,7 @@
                     <th class="col-2">Zadanie</th>
                     <th class="col-2">Termin</th>
                     <th class="col-2">Wykonane</th>
+                    <th class="col-2"></th>
                 </tr>
                 </thead>
                 <tbody id="tBody">
@@ -107,6 +108,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
+                        <td><a href="/tasks/edit/${task.id}">Zmień</a> </td>
                     </tr>
                 </c:forEach>
                 </tbody>

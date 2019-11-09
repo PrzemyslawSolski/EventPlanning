@@ -74,7 +74,7 @@
 
     <div class="card bg-light mb-3">
         <div class="card-header">
-            <h2>Lista zadań</h2><br>
+            <h4>Lista zadań</h4>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="header">
