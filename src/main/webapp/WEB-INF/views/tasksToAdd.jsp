@@ -71,8 +71,10 @@
             <div class="card-header">
                 <div class="h-50">
 
-                    <h5 class="card-title">Wybierz zadania do swojego wydarzenia</h5>
+                    <h5 class="card-title">Wybierz zadania do swojego wydarzenia
+                        <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-sm-right mb-10"></h5>
                 </div>
+
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="header">
@@ -80,7 +82,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Opis</th>
-                        <th>Zaznacz, aby dodać
+                        <th>Wybierz
                                 <%--                    <button class="btn btn-success" id="addBtn">Dodaj zadanie</button>--%>
                         </th>
                     </tr>
