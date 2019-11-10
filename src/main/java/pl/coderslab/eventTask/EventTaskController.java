@@ -11,6 +11,7 @@ import pl.coderslab.price.PriceService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/tasks")
@@ -62,6 +63,20 @@ public class EventTaskController {
             model.addAttribute("eventTasks", eventTasks);
         }
         return "schedule";
+    }
+
+    @GetMapping("/estimate")
+    public String costEstimate(Model model, HttpSession session){
+        if(session.getAttribute("eventId")!=null
+                && !String.valueOf(session.getAttribute("eventId")).isEmpty()) {
+            long eventId = (Integer) session.getAttribute("eventId");
+//            List<EventTask> eventTasks = eventTaskService.
+//                    getEventTasksByEventId(eventId);
+//            eventTasks = eventTasks.stream().filter(et-> et.getPrice().getAmount()>0).sorted().collect(Collectors.toList());
+//            model.addAttribute("eventTasks", eventTasks);
+            eventTaskService.calculateEstimate(session, eventId);
+        }
+        return "estimate";
     }
 
     @PostMapping("/list")

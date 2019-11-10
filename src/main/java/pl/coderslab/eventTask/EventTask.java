@@ -13,7 +13,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "eventTasks")
-public class EventTask {
+public class EventTask implements Comparable<EventTask>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,6 +28,7 @@ public class EventTask {
     private boolean completed;
     @OneToOne
     private Price price;
+
 
     public long getId() {
         return id;
@@ -96,5 +97,10 @@ public class EventTask {
                 ", completed=" + completed +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public int compareTo(EventTask task) {
+        return this.getDate().compareTo(task.getDate());
     }
 }
