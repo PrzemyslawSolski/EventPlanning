@@ -78,6 +78,22 @@
                         <form:errors path="groom" element="div" cssClass="error"></form:errors>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Liczba gości Panny Młodej:</label><br>
+                        <form:input path="brideGuestsNo" type="number" name="brideGuestsNo" id="formBrideGuestsNo"
+                                    class="form-control"/>
+                        <form:errors path="brideGuestsNo" element="div" cssClass="error"></form:errors>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Liczba gości Pana Młodego:</label><br>
+                        <form:input path="groomGuestsNo" type="number" name="groomGuestsNo" id="formGroomGuestsNo"
+                                    class="form-control"/>
+                        <form:errors path="groomGuestsNo" element="div" cssClass="error"></form:errors>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -92,7 +108,6 @@
                         </label>
                     </div>
 
-                    <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-4">
                         <label for="ceremonyVenue">Lokalizacja:</label><br>
                         <form:select id="ceremonyVenue" path="ceremonyVenue.id" items="${venues}"
@@ -103,7 +118,7 @@
                         <%--                </div>--%>
                         <%--                <div class="row">--%>
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="formCeremonyDate">Data:</label>
                         <form:input type="date" path="ceremonyDate" id="formCeremonyDate" class="form-control"/>
                         <form:errors path="ceremonyDate" element="div" cssClass="error"></form:errors>
@@ -137,7 +152,6 @@
                         </label>
                     </div>
 
-                    <div class="form-group col-md-1"></div>
                     <div class="form-group col-md-4">
                         <label for="partyVenue">Lokalizacja:</label><br>
                         <form:select id="partyVenue" path="partyVenue.id" items="${venues}"
@@ -147,7 +161,7 @@
                     </div>
                         <%--                </div>--%>
                         <%--                <div class="row">--%>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="formPartyDate">Data:</label><br>
                         <form:input type="date" path="partyDate" placeholder="data" id="formPartyDate"
                                     class="form-control"/>

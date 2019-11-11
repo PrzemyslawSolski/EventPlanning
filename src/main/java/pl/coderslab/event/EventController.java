@@ -2,6 +2,7 @@ package pl.coderslab.event;
 
 ;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,11 +96,14 @@ public class EventController {
 
     @PostMapping("/edit")
 //    @ResponseBody
-    public String editEvent(@ModelAttribute Event event, BindingResult result) {
+    public String editEvent(HttpSession session, @ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
         }
-        eventService.update(event);
+        event.setId(eventService.findOne((Long)session.getAttribute("eventId")).getId());
+        Event existingEvent = eventService.findOneWithUsers((Long)session.getAttribute("eventId"));
+        event.setUsers(existingEvent.getUsers());
+        eventService.saveEventWithVenues(session, event);
         return "event";
     }
 

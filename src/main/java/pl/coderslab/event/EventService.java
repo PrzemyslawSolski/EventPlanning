@@ -1,5 +1,6 @@
 package pl.coderslab.event;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,9 @@ public class EventService {
 
     public void addUser(HttpSession session, Event event) {
         User user = userDao.findOne((Long) session.getAttribute("userId"));
-        event.getUsers().add(user);
+        if(!event.getUsers().contains(user)) {
+            event.getUsers().add(user);
+        }
     }
 
     public Event getFirstByUsersId(long userId){
@@ -51,8 +54,15 @@ public class EventService {
             venueService.update(partyVenue);
         }
         event.setPartyVenue(partyVenue);
+
         addUser(session, event);
-        eventDao.create(event);
+        eventRepository.save(event);
+    }
+
+    public Event findOneWithUsers(long id){
+        Event event = findOne(id);
+        Hibernate.initialize(event.getUsers());
+        return event;
     }
 
     public void create(Event event) {

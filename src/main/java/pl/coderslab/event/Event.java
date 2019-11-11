@@ -40,6 +40,9 @@ public class Event {
     @ManyToMany
     @JoinTable(name = "event_user")
     private List<User> users = new ArrayList<>();
+    private int brideGuestsNo;
+    private int groomGuestsNo;
+
 
 
     public void changeDates(int shift){
@@ -151,23 +154,21 @@ public class Event {
         this.users = users;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", bride='" + bride + '\'' +
-                ", groom='" + groom + '\'' +
-                ", eventAdminId=" + eventAdminId +
-                ", ceremonyDate=" + ceremonyDate +
-                ", ceremonyTime=" + ceremonyTime +
-                ", partyDate=" + partyDate +
-                ", partyTime=" + partyTime +
-                ", type=" + type +
-                ", ceremonyVenue=" + ceremonyVenue +
-                ", partyVenue=" + partyVenue +
-                '}';
+    public int getBrideGuestsNo() {
+        return brideGuestsNo;
     }
+
+    public void setBrideGuestsNo(int brideGuestsNo) {
+        this.brideGuestsNo = brideGuestsNo;
+    }
+
+    public int getGroomGuestsNo() {
+        return groomGuestsNo;
+    }
+
+    public void setGroomGuestsNo(int groomGuestsNo) {
+        this.groomGuestsNo = groomGuestsNo;
+    }
+
+
 }

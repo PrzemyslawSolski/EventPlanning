@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="users")
@@ -29,6 +30,32 @@ public class User {
     public void setPasswordHash(String password) {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o){
+            return true;
+        }
+        if(!(o instanceof User)){
+            return false;
+        }
+
+        User user = (User) o;
+        return this.getId()==user.getId()
+                && Objects.equals(this.getName(), user.getName())
+                && Objects.equals(this.getSurname(), user.getSurname())
+                && Objects.equals(this.getEmail(), user.getEmail())
+                && Objects.equals(this.getPassword(), user.getPassword())
+                && Objects.equals(this.isAdmin(), user.isAdmin());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, email, password, admin);
+    }
+
+
 
     public long getId() {
         return id;
@@ -86,15 +113,5 @@ public class User {
         this.events = events;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", admin=" + admin +
-                '}';
-    }
+
 }

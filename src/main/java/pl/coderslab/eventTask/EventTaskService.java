@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.estimate.Estimate;
+import pl.coderslab.event.Event;
+import pl.coderslab.event.EventRepository;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class EventTaskService {
 
     private final EventTaskRepository eventTaskRepository;
+    private final EventRepository eventRepository;
 
     public List<EventTask> getEventTasksByEventIdOrderByCompletedAscDateAsc(long eventId) {
         return eventTaskRepository.findByEventIdOrderByCompletedAscDateAsc(eventId);
@@ -26,11 +29,14 @@ public class EventTaskService {
     public void calculateEstimate(HttpSession session, long eventId) {
         List<EventTask> eventTasks = getEventTasksByEventId(eventId)
                 .stream()
-                .filter(et-> et.getPrice().getAmount()>0)
+                .filter(et -> et.getPrice().getAmount() > 0)
                 .sorted()
                 .collect(Collectors.toList());
 
         Estimate estimate = new Estimate();
+        Event event = eventRepository.getOne(eventId);
+        double brideGuestsRatio = 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
+        double groomGuestsRatio = -1.0 * brideGuestsRatio + 1;
 
         if (eventTasks != null && !eventTasks.isEmpty()) {
             double amount = 0;
@@ -63,10 +69,10 @@ public class EventTaskService {
                     }
                     case 4: {//4 - guest
                         //TODO uzupełnić strukturę gości
-                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + amount / 2);
-                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + amountPaid / 2);
-                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + amount / 2);
-                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + amountPaid / 2);
+                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + 1.0* Math.round(amount * brideGuestsRatio * 100) / 100);
+                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + 1.0* Math.round(amountPaid * brideGuestsRatio * 100) / 100);
+                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + 1.0* Math.round(amount * groomGuestsRatio * 100) / 100);
+                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + 1.0* Math.round(amountPaid * groomGuestsRatio * 100) / 100);
                         break;
                     }
                     default: {
@@ -78,11 +84,18 @@ public class EventTaskService {
         }
         eventTasks = eventTasks
                 .stream()
-                .filter(et-> et.getPrice().getAmount() - et.getPrice().getAmountPaid()>0)
+                .filter(et -> et.getPrice().getAmount() - et.getPrice().getAmountPaid() > 0)
 //                .sorted()
                 .collect(Collectors.toList());
         session.setAttribute("estimateTasks", eventTasks);
         session.setAttribute("estimate", estimate);
+    }
+
+    @Autowired
+    public EventTaskService(EventTaskRepository eventTaskRepository, EventRepository eventRepository, EventTaskDao eventTaskDao) {
+        this.eventTaskRepository = eventTaskRepository;
+        this.eventRepository = eventRepository;
+        this.eventTaskDao = eventTaskDao;
     }
 
     public EventTask getOne(long id) {
@@ -108,11 +121,6 @@ public class EventTaskService {
 
     private final EventTaskDao eventTaskDao;
 
-    @Autowired
-    public EventTaskService(EventTaskRepository eventTaskRepository, EventTaskDao eventTaskDao) {
-        this.eventTaskRepository = eventTaskRepository;
-        this.eventTaskDao = eventTaskDao;
-    }
 
     public void create(EventTask eventTask) {
         eventTaskDao.create(eventTask);
