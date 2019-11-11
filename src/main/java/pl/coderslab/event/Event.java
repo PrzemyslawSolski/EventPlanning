@@ -25,7 +25,7 @@ public class Event {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate ceremonyDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalDate ceremonyTime;
+    private LocalTime ceremonyTime;
     //    private LocalDateTime ceremonyDateTime;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate partyDate;
@@ -95,11 +95,11 @@ public class Event {
         this.ceremonyDate = ceremonyDate;
     }
 
-    public LocalDate getCeremonyTime() {
+    public LocalTime getCeremonyTime() {
         return ceremonyTime;
     }
 
-    public void setCeremonyTime(LocalDate ceremonyTime) {
+    public void setCeremonyTime(LocalTime ceremonyTime) {
         this.ceremonyTime = ceremonyTime;
     }
 
