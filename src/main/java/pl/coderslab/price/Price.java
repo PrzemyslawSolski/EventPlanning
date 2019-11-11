@@ -10,6 +10,7 @@ public class Price {
     private long id;
 //    private long eventTaskId;
     private double amount;
+    private double amountPaid;
     private byte type; // 0- estimated, 1 - final
     private byte split; // 1 - bride, 2 - groom, 3 - equal, 4 - guest – for costs split between sides
 
@@ -27,6 +28,14 @@ public class Price {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(double amountPaid) {
+        this.amountPaid = amountPaid;
     }
 
     public byte getType() {

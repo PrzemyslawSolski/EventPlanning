@@ -89,13 +89,14 @@
                                     class="form-control"/>
                         <form:errors path="price.amount" element="div" cssClass="error"></form:errors>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <p/>
                         <p/>
                         <form:radiobutton path="price.type" value="0"></form:radiobutton>szacowana
                         <p/>
                         <form:radiobutton path="price.type" value="1"></form:radiobutton>potwierdzona
                     </div>
+
                     <div class="form-group col-md-3">
                         <label for="formCeremonyType">Podział w kosztorysie: </label><br>
                         <form:select path="price.split" type="text" name="type" placeholder="typ" id="formCeremonyType"
@@ -108,6 +109,13 @@
                             <form:option value="3">podział liczbą gości</form:option>
                         </form:select>
                         <form:errors path="price.split" element="div" cssClass="error"></form:errors>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Kwota zapłacona:</label><br>
+                        <form:input path="price.amountPaid" type="text" name="amountPaid"
+                                    id="formAmountPaid"
+                                    class="form-control"/>
+                        <form:errors path="price.amountPaid" element="div" cssClass="error"></form:errors>
                     </div>
                 </div>
             </div>

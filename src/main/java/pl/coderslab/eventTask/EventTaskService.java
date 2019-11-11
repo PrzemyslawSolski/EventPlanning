@@ -29,8 +29,7 @@ public class EventTaskService {
 //        List<EventTask> eventTasks = getEventTasksByEventId(eventId);
         List<EventTask> eventTasks = getEventTasksByEventId(eventId)
                 .stream()
-                .filter(et-> et.getPrice()
-                        .getAmount()>0)
+                .filter(et-> et.getPrice().getAmount()>0)
                 .sorted()
                 .collect(Collectors.toList());
 
@@ -39,13 +38,15 @@ public class EventTaskService {
         if (eventTasks != null && !eventTasks.isEmpty()) {
             double amount = 0;
             double amountPaid = 0;
+            double amountConfirmed = 0;
             for (EventTask eventTask : eventTasks) {
                 amount = eventTask.getPrice().getAmount();
-                amountPaid = 0;
                 estimate.setTotal(estimate.getTotal() + amount);
+                amountPaid = eventTask.getPrice().getAmountPaid();
+                estimate.setTotalPaid(estimate.getTotalPaid() + amountPaid);
                 if (eventTask.getPrice().getType() == 1) {
-                    amountPaid = amount;
-                    estimate.setTotalPaid(estimate.getTotalPaid() + amountPaid);
+                    amountConfirmed = amount;
+                    estimate.setTotalConfirmed(estimate.getTotalConfirmed() + amountConfirmed);
                 }
                 switch (eventTask.getPrice().getSplit()) {
                     case 1: {//1 - bride
@@ -80,6 +81,11 @@ public class EventTaskService {
 
             }
         }
+        eventTasks = eventTasks
+                .stream()
+                .filter(et-> et.getPrice().getAmount() - et.getPrice().getAmountPaid()>0)
+//                .sorted()
+                .collect(Collectors.toList());
         session.setAttribute("estimateTasks", eventTasks);
         session.setAttribute("estimate", estimate);
     }

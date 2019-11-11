@@ -3,10 +3,12 @@ package pl.coderslab.estimate;
 public class Estimate {
     private double total;
     private double totalPaid;
+    private double totalConfirmed;
     private double brideSubtotal;
     private double brideSubtotalPaid;
     private double groomSubtotal;
     private double groomSubtotalPaid;
+    private double notSplit;
 
     public double getNotSplit() {
         return notSplit;
@@ -16,7 +18,7 @@ public class Estimate {
         this.notSplit = notSplit;
     }
 
-    private double notSplit;
+
 
     public double getTotal() {
         return total;
@@ -32,6 +34,14 @@ public class Estimate {
 
     public void setTotalPaid(double totalPaid) {
         this.totalPaid = totalPaid;
+    }
+
+    public double getTotalConfirmed() {
+        return totalConfirmed;
+    }
+
+    public void setTotalConfirmed(double totalConfirmed) {
+        this.totalConfirmed = totalConfirmed;
     }
 
     public double getBrideSubtotal() {

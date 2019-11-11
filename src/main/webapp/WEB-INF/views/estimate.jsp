@@ -30,7 +30,38 @@
 
     <div class="card bg-light mb-3">
         <div class="card-header">
-            <h4>Harmonogram</h4>
+            <h4>Kosztorys</h4>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label><h5>Łączna kwota: ${estimate.total} zł</h5></label>
+                    </div>
+                    <div class="form-group col-md-4"><label>
+                        <h5>z tego zapłacone: ${estimate.totalPaid} zł</h5>
+                    </label></div>
+                    <div class="form-group col-md-4"><label>
+                        <h5>do zapłaty: ${estimate.total - estimate.totalPaid} zł</h5>
+                    </label></div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Panna Młoda: ${estimate.brideSubtotal} zł</label>
+                    </div>
+                    <div class="form-group col-md-4"><label>
+                        Pan Młody: ${estimate.groomSubtotal} zł
+                    </label></div>
+                    <div class="form-group col-md-4"><label>
+                        Nie podzielone: ${estimate.notSplit} zł
+                    </label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <h4>Najbliższe płatności</h4>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="header">
@@ -39,13 +70,13 @@
                     <th class="col-sm-1 text-center">Lp.</th>
                     <th class="col-6">Zadanie</th>
                     <th class="col-2 text-center">Termin</th>
-                    <th class="col-2 text-center">Wykonane</th>
+                    <th class="col-2 text-center">Kwota</th>
                     <th class="col-1"></th>
                 </tr>
                 </thead>
                 <tbody id="tBody">
                 <c:set var="count" value="0" scope="page"/>
-                <c:forEach items="${eventTasks}" var="task">
+                <c:forEach items="${estimateTasks}" var="task">
                     <c:set var="count" value="${count + 1}" scope="page"/>
                     <tr class="d-flex">
                         <td class="col-sm-1 text-right">
@@ -54,17 +85,10 @@
                         </td>
                         <td class="col-6"><c:out value="${task.task.description}"></c:out></td>
                         <td class="col-2 text-center"><c:out value="${task.date}"></c:out></td>
-                        <td class="col-2 text-center">
-                            <c:choose>
-                                <c:when test="${task.completed}">
-                                    <c:out value="Tak"></c:out>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:out value="Nie"></c:out>
-                                </c:otherwise>
-                            </c:choose>
+                        <td class="col-2 text-center"><c:out value="${task.price.amount - task.price.amountPaid}"></c:out>
+
                         </td>
-                        <td class="col-1 text-center"><a href="/tasks/edit/${task.id}">Zmień</a> </td>
+                        <td class="col-1 text-center"><a href="/tasks/edit/${task.id}">Zmień</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
