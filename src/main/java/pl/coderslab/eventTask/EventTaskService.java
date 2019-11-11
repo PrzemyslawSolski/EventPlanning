@@ -24,9 +24,6 @@ public class EventTaskService {
     }
 
     public void calculateEstimate(HttpSession session, long eventId) {
-//        List<EventTask> eventTasks = getEventTasksByEventId(eventId);
-
-//        List<EventTask> eventTasks = getEventTasksByEventId(eventId);
         List<EventTask> eventTasks = getEventTasksByEventId(eventId)
                 .stream()
                 .filter(et-> et.getPrice().getAmount()>0)
@@ -38,15 +35,13 @@ public class EventTaskService {
         if (eventTasks != null && !eventTasks.isEmpty()) {
             double amount = 0;
             double amountPaid = 0;
-            double amountConfirmed = 0;
             for (EventTask eventTask : eventTasks) {
                 amount = eventTask.getPrice().getAmount();
                 estimate.setTotal(estimate.getTotal() + amount);
                 amountPaid = eventTask.getPrice().getAmountPaid();
                 estimate.setTotalPaid(estimate.getTotalPaid() + amountPaid);
                 if (eventTask.getPrice().getType() == 1) {
-                    amountConfirmed = amount;
-                    estimate.setTotalConfirmed(estimate.getTotalConfirmed() + amountConfirmed);
+                    estimate.setTotalConfirmed(estimate.getTotalConfirmed() + amount);
                 }
                 switch (eventTask.getPrice().getSplit()) {
                     case 1: {//1 - bride

@@ -30,7 +30,7 @@ public class EventTaskController {
 
     @GetMapping("/edit/{id}")
     public String eventTaskEdit(HttpSession session, Model model, @PathVariable long id) {
-        EventTask eventTask=eventTaskService.getOneByIdAndEventId(id, (Integer)(session.getAttribute("eventId")));
+        EventTask eventTask=eventTaskService.getOneByIdAndEventId(id, (Long)(session.getAttribute("eventId")));
         if(eventTask.getPrice()==null){
             eventTask.setPrice(new Price());
         }
@@ -46,7 +46,7 @@ public class EventTaskController {
         }
         //TODO czy należy pobrać task i event przed zapisem eventTask?
         priceService.save(eventTask.getPrice());
-//        eventTask.setEvent(eventService.findOne((Integer)session.getAttribute("eventId")));
+//        eventTask.setEvent(eventService.findOne((Long)session.getAttribute("eventId")));
         eventTaskService.save(eventTask);
         return eventTask.toString();
     }
@@ -55,7 +55,7 @@ public class EventTaskController {
     public String showTasks(Model model, HttpSession session) {
         if(session.getAttribute("eventId")!=null
                 && !String.valueOf(session.getAttribute("eventId")).isEmpty()) {
-            long eventId = (Integer) session.getAttribute("eventId");
+            long eventId = (Long)session.getAttribute("eventId");
 //        }
 //        if (eventId != 0) {
             List<EventTask> eventTasks = eventTaskService.
@@ -69,7 +69,7 @@ public class EventTaskController {
     public String costEstimate(Model model, HttpSession session){
         if(session.getAttribute("eventId")!=null
                 && !String.valueOf(session.getAttribute("eventId")).isEmpty()) {
-            long eventId = (Integer) session.getAttribute("eventId");
+            long eventId = (Long) session.getAttribute("eventId");
 //            List<EventTask> eventTasks = eventTaskService.
 //                    getEventTasksByEventId(eventId);
 //            eventTasks = eventTasks.stream().filter(et-> et.getPrice().getAmount()>0).sorted().collect(Collectors.toList());

@@ -47,7 +47,7 @@ public class EventController {
         model.addAttribute("event", new Event());
 //        List<Venue> venues = venueService.findAll();
 //        model.addAttribute("venues", venues);
-//        long userId = (Integer) session.getAttribute("userId");
+//        long userId = (Long) session.getAttribute("userId");
 //        List<Venue> venues = venueService.getUserVenuesQuery(String.valueOf(userId));
 
         return "event";
@@ -96,7 +96,7 @@ public class EventController {
         //stworzenie listy tasksId istniejących dla bieżącego eventu
         List<Long> eventTasksIds = new ArrayList<>();
         for (EventTask eventTask : eventTasks) {
-            if (eventTask.getEvent().getId() == (Integer) (session.getAttribute("eventId"))) { //TODO eventId
+            if (eventTask.getEvent().getId() == (Long) (session.getAttribute("eventId"))) { //TODO eventId
                 eventTasksIds.add(eventTask.getTask().getId());
             }
         }
@@ -129,7 +129,7 @@ public class EventController {
                 EventTask eventTask = new EventTask();
                 eventTask.setTask(taskService.findOne(taskToEvent.getTask().getId()));
 //                eventTask.setPrice(new Price());
-                eventTask.setEvent(eventService.findOne((Integer) (session.getAttribute("eventId"))));//TODO eventId
+                eventTask.setEvent(eventService.findOne((Long) (session.getAttribute("eventId"))));//TODO eventId
                 eventTaskService.save(eventTask);
             }
         }
@@ -138,6 +138,6 @@ public class EventController {
 
     @ModelAttribute("venues")
     public Set<Venue> getVenue(HttpSession session) {
-        return venueService.getUserVenues((Integer) session.getAttribute("userId"));
+        return venueService.getUserVenues((Long) session.getAttribute("userId"));
     }
 }

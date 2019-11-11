@@ -34,22 +34,20 @@
         </div>
         <div class="card-body">
             <div class="card bg-light">
-                <%--                <div class="container">--%>
-                <div class="card-header">
+                <div class="container">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label><h5>Łączna kwota: ${estimate.total} zł</h5></label>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label><h5>z tego zapłacone: ${estimate.totalPaid} zł</h5></label>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label><h5>do zapłaty: ${estimate.total - estimate.totalPaid} zł</h5></label>
-                        </div>
+                        <div class="form-group col-md-4"><label>
+                            <h5>z tego zapłacone: ${estimate.totalPaid} zł</h5>
+                        </label></div>
+                        <div class="form-group col-md-4"><label>
+                            <h5>do zapłaty: ${estimate.total - estimate.totalPaid} zł</h5>
+                        </label></div>
                     </div>
                 </div>
-                <%--                </div>--%>
-                <div class="card-body">
+                <div class="card-header">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Panna Młoda: ${estimate.brideSubtotal} zł</label>

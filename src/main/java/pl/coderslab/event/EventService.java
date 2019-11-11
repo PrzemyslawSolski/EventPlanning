@@ -29,7 +29,7 @@ public class EventService {
     }
 
     public void addUser(HttpSession session, Event event) {
-        User user = userDao.findOne((Integer) session.getAttribute("userId"));
+        User user = userDao.findOne((Long) session.getAttribute("userId"));
         event.getUsers().add(user);
     }
 
