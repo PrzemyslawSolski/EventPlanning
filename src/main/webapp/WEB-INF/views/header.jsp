@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-    <a id="navbarName" class="navbar-brand" href="#">Ślub@wanie</a>
+    <a id="navbarName" class="navbar-brand" href="/">Ślub@wanie</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,8 +34,9 @@
                     Ślub
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="/events/edit/">Szczegóły</a>
+                    <a class="dropdown-item" href="/tasks/estimate">Kosztorys</a>
+                    <a class="dropdown-item" href="/events/addTasks">Dodawanie zadań</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>

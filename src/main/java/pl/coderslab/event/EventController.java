@@ -70,20 +70,36 @@ public class EventController {
     }
 
     @GetMapping("/edit/{id}")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
-    public String edit(Model model, @PathVariable long id) {
+    public String editEventById(Model model, @PathVariable long id) {
         model.addAttribute("event", eventService.findOne(id));
         return "event";
     }
 
     @PostMapping("/edit/{id}")
 //    @ResponseBody
-    public String edit(@ModelAttribute Event event, BindingResult result) {
+    public String editEventById(@ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
         }
 //        event.changeDates(1);
         eventService.update(event);
 //        event.changeDates(-1);
+        return "event";
+    }
+
+    @GetMapping("/edit")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
+    public String editEvent(HttpSession session, Model model) {
+        model.addAttribute("event", eventService.findOne((Long)session.getAttribute("eventId")));
+        return "event";
+    }
+
+    @PostMapping("/edit")
+//    @ResponseBody
+    public String editEvent(@ModelAttribute Event event, BindingResult result) {
+        if (result.hasErrors()) {
+            return "event";
+        }
+        eventService.update(event);
         return "event";
     }
 
