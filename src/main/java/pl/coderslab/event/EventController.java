@@ -88,9 +88,14 @@ public class EventController {
         return "event";
     }
 
-    @GetMapping("/edit")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
+    @GetMapping("/edit")
     public String editEvent(HttpSession session, Model model) {
-        model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
+
+        try {
+            model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
+        } catch (NullPointerException e) {
+            return "redirect:../add";
+        }
         return "event";
     }
 
@@ -115,10 +120,13 @@ public class EventController {
 
         //stworzenie listy tasksId istniejących dla bieżącego eventu
         List<Long> eventTasksIds = new ArrayList<>();
-        for (EventTask eventTask : eventTasks) {
-            if (eventTask.getEvent().getId() == (Long) (session.getAttribute("eventId"))) { //TODO eventId
-                eventTasksIds.add(eventTask.getTask().getId());
+        try {
+            for (EventTask eventTask : eventTasks) {
+                if (eventTask.getEvent().getId() == (Long) (session.getAttribute("eventId"))) { //TODO eventId
+                    eventTasksIds.add(eventTask.getTask().getId());
+                }
             }
+        } catch (NullPointerException e) {
         }
         List<Task> tasks = taskService.findAllEventNull();
 //        List<Task> tasks = taskService.getByEventIdNullOrEventId((Long) (session.getAttribute("eventId")));
@@ -127,9 +135,10 @@ public class EventController {
             TaskToEvent taskToEvent = new TaskToEvent();
             taskToEvent.setTask(task);
             //jeżeli task jest na liście zadań bieżącego eventu, ustawiamy toAdd na true
-            if (eventTasksIds.contains(task.getId())) {
-                taskToEvent.setToAdd(true);
-            }
+//            if (eventTasksIds.contains(task.getId())) {
+//                taskToEvent.setToAdd(true);
+//            }
+            // dodajemy do listy tylko te zadania, które nie są jeszcze wybrane do bieżącego wydarzenia
             if (!eventTasksIds.contains(task.getId())) {
                 taskToEvents.add(taskToEvent);
             }
@@ -153,7 +162,7 @@ public class EventController {
                 eventTask.setTask(taskService.findOne(taskToEvent.getTask().getId()));
 //                eventTask.setPrice(new Price());
                 eventTask.setEvent(eventService.findOne((Long) (session.getAttribute("eventId"))));//TODO eventId
-                eventTaskService.save(eventTask);
+                eventTaskService.saveWithNewPrice(eventTask);
             }
         }
     }

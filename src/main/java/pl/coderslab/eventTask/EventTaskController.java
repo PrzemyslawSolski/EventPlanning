@@ -82,7 +82,12 @@ public class EventTaskController {
 //        if (eventId != 0) {
             List<EventTask> eventTasks = eventTaskService.
                     getEventTasksByEventIdOrderByCompletedAscDateAsc(eventId);
-            model.addAttribute("eventTasks", eventTasks);
+//            List<EventTask> eventTasksEmptyDate = eventTasks
+//                    .stream()
+//                    .filter(et -> et.getDate()==null).collect(Collectors.toList());
+//            eventTasks.removeAll(eventTasksEmptyDate);
+//            eventTasks.addAll(eventTasksEmptyDate);
+            model.addAttribute("eventTasks", eventTaskService.putEmptyDatesAtEnd(eventTasks));
         }
         return "schedule";
     }

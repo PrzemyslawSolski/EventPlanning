@@ -40,7 +40,7 @@ public class HomeController {
     public String taskList(Model model) {
 //        List<Task> tasks = new ArrayList<>();
 //        tasks = taskService.findAll();
-        model.addAttribute("tasks", taskService.findAll());
+        model.addAttribute("tasks", taskService.findAllEventNull());
         return "tasks";
     }
 

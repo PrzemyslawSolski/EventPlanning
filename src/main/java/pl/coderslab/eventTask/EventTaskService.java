@@ -97,6 +97,15 @@ public class EventTaskService {
         session.setAttribute("estimate", estimate);
     }
 
+    public List<EventTask> putEmptyDatesAtEnd (List<EventTask> eventTasks){
+        List<EventTask> eventTasksEmptyDate = eventTasks
+                .stream()
+                .filter(et -> et.getDate()==null).collect(Collectors.toList());
+        eventTasks.removeAll(eventTasksEmptyDate);
+        eventTasks.addAll(eventTasksEmptyDate);
+        return eventTasks;
+    }
+
     public void saveNewTask(HttpSession session, EventTask eventTask){
         Price price = eventTask.getPrice();
         priceRepository.save(price);
@@ -111,6 +120,13 @@ public class EventTaskService {
 
         eventTaskRepository.save(eventTask);
 
+    }
+
+    public void saveWithNewPrice(EventTask eventTask){
+        Price price = new Price();
+        priceRepository.save(price);
+        eventTask.setPrice(price);
+        eventTaskRepository.save(eventTask);
     }
 
 
