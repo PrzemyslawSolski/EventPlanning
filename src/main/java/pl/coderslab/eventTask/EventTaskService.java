@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.estimate.Estimate;
 import pl.coderslab.event.Event;
 import pl.coderslab.event.EventRepository;
+import pl.coderslab.price.Price;
+import pl.coderslab.price.PriceRepository;
+import pl.coderslab.task.Task;
+import pl.coderslab.task.TaskRepository;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -17,6 +21,8 @@ public class EventTaskService {
 
     private final EventTaskRepository eventTaskRepository;
     private final EventRepository eventRepository;
+    private final PriceRepository priceRepository;
+    private final TaskRepository taskRepository;
 
     public List<EventTask> getEventTasksByEventIdOrderByCompletedAscDateAsc(long eventId) {
         return eventTaskRepository.findByEventIdOrderByCompletedAscDateAsc(eventId);
@@ -91,10 +97,29 @@ public class EventTaskService {
         session.setAttribute("estimate", estimate);
     }
 
+    public void saveNewTask(HttpSession session, EventTask eventTask){
+        Price price = eventTask.getPrice();
+        priceRepository.save(price);
+        eventTask.setPrice(price);
+
+        Task task = eventTask.getTask();
+        Event event = eventRepository.findById((Long)session.getAttribute("eventId")).orElse(null);
+        task.setEvent(event);
+        taskRepository.save(task);
+        eventTask.setTask(task);
+        eventTask.setEvent(event);
+
+        eventTaskRepository.save(eventTask);
+
+    }
+
+
     @Autowired
-    public EventTaskService(EventTaskRepository eventTaskRepository, EventRepository eventRepository, EventTaskDao eventTaskDao) {
+    public EventTaskService(EventTaskRepository eventTaskRepository, EventRepository eventRepository, PriceRepository priceRepository, TaskRepository taskRepository, EventTaskDao eventTaskDao) {
         this.eventTaskRepository = eventTaskRepository;
         this.eventRepository = eventRepository;
+        this.priceRepository = priceRepository;
+        this.taskRepository = taskRepository;
         this.eventTaskDao = eventTaskDao;
     }
 

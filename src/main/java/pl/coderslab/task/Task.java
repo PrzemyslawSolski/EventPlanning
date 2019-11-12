@@ -3,6 +3,7 @@ package pl.coderslab.task;
 import pl.coderslab.event.Event;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tasks")
@@ -10,6 +11,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String description;
     @ManyToOne
     private Event event;

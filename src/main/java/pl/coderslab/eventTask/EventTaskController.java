@@ -46,10 +46,31 @@ public class EventTaskController {
             return "task";
         }
         //TODO czy należy pobrać task i event przed zapisem eventTask?
+        // przenieść do metody w serwisie
         priceService.save(eventTask.getPrice());
 //        eventTask.setEvent(eventService.findOne((Long)session.getAttribute("eventId")));
         eventTaskService.save(eventTask);
         return eventTask.toString();
+    }
+
+    @GetMapping("/add")
+    public String addTask(Model model){
+        EventTask eventTask = new EventTask();
+//        Task task = new Task();
+//        eventTask.setTask(task);
+//        Price price = new Price();
+//        eventTask.setPrice(price);
+        model.addAttribute("eventTask", eventTask);
+        return "task";
+    }
+
+    @PostMapping("/add")
+    public String addTask(HttpSession session, @ModelAttribute EventTask eventTask, BindingResult result){
+        if(result.hasErrors()){
+            return "task";
+        }
+        eventTaskService.saveNewTask(session, eventTask);
+        return("redirect:schedule");
     }
 
     @GetMapping("/list")
@@ -80,16 +101,7 @@ public class EventTaskController {
         return "estimate";
     }
 
-    @GetMapping("/add")
-    public String addTask(Model model){
-        EventTask eventTask = new EventTask();
-//        Task task = new Task();
-//        eventTask.setTask(task);
-//        Price price = new Price();
-//        eventTask.setPrice(price);
-        model.addAttribute("eventTask", eventTask);
-        return "task";
-    }
+
 
 
     @PostMapping("/list")

@@ -170,5 +170,23 @@ public class Event {
         this.groomGuestsNo = groomGuestsNo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", bride='" + bride + '\'' +
+                ", groom='" + groom + '\'' +
+                ", eventAdminId=" + eventAdminId +
+                ", ceremonyDate=" + ceremonyDate +
+                ", ceremonyTime=" + ceremonyTime +
+                ", partyDate=" + partyDate +
+                ", partyTime=" + partyTime +
+                ", type=" + type +
+                ", ceremonyVenue=" + ceremonyVenue +
+                ", partyVenue=" + partyVenue +
+                ", brideGuestsNo=" + brideGuestsNo +
+                ", groomGuestsNo=" + groomGuestsNo +
+                '}';
+    }
 }
