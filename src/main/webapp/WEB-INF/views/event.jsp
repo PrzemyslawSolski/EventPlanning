@@ -32,12 +32,21 @@
             <div class="card-header">
                 <div class="row">
                     <div class="form-group col-md-6">
+                        <c:choose>
+                        <c:when test="${empty eventId}">
+                            <label><h4>Najpierw uzupełnij dane ślubu:</h4>
+                        </c:when>
+                            <c:otherwise>
                         <label><h4>Szczegóły:</h4>
+                            </c:otherwise>
+                            </c:choose>
                             <c:if test="${empty venues}">
-                                <a style="color:red; text-decoration: underline;" href="/venues/addtmp"><b>Brak lokalizacji! Dodaj nową lokalizację</b></a>
+                                <a style="color:red; text-decoration: underline;" href="/venues/addtmp"><b>Brak
+                                    lokalizacji! Dodaj nową lokalizację</b></a>
                             </c:if>
                             <c:if test="${venues.size()==1}">
-                                <a style="color:red; text-decoration: underline;" href="/venues/addtmp"><b>Tylko jedna lokalizacja. Dodaj drugą lokalizację</b></a>
+                                <a style="color:red; text-decoration: underline;" href="/venues/addtmp"><b>Tylko jedna
+                                    lokalizacja. Dodaj drugą lokalizację</b></a>
                             </c:if>
                         </label>
 

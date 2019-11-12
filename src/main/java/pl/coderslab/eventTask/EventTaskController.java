@@ -40,8 +40,8 @@ public class EventTaskController {
     }
 
     @PostMapping("/edit/{id}")
-    @ResponseBody
-    public String eventTaskEdit(HttpSession session, @ModelAttribute EventTask eventTask, BindingResult result){
+//    @ResponseBody
+    public String eventTaskEdit(@RequestParam String referer, HttpSession session, @ModelAttribute EventTask eventTask, BindingResult result){
         if(result.hasErrors()){
             return "task";
         }
@@ -50,7 +50,7 @@ public class EventTaskController {
         priceService.save(eventTask.getPrice());
 //        eventTask.setEvent(eventService.findOne((Long)session.getAttribute("eventId")));
         eventTaskService.save(eventTask);
-        return eventTask.toString();
+        return "redirect:" + referer;
     }
 
     @GetMapping("/add")

@@ -36,9 +36,9 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/events/edit/">Szczegóły</a>
                     <a class="dropdown-item" href="/tasks/estimate">Kosztorys</a>
-                    <a class="dropdown-item" href="/events/addTasks">Dodawanie zadań</a>
+                    <a class="dropdown-item" href="/events/addTasks">Dodawanie zadań z listy programu</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="/tasks/add">Dodaj swoje zadanie</a>
                 </div>
             </li>
             <li class="nav-item">

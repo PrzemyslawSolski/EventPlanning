@@ -127,6 +127,7 @@ public class EventController {
                 }
             }
         } catch (NullPointerException e) {
+            return "redirect:./add";
         }
         List<Task> tasks = taskService.findAllEventNull();
 //        List<Task> tasks = taskService.getByEventIdNullOrEventId((Long) (session.getAttribute("eventId")));

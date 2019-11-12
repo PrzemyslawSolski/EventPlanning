@@ -31,6 +31,9 @@
     <div class="card bg-light mb-3">
         <div class="card-header">
             <h4>Kosztorys</h4>
+            <c:if test="${empty eventId}">
+                <a href="/events/add" > wypełnij najpierw szczegóły ślubu (Ślub->Szczegóły)</a>
+            </c:if>
         </div>
         <div class="card-body">
             <div class="card bg-light">

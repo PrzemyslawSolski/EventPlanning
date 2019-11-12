@@ -31,6 +31,10 @@
     <div class="card bg-light mb-3">
         <div class="card-header">
             <h4>Harmonogram</h4>
+            <c:if test="${empty eventId}">
+                <a href="/events/add" > wypełnij najpierw szczegóły ślubu (Ślub->Szczegóły)</a>
+            </c:if>
+
         </div>
         <div class="card-body">
             <table class="table table-hover" id="header">

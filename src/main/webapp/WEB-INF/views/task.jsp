@@ -56,6 +56,10 @@
                         <input type="submit" id="submitBtn" data-method="POST"
                                class="btn btn-success float-right"
                                value=" Zapisz ">
+
+                    </div>
+                    <div class="form-group col-md-1">
+                        <a class="btn btn-success float-right" href="${header.referer}">Wróć</a>
                     </div>
                 </div>
             </div>
@@ -81,6 +85,7 @@
                         <form:hidden path="task.id"></form:hidden>
                         <form:hidden path="event.id"></form:hidden>
                         <form:hidden path="price.id"></form:hidden>
+                        <input type="hidden" name="referer" id="formReferer" class="form-control" value="${header.referer}">
                     </div>
                 </div>
             </div>
