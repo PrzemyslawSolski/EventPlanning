@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.event.EventService;
 import pl.coderslab.price.Price;
 import pl.coderslab.price.PriceService;
+import pl.coderslab.task.Task;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -78,6 +79,18 @@ public class EventTaskController {
         }
         return "estimate";
     }
+
+    @GetMapping("/add")
+    public String addTask(Model model){
+        EventTask eventTask = new EventTask();
+//        Task task = new Task();
+//        eventTask.setTask(task);
+//        Price price = new Price();
+//        eventTask.setPrice(price);
+        model.addAttribute("eventTask", eventTask);
+        return "task";
+    }
+
 
     @PostMapping("/list")
     public String showTasks(){

@@ -16,11 +16,11 @@
     <%@ include file="links.jspf" %>
     <%--    <script src="js/books.js"></script>--%>
     <style>
-        .card {}
+        .card {
+        }
     </style>
 </head>
 <body>
-
 
 
 <%@ include file="header.jsp" %>
@@ -36,15 +36,23 @@
 
             <div class="card-header">
                 <div class="row">
-                    <div class="form-group col-md-4">
-                        <label><h4>${eventTask.task.description}</h4></label>
-
-
+                    <div class="form-group col-md-9">
+                        <c:choose>
+                            <c:when test="${eventTask.id==0}">
+                                <label for="formDescription">Zadanie:</label><br>
+                                <form:input type="text" path="task.description" id="formDescription"
+                                            class="form-control"></form:input>
+                                <form:errors path="date" element="div" cssClass="error"></form:errors>
+                            </c:when>
+                            <c:otherwise>
+                                <label><h4>${eventTask.task.description}</h4></label>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                         <%--                    <div class="form-group col-md-4">--%>
                         <%--                            &lt;%&ndash;                        <label>Test</label>&ndash;%&gt;--%>
                         <%--                    </div>--%>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-2">
                         <input type="submit" id="submitBtn" data-method="POST"
                                class="btn btn-success float-right"
                                value=" Zapisz ">
