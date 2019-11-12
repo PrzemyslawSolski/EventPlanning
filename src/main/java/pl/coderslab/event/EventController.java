@@ -90,7 +90,7 @@ public class EventController {
 
     @GetMapping("/edit")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
     public String editEvent(HttpSession session, Model model) {
-        model.addAttribute("event", eventService.findOne((Long)session.getAttribute("eventId")));
+        model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
         return "event";
     }
 
@@ -100,8 +100,8 @@ public class EventController {
         if (result.hasErrors()) {
             return "event";
         }
-        event.setId(eventService.findOne((Long)session.getAttribute("eventId")).getId());
-        Event existingEvent = eventService.findOneWithUsers((Long)session.getAttribute("eventId"));
+        event.setId(eventService.findOne((Long) session.getAttribute("eventId")).getId());
+        Event existingEvent = eventService.findOneWithUsers((Long) session.getAttribute("eventId"));
         event.setUsers(existingEvent.getUsers());
         eventService.saveEventWithVenues(session, event);
         return "event";
@@ -120,7 +120,8 @@ public class EventController {
                 eventTasksIds.add(eventTask.getTask().getId());
             }
         }
-        List<Task> tasks = taskService.findAll();
+        List<Task> tasks = taskService.findAllEventNull();
+//        List<Task> tasks = taskService.getByEventIdNullOrEventId((Long) (session.getAttribute("eventId")));
         List<TaskToEvent> taskToEvents = new ArrayList<>();
         for (Task task : tasks) {
             TaskToEvent taskToEvent = new TaskToEvent();
@@ -129,7 +130,9 @@ public class EventController {
             if (eventTasksIds.contains(task.getId())) {
                 taskToEvent.setToAdd(true);
             }
-            taskToEvents.add(taskToEvent);
+            if (!eventTasksIds.contains(task.getId())) {
+                taskToEvents.add(taskToEvent);
+            }
         }
         TaskToEventListContainer taskToEventList = new TaskToEventListContainer();
         taskToEventList.setTaskToEvents(taskToEvents);

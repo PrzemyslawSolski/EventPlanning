@@ -25,46 +25,6 @@
 
 <div class="container">
 
-    <%--<form id="edit-form">
-        <div id="tasksListHeader">
-            <h2><br><br><br></h2>
-            <h2>Dodaj zadanie</h2><br>
-        </div>
-
-
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label>Autor:</label>
-                <input type="text" placeholder="Podaj autora" id="formAuth" class="form-control">
-            </div>
-            <div class="form-group col-md-6">
-                <label>Tytuł:</label>
-                <input type="text" placeholder="Podaj tytuł" id="title" class="form-control">
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label>ISBN</label>
-                <input type="text" placeholder="Podaj isbn" id="isbn" class="form-control">
-            </div>
-            <div class="form-group col-md-6">
-                <label>Typ</label>
-                <input type="text" placeholder="Podaj typ" id="type" class="form-control">
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label>Publisher</label>
-                <input type="text" placeholder="Podaj isbn" id="publisher" class="form-control">
-            </div>
-            <div class="form-group col-md-6">
-                <label hidden>Typ</label>
-                <input type="text" placeholder="Podaj typ" id="backup" hidden class="form-control">
-            </div>
-        </div>
-        <input type="submit" id="submitBtn" data-method="POST" class="btn btn-success">
-        <br><br>
-    </form>--%>
     <form:form method="post" modelAttribute="TaskToEvents">
         <h2><br><br><br></h2>
         <div class="card bg-light mb-3">
@@ -79,29 +39,31 @@
             <div class="card-body">
                 <table class="table table-hover" id="header">
                     <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Opis</th>
-                        <th>Wybierz
+                    <tr class="d-flex">
+                        <th class="col-1 text-center">Id</th>
+                        <th class="col-10">Opis</th>
+                        <th class="col-1 text-center">Wybierz
                                 <%--                    <button class="btn btn-success" id="addBtn">Dodaj zadanie</button>--%>
                         </th>
                     </tr>
                     </thead>
                     <tbody id="tBody">
+                    <c:set var="count" value="0" scope="page"/>
                     <c:forEach items="${TaskToEvents.taskToEvents}" var="taskToEvent" varStatus="tagStatus">
-                        <tr>
-                            <td>
-                                    <%--                        <c:out value="${task.task.id}"></c:out>--%>
-                                <form:label path="taskToEvents[${tagStatus.index}].task.id"
-                                            value="${taskToEvent.task.id}">${taskToEvent.task.id}</form:label>
+                        <c:set var="count" value="${count + 1}" scope="page"/>
+                        <tr class="d-flex">
+                            <td class="col-1 text-right">
+                                <c:out value="${count}"></c:out>
+<%--                                <form:label path="taskToEvents[${tagStatus.index}].task.id"--%>
+<%--                                            value="${taskToEvent.task.id}">${taskToEvent.task.id}</form:label>--%>
                                 <form:hidden path="taskToEvents[${tagStatus.index}].task.id"/>
                             </td>
-                            <td>
+                            <td class="col-10">
                                     <%--                        <c:out value="${task.task.description}"></c:out>--%>
                                 <form:label path="taskToEvents[${tagStatus.index}].task.description"
                                             value="${taskToEvent.task.description}">${taskToEvent.task.description}</form:label>
                             </td>
-                            <td>
+                            <td class="col-1 text-center">
                                 <form:checkbox path="taskToEvents[${tagStatus.index}].toAdd"></form:checkbox>
                             </td>
                         </tr>
@@ -110,8 +72,8 @@
                 </table>
             </div>
             <div class="card-footer">
-        <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-right mb-10">
-        </div>
+                <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-right mb-10">
+            </div>
         </div>
     </form:form>
 

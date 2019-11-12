@@ -3,7 +3,6 @@ package pl.coderslab.task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.app.DaoInterface;
 
 import java.util.List;
 
@@ -12,10 +11,20 @@ import java.util.List;
 public class TaskService {
 
     private final TaskDao taskDao;
+    private final TaskRepository taskRepository;
 
     @Autowired
-    public TaskService(TaskDao taskDao) {
+    public TaskService(TaskDao taskDao, TaskRepository taskRepository) {
         this.taskDao = taskDao;
+        this.taskRepository = taskRepository;
+    }
+
+    public List<Task> getByEventIdNullOrEventId(long eventId){
+        return taskRepository.findByEventIdNullOrEventId(eventId);
+    }
+
+    public List<Task> findAllEventNull(){
+        return taskDao.findAllEventNull();
     }
 
     public void create(Task task){
