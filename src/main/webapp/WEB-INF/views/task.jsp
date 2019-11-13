@@ -119,7 +119,7 @@
                             <form:option value="1">całość Pani młoda</form:option>
                             <form:option value="2">całość Pan młody</form:option>
                             <form:option value="3">równy podział</form:option>
-                            <form:option value="3">podział liczbą gości</form:option>
+                            <form:option value="4">podział liczbą gości</form:option>
                         </form:select>
                         <form:errors path="price.split" element="div" cssClass="error"></form:errors>
                     </div>

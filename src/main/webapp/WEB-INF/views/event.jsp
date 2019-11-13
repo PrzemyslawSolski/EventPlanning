@@ -69,6 +69,7 @@
                         <form:input path="name" placeholder="np. Ślub Agaty i Adama" id="formEventName"
                                     class="form-control"/>
                         <form:errors path="name" element="div" cssClass="error"></form:errors>
+                        <form:hidden path="id"></form:hidden>
                     </div>
 
 
@@ -136,7 +137,7 @@
                         <label for="formCeremonyTime">Godzina:</label><br>
                         <form:input path="ceremonyTime" type="time" name="ceremonyTime" placeholder="godzina"
                                     id="formCeremonyTime" class="form-control"/>
-                        <form:errors path="name" element="div" cssClass="error"></form:errors>
+                        <form:errors path="ceremonyTime" element="div" cssClass="error"></form:errors>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="formCeremonyType">Typ: </label><br>

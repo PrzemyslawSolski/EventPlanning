@@ -5,6 +5,8 @@ import pl.coderslab.user.User;
 import pl.coderslab.venue.Venue;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,6 +20,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String name;
     private String bride;//long brideId;
     private String groom; //long groomId;
@@ -40,7 +43,9 @@ public class Event {
     @ManyToMany
     @JoinTable(name = "event_user")
     private List<User> users = new ArrayList<>();
+
     private int brideGuestsNo;
+
     private int groomGuestsNo;
 
 

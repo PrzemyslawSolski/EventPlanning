@@ -67,7 +67,16 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+
+        registry.addResourceHandler("/webapp/**")
+                .addResourceLocations("/webapp/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
+
 }

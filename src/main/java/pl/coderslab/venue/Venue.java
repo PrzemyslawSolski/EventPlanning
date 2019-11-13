@@ -67,6 +67,11 @@ public class Venue {
         return this.name + ", " + this.city;
     }
 
+    public String getAddress(){
+        return this.street + " " + this.number
+                + ", " + this.city;
+    }
+
     public byte getTmp() {
         return tmp;
     }

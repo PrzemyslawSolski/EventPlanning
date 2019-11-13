@@ -19,6 +19,7 @@ import pl.coderslab.venue.Venue;
 import pl.coderslab.venue.VenueService;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class EventController {
     @PostMapping("/add")
 //    @ResponseBody
     public String add(HttpSession session,
-                      @ModelAttribute Event event, BindingResult result) {
+                      @Valid @ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
         }
@@ -67,7 +68,7 @@ public class EventController {
 
         session.setAttribute("eventId", event.getId());
 //        event.changeDates(-1);
-        return "event";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")//TODO zweryfikować sposób wyboru eventu do edycji, czy np. zmienna w sesji
@@ -85,7 +86,7 @@ public class EventController {
 //        event.changeDates(1);
         eventService.update(event);
 //        event.changeDates(-1);
-        return "event";
+        return "redirect:/";
     }
 
     @GetMapping("/edit")
@@ -101,15 +102,16 @@ public class EventController {
 
     @PostMapping("/edit")
 //    @ResponseBody
-    public String editEvent(HttpSession session, @ModelAttribute Event event, BindingResult result) {
+    public String editEvent(HttpSession session, @Valid @ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
         }
+
         event.setId(eventService.findOne((Long) session.getAttribute("eventId")).getId());
         Event existingEvent = eventService.findOneWithUsers((Long) session.getAttribute("eventId"));
         event.setUsers(existingEvent.getUsers());
         eventService.saveEventWithVenues(session, event);
-        return "event";
+        return "redirect:/";
     }
 
 

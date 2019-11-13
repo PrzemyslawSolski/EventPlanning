@@ -41,7 +41,12 @@ public class EventTaskService {
 
         Estimate estimate = new Estimate();
         Event event = eventRepository.getOne(eventId);
-        double brideGuestsRatio = 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
+        double brideGuestsRatio;
+        if (event.getGroomGuestsNo() == 0 && event.getBrideGuestsNo() == 0) {
+            brideGuestsRatio = 0.5;
+        } else {
+            brideGuestsRatio = 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
+        }
         double groomGuestsRatio = -1.0 * brideGuestsRatio + 1;
 
         if (eventTasks != null && !eventTasks.isEmpty()) {
@@ -75,10 +80,10 @@ public class EventTaskService {
                     }
                     case 4: {//4 - guest
                         //TODO uzupełnić strukturę gości
-                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + 1.0* Math.round(amount * brideGuestsRatio * 100) / 100);
-                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + 1.0* Math.round(amountPaid * brideGuestsRatio * 100) / 100);
-                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + 1.0* Math.round(amount * groomGuestsRatio * 100) / 100);
-                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + 1.0* Math.round(amountPaid * groomGuestsRatio * 100) / 100);
+                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + 1.0 * Math.round(amount * brideGuestsRatio * 100) / 100);
+                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + 1.0 * Math.round(amountPaid * brideGuestsRatio * 100) / 100);
+                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + 1.0 * Math.round(amount * groomGuestsRatio * 100) / 100);
+                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + 1.0 * Math.round(amountPaid * groomGuestsRatio * 100) / 100);
                         break;
                     }
                     default: {
@@ -97,22 +102,22 @@ public class EventTaskService {
         session.setAttribute("estimate", estimate);
     }
 
-    public List<EventTask> putEmptyDatesAtEnd (List<EventTask> eventTasks){
+    public List<EventTask> putEmptyDatesAtEnd(List<EventTask> eventTasks) {
         List<EventTask> eventTasksEmptyDate = eventTasks
                 .stream()
-                .filter(et -> et.getDate()==null).collect(Collectors.toList());
+                .filter(et -> et.getDate() == null).collect(Collectors.toList());
         eventTasks.removeAll(eventTasksEmptyDate);
         eventTasks.addAll(eventTasksEmptyDate);
         return eventTasks;
     }
 
-    public void saveNewTask(HttpSession session, EventTask eventTask){
+    public void saveNewTask(HttpSession session, EventTask eventTask) {
         Price price = eventTask.getPrice();
         priceRepository.save(price);
         eventTask.setPrice(price);
 
         Task task = eventTask.getTask();
-        Event event = eventRepository.findById((Long)session.getAttribute("eventId")).orElse(null);
+        Event event = eventRepository.findById((Long) session.getAttribute("eventId")).orElse(null);
         task.setEvent(event);
         taskRepository.save(task);
         eventTask.setTask(task);
@@ -122,7 +127,7 @@ public class EventTaskService {
 
     }
 
-    public void saveWithNewPrice(EventTask eventTask){
+    public void saveWithNewPrice(EventTask eventTask) {
         Price price = new Price();
         priceRepository.save(price);
         eventTask.setPrice(price);

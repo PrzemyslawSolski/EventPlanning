@@ -41,6 +41,11 @@ public class EventService {
     }
 
     public void saveEventWithVenues(HttpSession session, Event event) {
+//        Event existingEvent = eventDao.findOne(event.getId());
+//        if(existingEvent!=null){
+//            event.setId(existingEvent.getId());
+//        }
+
         Venue ceremonyVenue = venueService.findOne(event.getCeremonyVenue().getId());
         if (ceremonyVenue.getTmp() == 1) {
             ceremonyVenue.setTmp((byte) 0);
@@ -55,6 +60,7 @@ public class EventService {
         }
         event.setPartyVenue(partyVenue);
 
+//        venueService.resetTmp();
         addUser(session, event);
         eventRepository.save(event);
     }

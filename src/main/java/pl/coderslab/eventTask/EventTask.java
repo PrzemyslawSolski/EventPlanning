@@ -101,6 +101,12 @@ public class EventTask implements Comparable<EventTask>{
 
     @Override
     public int compareTo(EventTask task) {
+        if (this.getDate() == null){
+            return 1;
+        }
+        if (task.getDate() == null){
+            return -1;
+        }
         return this.getDate().compareTo(task.getDate());
     }
 }

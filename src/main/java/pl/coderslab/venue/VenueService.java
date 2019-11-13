@@ -21,28 +21,40 @@ public class VenueService {
         this.venueRepository = venueRepository;
     }
 
-    public List<Venue> getUserVenuesQuery(String userId){
+    public List<Venue> getUserVenuesQuery(String userId) {
         return venueRepository.getUserVenues(userId);
     }
 
-    public Set<Venue> getUserPartyVenuesSet(long userId){
+    public Set<Venue> getUserPartyVenuesSet(long userId) {
         return venueRepository.getUserPartyVenuesSet(userId);
     }
 
-    public Set<Venue> getUserCeremonyVenuesSet(long userId){
+    public Set<Venue> getUserCeremonyVenuesSet(long userId) {
         return venueRepository.getUserCeremonyVenuesSet(userId);
     }
 
-    public Set<Venue> getUserVenues(long userId){
+    public Set<Venue> getUserVenues(long userId) {
         Set<Venue> venuesCeremony = getUserCeremonyVenuesSet(userId);
         Set<Venue> venuesParty = getUserPartyVenuesSet(userId);
         venuesCeremony.addAll(venuesParty);
-        venuesCeremony.addAll(getVenuesByTmp((byte)1));
+        venuesCeremony.addAll(getVenuesByTmp((byte) 1));
         return venuesCeremony;
     }
 
+    public void resetTmp(){
+        Set<Venue> venueTmps = getVenuesByTmp((byte)1);
+        for (Venue venueTmp : venueTmps) {
+            venueTmp.setTmp((byte)0);
+            venueRepository.save(venueTmp);
+        }
+    }
 
-    public Set<Venue> getVenuesByTmp (byte tmp){
+
+    public void save(Venue venue) {
+        venueRepository.save(venue);
+    }
+
+    public Set<Venue> getVenuesByTmp(byte tmp) {
         return venueRepository.findByTmp(tmp);
     }
 

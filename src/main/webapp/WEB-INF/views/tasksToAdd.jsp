@@ -30,9 +30,17 @@
         <div class="card bg-light mb-3">
             <div class="card-header">
                 <div class="h-50">
-
-                    <h5 class="card-title">Wybierz zadania do swojego wydarzenia
-                        <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-sm-right mb-10"></h5>
+                    <c:choose>
+                        <c:when test="${empty TaskToEvents.taskToEvents}">
+                            <h5 class="card-title"> Wygląda, że wszystkie zadania są już uwzględnione
+                                <a class="btn btn-success float-right" href="${header.referer}">Wróć</a></h5>
+                        </c:when>
+                        <c:otherwise>
+                            <h5 class="card-title">Wybierz zadania do swojego wydarzenia
+                                <input type="submit" value="Dodaj zaznaczone"
+                                       class="btn btn-success float-sm-right mb-10"></h5>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
             </div>
@@ -54,8 +62,8 @@
                         <tr class="d-flex">
                             <td class="col-1 text-right">
                                 <c:out value="${count}"></c:out>
-<%--                                <form:label path="taskToEvents[${tagStatus.index}].task.id"--%>
-<%--                                            value="${taskToEvent.task.id}">${taskToEvent.task.id}</form:label>--%>
+                                    <%--                                <form:label path="taskToEvents[${tagStatus.index}].task.id"--%>
+                                    <%--                                            value="${taskToEvent.task.id}">${taskToEvent.task.id}</form:label>--%>
                                 <form:hidden path="taskToEvents[${tagStatus.index}].task.id"/>
                             </td>
                             <td class="col-10">
@@ -72,7 +80,9 @@
                 </table>
             </div>
             <div class="card-footer">
-                <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-right mb-10">
+                <c:if test="${not empty TaskToEvents.taskToEvents}">
+                    <input type="submit" value="Dodaj zaznaczone" class="btn btn-success float-right mb-10">
+                </c:if>
             </div>
         </div>
     </form:form>

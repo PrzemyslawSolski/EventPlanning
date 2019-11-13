@@ -28,32 +28,38 @@
                     <a class="nav-link" href="/logout">Wyloguj</a>
                 </c:if>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Ślub
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/events/edit/">Szczegóły</a>
-                    <a class="dropdown-item" href="/tasks/estimate">Kosztorys</a>
-                    <a class="dropdown-item" href="/events/addTasks">Dodawanie zadań z listy programu</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/tasks/add">Dodaj swoje zadanie</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Wyloguj</a>
-            </li>
+            <c:if test="${not empty userId}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Ślub
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/events/edit/">Szczegóły</a>
+                        <a class="dropdown-item" href="/tasks/estimate">Kosztorys</a>
+                        <a class="dropdown-item" href="/events/addTasks">Dodawanie zadań z listy programu</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/tasks/add">Dodaj swoje zadanie</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/venues/list">Lista lokalizacji</a>
+                        <a class="dropdown-item" href="/venues/add">Dodaj lokalizację</a>
+                    </div>
+                </li>
+            </c:if>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="/logout">Wyloguj</a>--%>
+<%--            </li>--%>
             <li class="nav-item">
                 <div class="nav-link active"> User: ${userId} ${firstName} Event: ${eventId}</div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <%--        <form class="form-inline my-2 my-lg-0">--%>
+        <%--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--%>
+        <%--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--%>
+        <%--        </form>--%>
     </div>
 </nav>
