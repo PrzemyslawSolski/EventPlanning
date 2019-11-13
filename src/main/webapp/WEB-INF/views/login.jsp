@@ -12,6 +12,7 @@
 <html>
 <head>
     <%@ include file="links.jspf" %>
+    <link rel="stylesheet" type="text/css" href="/css/mmystyle.css">
 </head>
 <body>
 
@@ -27,38 +28,43 @@
         <div>
             <h2><br><br></h2>
         </div>
-        <div class="row">
-            <div class="form-group col-md-10">
-                <label><h3>Zaloguj się</h3></label>
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="form-group col-md-10">
+                        <label><h3>Zaloguj się</h3></label>
+                    </div>
+                </div>
             </div>
-
-        </div>
-
-
-        <div class="row">
-            <div class="form-group col-md-10">
-                <label>Podaj email:</label>
-                <form:input path="email" type="text" placeholder="adres email" id="formEmail" class="form-control"/>
-                <form:errors path="email" element="div" cssClass="error"></form:errors>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Podaj email:</label>
+                        <form:input path="email" type="text" placeholder="adres email" id="formEmail"
+                                    class="form-control"/>
+                        <form:errors path="email" element="div" cssClass="error"></form:errors>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Podaj hasło:</label>
+                        <form:input path="password" type="password" placeholder="hasło" id="formPassword"
+                                    class="form-control password"/>
+                        <form:errors path="password" element="div" cssClass="error"></form:errors>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                            <%--                <input class="form-check-input" type="checkbox" id="formShowPass">--%>
+                            <%--                <label class="form-check-label" for="formShowPass">--%>
+                            <%--                    Pokaż hasło--%>
+                            <%--                </label>--%>
+                    </div>
+                </div>
+                <input type="submit" method="post" id="submitBtn" data-method="POST" class="btn btn-success"
+                       value="Zaloguj">
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-10">
-                <label>Podaj hasło:</label>
-                <form:input path="password" type="password" placeholder="hasło" id="formPassword"
-                            class="form-control password"/>
-                <form:errors path="password" element="div" cssClass="error"></form:errors>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="formShowPass">
-                <label class="form-check-label" for="formShowPass">
-                    Pokaż hasło
-                </label>
-            </div>
-        </div>
-        <input type="submit" method="post" id="submitBtn" data-method="POST" class="btn btn-success" value="Zaloguj">
         <h2><br><br></h2>
     </form:form>
 </div>

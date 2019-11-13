@@ -32,6 +32,13 @@ public class EventTaskService {
         return eventTaskRepository.findByEventId(eventId);
     }
 
+    public double getBrideGuestsRatio(Event event){
+        if (event.getGroomGuestsNo() == 0 && event.getBrideGuestsNo() == 0) {
+            return 0.5;
+        }
+        return 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
+    }
+
     public void calculateEstimate(HttpSession session, long eventId) {
         List<EventTask> eventTasks = getEventTasksByEventId(eventId)
                 .stream()
@@ -41,12 +48,12 @@ public class EventTaskService {
 
         Estimate estimate = new Estimate();
         Event event = eventRepository.getOne(eventId);
-        double brideGuestsRatio;
-        if (event.getGroomGuestsNo() == 0 && event.getBrideGuestsNo() == 0) {
-            brideGuestsRatio = 0.5;
-        } else {
-            brideGuestsRatio = 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
-        }
+        double brideGuestsRatio = getBrideGuestsRatio(event);
+//        if (event.getGroomGuestsNo() == 0 && event.getBrideGuestsNo() == 0) {
+//            brideGuestsRatio = 0.5;
+//        } else {
+//            brideGuestsRatio = 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
+//        }
         double groomGuestsRatio = -1.0 * brideGuestsRatio + 1;
 
         if (eventTasks != null && !eventTasks.isEmpty()) {

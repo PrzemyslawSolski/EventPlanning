@@ -154,7 +154,7 @@ public class EventController {
     }
 
     @PostMapping("/addTasks")
-    public void addTasks(HttpSession session, @ModelAttribute("TaskToEvents")
+    public String addTasks(HttpSession session, @ModelAttribute("TaskToEvents")
             TaskToEventListContainer taskToEventList,
                          BindingResult result) {
         List<TaskToEvent> taskToEvents = taskToEventList.getTaskToEvents();
@@ -168,6 +168,7 @@ public class EventController {
                 eventTaskService.saveWithNewPrice(eventTask);
             }
         }
+        return ("redirect:../tasks/list");
     }
 
 

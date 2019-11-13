@@ -12,6 +12,7 @@
 <html>
 <head>
     <%@ include file="links.jspf" %>
+    <link rel="stylesheet" type="text/css" href="/css/mmystyle.css">
 </head>
 <body>
 
@@ -27,60 +28,69 @@
         <div>
             <h2><br><br></h2>
         </div>
-        <div class="row">
-            <div class="form-group col-md-10">
-                <label><h3>Podaj dane</h3></label><br>
-            </div>
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label><h3>Podaj dane</h3></label><br>
+                    </div>
 
-        </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Imię:</label>
+                        <form:input path="name" type="text" placeholder="imię" id="formName" class="form-control"/>
+                        <form:errors path="name" element="div" cssClass="error"></form:errors>
+                    </div>
+                        <%--        </div>--%>
 
-
-        <div class="row">
-            <div class="form-group col-md-5">
-                <label>Imię:</label>
-                <form:input path="name" type="text" placeholder="imię" id="formName" class="form-control"/>
-                <form:errors path="name" element="div" cssClass="error"></form:errors>
-            </div>
-<%--        </div>--%>
-
-<%--        <div class="row">--%>
-            <div class="form-group col-md-5">
-                <label>Nazwisko:</label>
-                <form:input path="surname" type="text" placeholder="nazwisko" id="formSurname" class="form-control"/>
-                <form:errors path="surname" element="div" cssClass="error"></form:errors>
+                        <%--        <div class="row">--%>
+                    <div class="form-group col-md-6">
+                        <label>Nazwisko:</label>
+                        <form:input path="surname" type="text" placeholder="nazwisko" id="formSurname"
+                                    class="form-control"/>
+                        <form:errors path="surname" element="div" cssClass="error"></form:errors>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Email:</label>
+                        <form:input path="email" type="text" placeholder="adres email" id="formEmail"
+                                    class="form-control"/>
+                        <form:errors path="email" element="div" cssClass="error"></form:errors>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Hasło:</label>
+                        <form:input path="password" type="password" placeholder="hasło" id="formPassword"
+                                    class="form-control password"/>
+                        <form:errors path="password" element="div" cssClass="error"></form:errors>
+                    </div>
+                        <%--        </div>--%>
+                        <%--        <div class="row">--%>
+                    <div class="form-group col-md-6">
+                        <label>Powtórz hasło:</label>
+                        <input type="password" name="repeatPassword" placeholder="powtórz hasło"
+                               id="formPasswordConfirm"
+                               class="form-control password">
+                            <%--                <form:errors path="password" element="div" cssClass="error"></form:errors>--%>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                            <%--                <input class="form-check-input" type="checkbox" id="formShowPass">--%>
+                            <%--                <label class="form-check-label" for="formShowPass">--%>
+                            <%--                    Pokaż hasło--%>
+                            <%--                </label>--%>
+                    </div>
+                </div>
+                <input type="submit" id="submitBtn" class="btn btn-success"
+                       value="Zarejestruj">
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-10">
-                <label>Email:</label>
-                <form:input path="email" type="text" placeholder="adres email" id="formEmail" class="form-control"/>
-                <form:errors path="email" element="div" cssClass="error"></form:errors>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-5">
-                <label>Hasło:</label>
-                <form:input path="password" type="password" placeholder="hasło" id="formPassword" class="form-control password"/>
-                <form:errors path="password" element="div" cssClass="error"></form:errors>
-            </div>
-<%--        </div>--%>
-<%--        <div class="row">--%>
-            <div class="form-group col-md-5">
-                <label>Powtórz hasło:</label>
-                <input type="password" name="repeatPassword" placeholder="powtórz hasło" id="formPasswordConfirm" class="form-control password">
-<%--                <form:errors path="password" element="div" cssClass="error"></form:errors>--%>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="formShowPass">
-                <label class="form-check-label" for="formShowPass">
-                    Pokaż hasło
-                </label>
-            </div>
-        </div>
-        <input type="submit" id="submitBtn" class="btn btn-success"
-               value="Zarejestruj">
         <h2><br><br></h2>
     </form:form>
 </div>

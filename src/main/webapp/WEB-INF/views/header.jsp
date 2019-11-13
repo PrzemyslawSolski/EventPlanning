@@ -53,13 +53,14 @@
 <%--            <li class="nav-item">--%>
 <%--                <a class="nav-link" href="/logout">Wyloguj</a>--%>
 <%--            </li>--%>
-            <li class="nav-item">
-                <div class="nav-link active"> User: ${userId} ${firstName} Event: ${eventId}</div>
+            <li class="nav-item float-right">
+                <div class="nav-link active float-right"> User: ${userId} ${firstName} Event: ${eventId}</div>
             </li>
         </ul>
-        <%--        <form class="form-inline my-2 my-lg-0">--%>
-        <%--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--%>
-        <%--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--%>
-        <%--        </form>--%>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="nav-link active float-right" style="color: beige">${firstName}</div>
+<%--                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--%>
+<%--                    <button class="btn btn-outline-success my-sm-0" type="submit">${firstName}</button>--%>
+                </form>
     </div>
 </nav>

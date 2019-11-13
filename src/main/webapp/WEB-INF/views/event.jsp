@@ -12,8 +12,15 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/mmystyle.css">
     <%@ include file="links.jspf" %>
     <%--    <script src="js/books.js"></script>--%>
+<%--    <style>--%>
+<%--        body {--%>
+<%--            background-image: url("../img/slubsil-17.JPG");--%>
+<%--            background-size: cover;--%>
+<%--        }--%>
+<%--    </style>--%>
 </head>
 <body>
 

@@ -1,0 +1,52 @@
+root{
+    --dark-text: #000000;
+}
+
+
+body {
+    background-image: url("/img/slubsil-112.JPG");
+    background-size: cover;
+}
+
+
+.error{
+    color:red;
+    font-size: smaller;
+}
+
+.card-header{
+    margin-bottom: 0px;
+
+}
+
+/*------------------------------*/
+/*---- Slider section----*/
+/*------------------------------*/
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    opacity: 1 !important;
+    outline: black;
+    background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+    content: '>';
+    font-size: 55px;
+    color: var(--dark-text);
+}
+
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 55px;
+    color: var(--dark-text);
+}
+
+.carousel-caption {
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    font-weight: 600;
+    color: var(--dark-text) !important;
+}

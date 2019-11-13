@@ -54,7 +54,11 @@ public class EventTaskController {
     }
 
     @GetMapping("/add")
-    public String addTask(Model model){
+    public String addTask(HttpSession session, Model model){
+        Long eventId = (Long) session.getAttribute("eventId");
+        if (eventId == null || eventId == 0) {
+            return("redirect:../events/add");
+        }
         EventTask eventTask = new EventTask();
 //        Task task = new Task();
 //        eventTask.setTask(task);
@@ -70,7 +74,7 @@ public class EventTaskController {
             return "task";
         }
         eventTaskService.saveNewTask(session, eventTask);
-        return("redirect:schedule");
+        return("redirect:list");
     }
 
     @GetMapping("/list")
@@ -82,11 +86,6 @@ public class EventTaskController {
 //        if (eventId != 0) {
             List<EventTask> eventTasks = eventTaskService.
                     getEventTasksByEventIdOrderByCompletedAscDateAsc(eventId);
-//            List<EventTask> eventTasksEmptyDate = eventTasks
-//                    .stream()
-//                    .filter(et -> et.getDate()==null).collect(Collectors.toList());
-//            eventTasks.removeAll(eventTasksEmptyDate);
-//            eventTasks.addAll(eventTasksEmptyDate);
             model.addAttribute("eventTasks", eventTaskService.putEmptyDatesAtEnd(eventTasks));
         }
         return "schedule";
@@ -105,9 +104,6 @@ public class EventTaskController {
         }
         return "estimate";
     }
-
-
-
 
     @PostMapping("/list")
     public String showTasks(){

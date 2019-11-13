@@ -15,6 +15,7 @@
 
     <%--    <script src="http://code.jquery.com/jquery-migrate-1.0.0rc1.js"></script>--%>
     <script src="js/books.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/mmystyle.css">
 </head>
 <body>
 

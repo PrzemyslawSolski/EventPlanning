@@ -12,6 +12,7 @@
 <html lang="pl">
 <head>
     <%@ include file="links.jspf" %>
+    <link rel="stylesheet" type="text/css" href="/css/mmystyle.css">
     <%--    <script src="js/books.js"></script>--%>
 </head>
 <body>
