@@ -10,7 +10,6 @@ import pl.coderslab.task.TaskGroupService;
 import pl.coderslab.task.TaskService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class HomeController {

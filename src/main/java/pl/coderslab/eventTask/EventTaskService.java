@@ -94,7 +94,7 @@ public class EventTaskService {
                         break;
                     }
                     default: {
-                        estimate.setNotSplit(amount);
+                        estimate.setNotSplit(estimate.getNotSplit() + amount);
                     }
                 }
 
