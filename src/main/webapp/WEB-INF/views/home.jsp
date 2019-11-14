@@ -29,15 +29,16 @@
 
 
 <%@ include file="header.jsp" %>
-<%--<h2></h2>--%>
+
 
 <section class="padding-large bg-dark">
+    <h2><br></h2>
     <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
         <div class="carousel-inner container">
             <div class="carousel-item active">
 <%--                <div class="container w-75 d-flex">--%>
                     <div class="carousel-caption d-block">
-                        <img src="/img/slubsil-2.JPG" width="1000px">
+                        <img src="/img/slubsil-16.JPG" width="1000px">
 <%--                        <h1>Lorem ipsum dolor sit amet</h1>--%>
 <%--                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--%>
 <%--                            magna aliqua.</h3>--%>
@@ -47,7 +48,7 @@
             <div class="carousel-item">
 <%--                <div class="container w-75 d-flex">--%>
                     <div class="carousel-caption d-block">
-                        <img src="/img/slubsil-1.JPG" width="1000px">
+                        <img src="/img/slubsil-112.JPG" width="1000px">
 <%--                        <h1>Torem ipsum dolor sit amet</h1>--%>
 <%--                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--%>
 <%--                            magna aliqua.</h3>--%>
@@ -55,13 +56,14 @@
 <%--                </div>--%>
             </div>
             <div class="carousel-item">
-                <div class="container w-75 d-flex">
+<%--                <div class="container w-75 d-flex">--%>
                     <div class="carousel-caption d-block">
-                        <h1>Borem ipsum dolor sit amet</h1>
-                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</h3>
+                        <img src="/img/slubsil-1.JPG" width="1000px">
+<%--                        <h1>Borem ipsum dolor sit amet</h1>--%>
+<%--                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--%>
+<%--                            magna aliqua.</h3>--%>
                     </div>
-                </div>
+<%--                </div>--%>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

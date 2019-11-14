@@ -4,10 +4,13 @@ root{
 
 
 body {
-    background-image: url("/img/slubsil-112.JPG");
+    background-image: url("/img/112m.jpg");
     background-size: cover;
 }
 
+.container{
+    opacity: 0.8;
+}
 
 .error{
     color:red;
