@@ -87,7 +87,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Lp.</th>
-                    <th scope="col" class="col-6 text-left">Zadanie</th>
+                    <th scope="col" class="col-6 text-left">Grupa / Zadanie</th>
                     <th scope="col">
                         <%--                <button class="btn btn-success" id="addBtn">Dodaj zadanie</button>--%>
                     </th>
@@ -98,9 +98,9 @@
                 <c:forEach items="${taskGroups}" var="grupa">
                     <div>
                         <tr>
-                            <th class="taskGroup" data-idg="${grupa.id}">^</th>
+                            <th class="taskGroup" data-idg="${grupa.id}" data-arrow="${grupa.id}">▼</th>
                             <th class="taskGroup" data-idg="${grupa.id}">
-                                <c:out value="${grupa.description}"></c:out>
+                                <c:out value="Grupa: ${grupa.description}"></c:out>
                             </th>
                         </tr>
                     </div>

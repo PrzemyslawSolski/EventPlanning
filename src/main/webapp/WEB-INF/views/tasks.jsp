@@ -82,7 +82,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Lp.</th>
-                    <th scope="col" class="col-6 text-left">Zadanie</th>
+                    <th scope="col" class="col-6 text-left">Grupa / Zadanie</th>
                     <th scope="col">
                         <%--                <button class="btn btn-success" id="addBtn">Dodaj zadanie</button>--%>
                     </th>

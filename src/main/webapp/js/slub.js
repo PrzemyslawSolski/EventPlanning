@@ -18,6 +18,15 @@ $(function () {
         // this.preventDefault();
         var id = $(this).data('idg');
         $(".details[data-id="+id+']').toggle();
+        var elem = $(".taskGroup[data-arrow="+id+']');
+
+        // console.log(elem.text());
+        if (elem.text()==="▼"){
+            elem.text("▲");
+        }else {
+            elem.text("▼")
+        };
+
         // console.log(id);
     });
 
