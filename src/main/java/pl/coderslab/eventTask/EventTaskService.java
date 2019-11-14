@@ -86,7 +86,6 @@ public class EventTaskService {
                         break;
                     }
                     case 4: {//4 - guest
-                        //TODO uzupełnić strukturę gości
                         estimate.setBrideSubtotal(estimate.getBrideSubtotal() + 1.0 * Math.round(amount * brideGuestsRatio * 100) / 100);
                         estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + 1.0 * Math.round(amountPaid * brideGuestsRatio * 100) / 100);
                         estimate.setGroomSubtotal(estimate.getGroomSubtotal() + 1.0 * Math.round(amount * groomGuestsRatio * 100) / 100);
@@ -97,14 +96,13 @@ public class EventTaskService {
                         estimate.setNotSplit(estimate.getNotSplit() + amount);
                     }
                 }
-
             }
         }
-//        estimate.setTotal(Math.round(estimate.getTotal()*100)/100);
-//        estimate.setTotalPaid(Math.round(estimate.getTotalPaid()*100)/100);
-//        estimate.setTotalConfirmed(Math.round(estimate.getTotalConfirmed()*100)/100);
-//        estimate.setNotSplit(Math.round(estimate.getNotSplit()*100)/100);
-//        estimate.setBrideSubtotal(Math.round(estimate.getBrideSubtotal()*100)/100);
+        estimate.setTotal(1.0*Math.round(estimate.getTotal()*100)/100);
+        estimate.setTotalPaid(1.0*Math.round(estimate.getTotalPaid()*100)/100);
+        estimate.setTotalConfirmed(1.0*Math.round(estimate.getTotalConfirmed()*100)/100);
+        estimate.setNotSplit(1.0*Math.round(estimate.getNotSplit()*100)/100);
+        estimate.setBrideSubtotal(1.0*Math.round(estimate.getBrideSubtotal()*100)/100);
         estimate.setGroomSubtotal(estimate.getTotal()-estimate.getBrideSubtotal()-estimate.getNotSplit());
         eventTasks = eventTasks
                 .stream()
