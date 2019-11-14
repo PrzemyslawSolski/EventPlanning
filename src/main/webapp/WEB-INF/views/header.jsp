@@ -10,7 +10,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <c:if test="${empty userId}">
-                    <a id="menuTaskList" class="nav-link" href="/tasks">Przykładowa lista zadań <span class="sr-only">(current)</span></a>
+                    <a id="menuTaskList" class="nav-link" href="/tasklist">Przykładowa lista zadań <span class="sr-only">(current)</span></a>
                 </c:if>
                 <c:if test="${not empty userId}">
                     <a id="menuTaskList" class="nav-link" href="/tasks/list">Harmonogram<span
@@ -32,9 +32,7 @@
                 <li class="nav-item dropdown" style="opacity: 1">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Ślub
-                    </a>
+                       aria-haspopup="true" aria-expanded="false">Ślub</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="opacity: 1">
                         <a class="dropdown-item" href="/events/edit/">Szczegóły</a>
                         <a class="dropdown-item" href="/tasks/estimate">Kosztorys</a>
