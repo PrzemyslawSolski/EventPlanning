@@ -147,7 +147,6 @@ public class EventTaskService {
         eventTask.setEvent(event);
 
         eventTaskRepository.save(eventTask);
-
     }
 
     public void saveWithNewPrice(EventTask eventTask) {

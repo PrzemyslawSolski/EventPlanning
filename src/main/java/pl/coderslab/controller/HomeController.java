@@ -43,12 +43,13 @@ public class HomeController {
 //        List<Task> tasks = new ArrayList<>();
 //        tasks = taskService.findAll();
         model.addAttribute("tasks", taskService.findAllEventNull());
-        return "tasks";
+        model.addAttribute("taskGroups", taskGroupService.findAll());
+        return "tasks_new";
     }
 
-    @ModelAttribute("taskGroups")
-    public List<TaskGroup> getTaskGroup(){
-        return taskGroupService.findAll();
-    }
+//    @ModelAttribute("taskGroups")
+//    public List<TaskGroup> getTaskGroup(){
+//        return taskGroupService.findAll();
+//    }
 
 }

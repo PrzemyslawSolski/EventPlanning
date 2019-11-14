@@ -87,7 +87,7 @@
                             <%--                </label>--%>
                     </div>
                 </div>
-                <input type="submit" id="submitBtn" class="btn btn-success"
+                <input type="submit" id="submitBtn" class="btn btn-success float-right"
                        value="Zarejestruj">
             </div>
         </div>

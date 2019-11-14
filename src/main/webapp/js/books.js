@@ -3,6 +3,7 @@ $(function () {
     $('#edit-form').css('display', 'none');
     $("#navbarName").text("Ślub@wanie");
     $("#menuTaskList").text("Przykładowa lista zadań");
+    $(".taskGroup").hide();
     $.ajax({
         url: "http://localhost:8282/books/",
         type: "GET",

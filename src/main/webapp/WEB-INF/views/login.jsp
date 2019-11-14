@@ -61,7 +61,7 @@
                             <%--                </label>--%>
                     </div>
                 </div>
-                <input type="submit" method="post" id="submitBtn" data-method="POST" class="btn btn-success"
+                <input type="submit" method="post" id="submitBtn" data-method="POST" class="btn btn-success float-right"
                        value="Zaloguj">
             </div>
         </div>
