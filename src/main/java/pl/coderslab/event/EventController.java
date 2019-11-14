@@ -2,7 +2,6 @@ package pl.coderslab.event;
 
 ;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.eventTask.EventTask;
 import pl.coderslab.eventTask.EventTaskService;
-import pl.coderslab.price.Price;
 import pl.coderslab.task.Task;
+import pl.coderslab.task.TaskGroupService;
 import pl.coderslab.task.TaskService;
 import pl.coderslab.taskToEvent.TaskToEvent;
 import pl.coderslab.taskToEvent.TaskToEventListContainer;
@@ -20,7 +19,6 @@ import pl.coderslab.venue.VenueService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -33,13 +31,15 @@ public class EventController {
     private final VenueService venueService;
     private final TaskService taskService;
     private final EventTaskService eventTaskService;
+    private final TaskGroupService taskGroupService;
 
     @Autowired
-    public EventController(EventService eventService, VenueService venueService, TaskService taskService, EventTaskService eventTaskService) {
+    public EventController(EventService eventService, VenueService venueService, TaskService taskService, EventTaskService eventTaskService, TaskGroupService taskGroupService) {
         this.eventService = eventService;
         this.venueService = venueService;
         this.taskService = taskService;
         this.eventTaskService = eventTaskService;
+        this.taskGroupService = taskGroupService;
     }
 
 //TODO daty przy zapisywaniu są o jeden dzień wcześniejsze
@@ -149,7 +149,7 @@ public class EventController {
         TaskToEventListContainer taskToEventList = new TaskToEventListContainer();
         taskToEventList.setTaskToEvents(taskToEvents);
         model.addAttribute("TaskToEvents", taskToEventList);
-
+        model.addAttribute("taskGroups", taskGroupService.findAll());
         return "tasksToAdd";
     }
 
