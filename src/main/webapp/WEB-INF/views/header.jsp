@@ -51,9 +51,9 @@
 <%--            <li class="nav-item">--%>
 <%--                <a class="nav-link" href="/logout">Wyloguj</a>--%>
 <%--            </li>--%>
-            <li class="nav-item float-right">
-                <div class="nav-link active float-right"> User: ${userId} ${firstName} Event: ${eventId}</div>
-            </li>
+<%--            <li class="nav-item float-right">--%>
+<%--                <div class="nav-link active float-right"> User: ${userId} ${firstName} Event: ${eventId}</div>--%>
+<%--            </li>--%>
         </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <div class="nav-link active float-right" style="color: beige">${firstName}</div>

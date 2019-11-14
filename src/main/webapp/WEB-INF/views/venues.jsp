@@ -43,7 +43,7 @@
                 <tr class="d-flex">
                     <th class="col-sm-1 text-center">Lp.</th>
                     <th class="col-5">Nazwa</th>
-                    <th class="col-5 text-center">Adres</th>
+                    <th class="col-5 text-left">Adres</th>
                     <%--                    <th class="col-2 text-center">Adres</th>--%>
                     <th class="col-1"></th>
                 </tr>
@@ -58,7 +58,7 @@
                             <c:out value="${count}"></c:out>
                         </td>
                         <td class="col-5"><c:out value="${venue.name}"></c:out></td>
-                        <td class="col-5 text-center"><c:out value="${venue.address}"></c:out></td>
+                        <td class="col-5 text-left"><c:out value="${venue.address}"></c:out></td>
 
                         <td class="col-1 text-center"><a href="/venues/edit/${venue.id}">Zmień</a></td>
                     </tr>

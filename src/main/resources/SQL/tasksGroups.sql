@@ -200,4 +200,4 @@ insert into tasks (description, taskGroup_id) values ('Odprężyć się','3');
 insert into tasks (description, taskGroup_id) values ('Przygotować obrączki','3');
 insert into tasks (description, taskGroup_id) values ('Przygotować dokumenty potrzebne do ślubu','3');
 insert into tasks (description, taskGroup_id) values ('Przygotować kosmetyki, perfumy, chusteczki, dodatkowe pończochy','3');
-insert into tasks (description, taskGroup_id) values ('Wziąć na ślub gotówkę, aby zapłacić usługodawcom w odliczonych kwotach','4');
+insert into tasks (description, taskGroup_id) values ('Wziąć na ślub gotówkę, aby zapłacić usługodawcom, w odliczonych kwotach','4');

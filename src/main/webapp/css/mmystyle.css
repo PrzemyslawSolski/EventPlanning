@@ -11,10 +11,16 @@ body {
     background-position: top;
 }
 
-/*.btn-success{*/
-/*    background-color: cornflowerblue  !important;*/
-/*    border-color: cornflowerblue;*/
-/*}*/
+.btn-success{
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+}
+
+ .btn-success:hover{
+     background-color:navy;
+     border-color: darkblue;
+ }
+
 
 .container{
     opacity: 0.8;

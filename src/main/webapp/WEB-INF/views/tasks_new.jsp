@@ -127,7 +127,7 @@
     </div>
 
 </div>
-<h2><br><br></h2>
+<h2></h2>
 <%@ include file="footer.jsp" %>
 </body>
 </html>
