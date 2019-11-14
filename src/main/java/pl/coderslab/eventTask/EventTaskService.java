@@ -24,8 +24,8 @@ public class EventTaskService {
     private final PriceRepository priceRepository;
     private final TaskRepository taskRepository;
 
-    public List<EventTask> getEventTasksByEventIdOrderByCompletedAscDateAsc(long eventId) {
-        return eventTaskRepository.findByEventIdOrderByCompletedAscDateAsc(eventId);
+    public List<EventTask> getEventTasksByEventIdOrderByDateAscCompletedAsc(long eventId) {
+        return eventTaskRepository.findByEventIdOrderByDateAscCompletedAsc(eventId);
     }
 
     public List<EventTask> getEventTasksByEventId(long eventId) {
@@ -109,12 +109,28 @@ public class EventTaskService {
         session.setAttribute("estimate", estimate);
     }
 
+    public List<EventTask> getEventTasksSorted(long eventId){
+        List<EventTask> eventTasks = getEventTasksByEventIdOrderByDateAscCompletedAsc(eventId);
+        eventTasks = putEmptyDatesAtEnd(eventTasks);
+        eventTasks = putCompletedTasksAtEnd(eventTasks);
+        return eventTasks;
+    }
+
     public List<EventTask> putEmptyDatesAtEnd(List<EventTask> eventTasks) {
         List<EventTask> eventTasksEmptyDate = eventTasks
                 .stream()
                 .filter(et -> et.getDate() == null).collect(Collectors.toList());
         eventTasks.removeAll(eventTasksEmptyDate);
         eventTasks.addAll(eventTasksEmptyDate);
+        return eventTasks;
+    }
+
+    public List<EventTask> putCompletedTasksAtEnd(List<EventTask> eventTasks){
+        List<EventTask> eventTasksCompleted = eventTasks
+                .stream()
+                .filter(et -> et.isCompleted()).collect(Collectors.toList());
+        eventTasks.removeAll(eventTasksCompleted);
+        eventTasks.addAll(eventTasksCompleted);
         return eventTasks;
     }
 

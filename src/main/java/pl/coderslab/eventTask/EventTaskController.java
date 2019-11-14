@@ -84,9 +84,11 @@ public class EventTaskController {
             long eventId = (Long)session.getAttribute("eventId");
 //        }
 //        if (eventId != 0) {
-            List<EventTask> eventTasks = eventTaskService.
-                    getEventTasksByEventIdOrderByCompletedAscDateAsc(eventId);
-            model.addAttribute("eventTasks", eventTaskService.putEmptyDatesAtEnd(eventTasks));
+//            List<EventTask> eventTasks = eventTaskService.
+//                    getEventTasksByEventIdOrderByCompletedAscDateAsc(eventId);
+//            eventTasks = eventTaskService.putEmptyDatesAtEnd(eventTasks);
+//            eventTasks = eventTaskService.putCompletedTasksAtEnd(eventTasks);
+            model.addAttribute("eventTasks", eventTaskService.getEventTasksSorted(eventId));
         }
         return "schedule";
     }
