@@ -53,7 +53,7 @@
                 <c:forEach items="${venues}" var="venue">
                     <c:set var="count" value="${count + 1}" scope="page"/>
                     <tr class="d-flex">
-                        <td class="col-sm-1 text-right">
+                        <td class="col-sm-1 text-center">
                                 <%--                    <c:out value="${task.id}"></c:out>--%>
                             <c:out value="${count}"></c:out>
                         </td>

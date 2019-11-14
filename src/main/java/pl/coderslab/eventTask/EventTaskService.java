@@ -100,6 +100,12 @@ public class EventTaskService {
 
             }
         }
+//        estimate.setTotal(Math.round(estimate.getTotal()*100)/100);
+//        estimate.setTotalPaid(Math.round(estimate.getTotalPaid()*100)/100);
+//        estimate.setTotalConfirmed(Math.round(estimate.getTotalConfirmed()*100)/100);
+//        estimate.setNotSplit(Math.round(estimate.getNotSplit()*100)/100);
+//        estimate.setBrideSubtotal(Math.round(estimate.getBrideSubtotal()*100)/100);
+        estimate.setGroomSubtotal(estimate.getTotal()-estimate.getBrideSubtotal()-estimate.getNotSplit());
         eventTasks = eventTasks
                 .stream()
                 .filter(et -> et.getPrice().getAmount() - et.getPrice().getAmountPaid() > 0)

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: psolski
@@ -42,13 +43,23 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label><h5>Łączna kwota: ${estimate.total} zł</h5></label>
+                            <label><h5>
+                                Łączna kwota:  
+<%--                                ${estimate.total}--%>
+                                <fmt:formatNumber pattern="#,##0.00" value="${estimate.total}"/>
+                                zł</h5></label>
                         </div>
                         <div class="form-group col-md-4">
-                            <label><h5>z tego zapłacone: ${estimate.totalPaid} zł</h5></label>
+                            <label><h5>z tego zapłacone:  
+<%--                                ${estimate.totalPaid}--%>
+                                <fmt:formatNumber pattern="#,##0.00" value="${estimate.totalPaid}"/>
+                                zł</h5></label>
                         </div>
                         <div class="form-group col-md-4">
-                            <label><h5>do zapłaty: ${estimate.total - estimate.totalPaid} zł</h5></label>
+                            <label><h5>do zapłaty:  
+<%--                                ${estimate.total - estimate.totalPaid}--%>
+                                <fmt:formatNumber pattern="#,##0.00" value="${estimate.total - estimate.totalPaid}"/>
+                                zł</h5></label>
                         </div>
                     </div>
                 </div>
@@ -56,13 +67,22 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label>Panna Młoda: ${estimate.brideSubtotal} zł</label>
+                            <label>Panna Młoda:  
+<%--                                ${estimate.brideSubtotal}--%>
+                                <fmt:formatNumber pattern="#,##0.00" value="${estimate.brideSubtotal}"/>
+                                zł</label>
                         </div>
                         <div class="form-group col-md-4"><label>
-                            Pan Młody: ${estimate.groomSubtotal} zł
+                            Pan Młody:  
+<%--                            ${estimate.groomSubtotal}--%>
+                            <fmt:formatNumber pattern="#,##0.00" value="${estimate.groomSubtotal}"/>
+                            zł
                         </label></div>
                         <div class="form-group col-md-4"><label>
-                            Nie podzielone: ${estimate.notSplit} zł
+                            Nie podzielone:  
+<%--                            ${estimate.notSplit}--%>
+                            <fmt:formatNumber pattern="#,##0.00" value="${estimate.notSplit}"/>
+                            zł
                         </label></div>
                     </div>
                 </div>
@@ -91,13 +111,12 @@
                     <tr class="d-flex">
                         <td class="col-sm-1 text-right">
                                 <%--                    <c:out value="${task.id}"></c:out>--%>
-                            <c:out value="${count}"></c:out>
+                            <c:out value="${count}    "></c:out>
                         </td>
                         <td class="col-6"><c:out value="${task.task.description}"></c:out></td>
                         <td class="col-2 text-center"><c:out value="${task.date}"></c:out></td>
-                        <td class="col-2 text-center"><c:out
-                                value="${task.price.amount - task.price.amountPaid}"></c:out>
-
+                        <td class="col-2 text-right">
+                            <fmt:formatNumber pattern="#,##0.00    " value="${task.price.amount - task.price.amountPaid}"/>
                         </td>
                         <td class="col-1 text-center"><a href="/tasks/edit/${task.id}">Zmień</a></td>
                     </tr>

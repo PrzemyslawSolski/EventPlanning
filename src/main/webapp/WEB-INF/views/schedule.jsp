@@ -55,7 +55,7 @@
                     <tr class="d-flex">
                         <td class="col-sm-1 text-right">
                                 <%--                    <c:out value="${task.id}"></c:out>--%>
-                            <c:out value="${count}"></c:out>
+                            <c:out value="${count}    "></c:out>
                         </td>
                         <td class="col-6"><c:out value="${task.task.description}"></c:out></td>
                         <td class="col-2 text-center"><c:out value="${task.date}"></c:out></td>
