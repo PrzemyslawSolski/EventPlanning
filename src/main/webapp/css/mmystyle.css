@@ -12,6 +12,10 @@ body {
     opacity: 0.8;
 }
 
+.card card-header{
+    opacity: 1;
+}
+
 .error{
     color:red;
     font-size: smaller;

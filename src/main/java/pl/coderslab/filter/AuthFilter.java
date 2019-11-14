@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthFilter", urlPatterns = {"/app/*"})
+@WebFilter(filterName = "AuthFilter", urlPatterns = {"/app/*",
+        "/tasks/*",
+        "/events/*",
+        "/tasks/*",
+        "/venues/*"})
 public class AuthFilter implements Filter {
     public void destroy() {
     }

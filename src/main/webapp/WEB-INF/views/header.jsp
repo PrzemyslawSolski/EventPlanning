@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" style="opacity: 0.7">
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" style="opacity: 0.8">
     <a id="navbarName" class="navbar-brand" href="/">Ślub@wanie</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,13 +29,13 @@
                 </c:if>
             </li>
             <c:if test="${not empty userId}">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="opacity: 1">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         Ślub
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="opacity: 1">
                         <a class="dropdown-item" href="/events/edit/">Szczegóły</a>
                         <a class="dropdown-item" href="/tasks/estimate">Kosztorys</a>
                         <a class="dropdown-item" href="/events/addTasks">Dodawanie zadań z listy programu</a>
