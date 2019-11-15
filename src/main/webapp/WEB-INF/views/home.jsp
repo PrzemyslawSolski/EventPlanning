@@ -13,12 +13,12 @@
 
 <%--    <link rel="stylesheet" href="./css/mystyle.css">--%>
     <%@ include file="links.jspf" %>
-    <style>
-        body {
-            background-image: url("/img/slubsil-16.JPG");
-            background-size: cover;
-        }
-    </style>
+<%--    <style>--%>
+<%--        body {--%>
+<%--            background-image: url("/img/slubsil-16.JPG");--%>
+<%--            background-size: cover;--%>
+<%--        }--%>
+<%--    </style>--%>
 
     <%--    <script src="http://code.jquery.com/jquery-1.9.0rc1.js"></script>--%>
 
