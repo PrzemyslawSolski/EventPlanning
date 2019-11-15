@@ -104,6 +104,7 @@ public class EventTaskService {
         estimate.setNotSplit(1.0*Math.round(estimate.getNotSplit()*100)/100);
         estimate.setBrideSubtotal(1.0*Math.round(estimate.getBrideSubtotal()*100)/100);
         estimate.setGroomSubtotal(estimate.getTotal()-estimate.getBrideSubtotal()-estimate.getNotSplit());
+
         eventTasks = eventTasks
                 .stream()
                 .filter(et -> et.getPrice().getAmount() - et.getPrice().getAmountPaid() > 0)

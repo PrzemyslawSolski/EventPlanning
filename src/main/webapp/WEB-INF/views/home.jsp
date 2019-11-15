@@ -36,34 +36,19 @@
     <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
         <div class="carousel-inner container">
             <div class="carousel-item active">
-<%--                <div class="container w-75 d-flex">--%>
                     <div class="carousel-caption d-block">
                         <img src="/img/1m.jpg" width="1000px">
-<%--                        <h1>Lorem ipsum dolor sit amet</h1>--%>
-<%--                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--%>
-<%--                            magna aliqua.</h3>--%>
                     </div>
-<%--                </div>--%>
             </div>
+<%--            <div class="carousel-item">--%>
+<%--                    <div class="carousel-caption d-block">--%>
+<%--                        <img src="/img/2m.jpg" width="1000px">--%>
+<%--                    </div>--%>
+<%--            </div>--%>
             <div class="carousel-item">
-<%--                <div class="container w-75 d-flex">--%>
-                    <div class="carousel-caption d-block">
-                        <img src="/img/2m.jpg" width="1000px">
-<%--                        <h1>Torem ipsum dolor sit amet</h1>--%>
-<%--                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--%>
-<%--                            magna aliqua.</h3>--%>
-                    </div>
-<%--                </div>--%>
-            </div>
-            <div class="carousel-item">
-<%--                <div class="container w-75 d-flex">--%>
                     <div class="carousel-caption d-block">
                         <img src="/img/3m.jpg" width="1000px">
-<%--                        <h1>Borem ipsum dolor sit amet</h1>--%>
-<%--                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--%>
-<%--                            magna aliqua.</h3>--%>
                     </div>
-<%--                </div>--%>
             </div>
             <div class="carousel-item">
                 <div class="carousel-caption d-block">

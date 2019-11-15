@@ -100,7 +100,7 @@
                         <tr>
                             <th class="taskGroup" data-idg="${grupa.id}" data-arrow="${grupa.id}">▼</th>
                             <th class="taskGroup" data-idg="${grupa.id}">
-                                <c:out value="Grupa: ${grupa.description}"></c:out>
+                                <c:out value="${grupa.description}"></c:out>
                             </th>
                         </tr>
                     </div>
