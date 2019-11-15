@@ -10,7 +10,8 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <c:if test="${empty userId}">
-                    <a id="menuTaskList" class="nav-link" href="/tasklist">Przykładowa lista zadań   <span class="sr-only">(current)</span></a>
+                    <a id="menuTaskList" class="nav-link" href="/tasklist">Przykładowa lista zadań   <span
+                            class="sr-only">(current)</span></a>
                 </c:if>
                 <c:if test="${not empty userId}">
                     <a id="menuTaskList" class="nav-link" href="/tasks/list">Harmonogram  <span
@@ -18,14 +19,14 @@
                 </c:if>
             </li>
 
-<%--            <li class="nav-item">--%>
-<%--                <c:if test="${empty userId}">--%>
-<%--                    <a class="nav-link" href="/login">Logowanie</a>--%>
-<%--                </c:if>--%>
-<%--                <c:if test="${not empty userId}">--%>
-<%--                    <a class="nav-link" href="/logout">Wyloguj</a>--%>
-<%--                </c:if>--%>
-<%--            </li>--%>
+            <%--            <li class="nav-item">--%>
+            <%--                <c:if test="${empty userId}">--%>
+            <%--                    <a class="nav-link" href="/login">Logowanie</a>--%>
+            <%--                </c:if>--%>
+            <%--                <c:if test="${not empty userId}">--%>
+            <%--                    <a class="nav-link" href="/logout">Wyloguj</a>--%>
+            <%--                </c:if>--%>
+            <%--            </li>--%>
             <c:if test="${not empty userId}">
                 <li class="nav-item active dropdown" style="opacity: 1">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -57,20 +58,22 @@
             <li class="nav-item">
                 <a class="nav-link" href="/register">Rejestracja</a>
             </li>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--%>
-<%--            </li>--%>
-<%--            <li class="nav-item">--%>
-<%--                <a class="nav-link" href="/logout">Wyloguj</a>--%>
-<%--            </li>--%>
-<%--            <li class="nav-item float-right">--%>
-<%--                <div class="nav-link active float-right"> User: ${userId} ${firstName} Event: ${eventId}</div>--%>
-<%--            </li>--%>
+            <%--            <li class="nav-item">--%>
+            <%--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--%>
+            <%--            </li>--%>
+            <%--            <li class="nav-item">--%>
+            <%--                <a class="nav-link" href="/logout">Wyloguj</a>--%>
+            <%--            </li>--%>
+            <%--            <li class="nav-item float-right">--%>
+            <%--                <div class="nav-link active float-right"> User: ${userId} ${firstName} Event: ${eventId}</div>--%>
+            <%--            </li>--%>
         </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <div class="navbar-text active float-right" style="color: beige">Zalogowany: ${firstName}</div>
-<%--                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--%>
-<%--                    <button class="btn btn-outline-success my-sm-0" type="submit">${firstName}</button>--%>
-                </form>
+        <form class="form-inline my-2 my-lg-0">
+            <c:if test="${not empty userId}">
+                <div class="navbar-text nav-link active float-right" style="color: beige">Zalogowany:    <i><b>${firstName}</b></i></div>
+            </c:if>
+            <%--                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--%>
+            <%--                    <button class="btn btn-outline-success my-sm-0" type="submit">${firstName}</button>--%>
+        </form>
     </div>
 </nav>

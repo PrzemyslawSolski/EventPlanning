@@ -114,7 +114,7 @@
                                         <c:out value="${count}"></c:out>
                                     </td>
                                     <td>
-                                        <c:out value="${task.description}"></c:out>
+                                        <c:out value="   ${task.description}"></c:out>
                                     </td>
                                 </tr>
                             </c:if>
