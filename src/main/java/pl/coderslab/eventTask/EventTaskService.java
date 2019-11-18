@@ -49,12 +49,6 @@ public class EventTaskService {
         Estimate estimate = new Estimate();
         Event event = eventRepository.getOne(eventId);
         double brideGuestsRatio = getBrideGuestsRatio(event);
-//        if (event.getGroomGuestsNo() == 0 && event.getBrideGuestsNo() == 0) {
-//            brideGuestsRatio = 0.5;
-//        } else {
-//            brideGuestsRatio = 1.0 * event.getBrideGuestsNo() / (event.getBrideGuestsNo() + event.getGroomGuestsNo());
-//        }
-//        double groomGuestsRatio = -1.0 * brideGuestsRatio + 1;
 
         if (eventTasks != null && !eventTasks.isEmpty()) {
             double amount = 0;
@@ -67,52 +61,40 @@ public class EventTaskService {
                 if (eventTask.getPrice().getType() == 1) {
                     estimate.setTotalConfirmed(estimate.getTotalConfirmed() + amount);
                 }
+                double brideRatio=0;
                 switch (eventTask.getPrice().getSplit()) {
                     case 1: {//1 - bride
-//                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + amount);
-                        setBrideGroomSubtotals(estimate, amount, 1);
-//                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + amountPaid);
-                        setBrideGroomSubtotalsPaid(estimate, amountPaid, 1);
+                        brideRatio=1;
                         break;
                     }
                     case 2: {//2 - groom
-//                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + amount);
-                        setBrideGroomSubtotals(estimate, amount, 0);
-//                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + amountPaid);
-                        setBrideGroomSubtotalsPaid(estimate, amountPaid, 0);
+                        brideRatio=0;
                         break;
                     }
                     case 3: {//3 - equal
-                        setBrideGroomSubtotals(estimate, amount, 0.5);
-                        setBrideGroomSubtotalsPaid(estimate, amountPaid, 0.5);
-//                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + amount / 2);
-//                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + amountPaid / 2);
-//                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + amount / 2);
-//                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + amountPaid / 2);
+                        brideRatio=0.5;
                         break;
                     }
                     case 4: {//4 - guest
-                        setBrideGroomSubtotals(estimate, amount, brideGuestsRatio);
-                        setBrideGroomSubtotalsPaid(estimate, amountPaid, brideGuestsRatio);
-//                        estimate.setBrideSubtotal(estimate.getBrideSubtotal() + 1.0 * Math.round(amount * brideGuestsRatio * 100) / 100);
-//                        estimate.setBrideSubtotalPaid(estimate.getBrideSubtotalPaid() + 1.0 * Math.round(amountPaid * brideGuestsRatio * 100) / 100);
-//                        estimate.setGroomSubtotal(estimate.getGroomSubtotal() + 1.0 * Math.round(amount * groomGuestsRatio * 100) / 100);
-//                        estimate.setGroomSubtotalPaid(estimate.getGroomSubtotalPaid() + 1.0 * Math.round(amountPaid * groomGuestsRatio * 100) / 100);
+                        brideRatio=brideGuestsRatio;
                         break;
                     }
                     default: {
                         estimate.setNotSplit(estimate.getNotSplit() + amount);
+                        amount=0;
+                        amountPaid=0;
                     }
+                }
+
+                if(amount>0) {
+                    setBrideGroomSubtotals(estimate, amount, brideRatio);
+                }
+                if(amountPaid>0){
+                    setBrideGroomSubtotalsPaid(estimate, amountPaid, brideRatio);
                 }
             }
         }
         roundEstimate(estimate);
-//        estimate.setTotal(1.0*Math.round(estimate.getTotal()*100)/100);
-//        estimate.setTotalPaid(1.0*Math.round(estimate.getTotalPaid()*100)/100);
-//        estimate.setTotalConfirmed(1.0*Math.round(estimate.getTotalConfirmed()*100)/100);
-//        estimate.setNotSplit(1.0*Math.round(estimate.getNotSplit()*100)/100);
-//        estimate.setBrideSubtotal(1.0*Math.round(estimate.getBrideSubtotal()*100)/100);
-//        estimate.setGroomSubtotal(estimate.getTotal()-estimate.getBrideSubtotal()-estimate.getNotSplit());
 
         eventTasks = eventTasks
                 .stream()
@@ -162,7 +144,7 @@ public class EventTaskService {
     public List<EventTask> putCompletedTasksAtEnd(List<EventTask> eventTasks){
         List<EventTask> eventTasksCompleted = eventTasks
                 .stream()
-                .filter(et -> et.isCompleted()).collect(Collectors.toList());
+                .filter(EventTask::isCompleted).collect(Collectors.toList());
         eventTasks.removeAll(eventTasksCompleted);
         eventTasks.addAll(eventTasksCompleted);
         return eventTasks;
