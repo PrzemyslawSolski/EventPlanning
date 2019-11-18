@@ -40,12 +40,13 @@ public class RegisterController {
         if (result.hasErrors()) {
             return "register";
         }
-        User existingUser = userService.getFirstByEmail(user.getEmail());
+        User existingUser = userService.getFirstByEmail(user.getEmail().toLowerCase());
         if (existingUser != null) {
             result.addError(new FieldError("user", "email",
                     "Błędny email lub użytkownik istnieje"));
             return "register";
         }
+        user.setEmail(user.getPassword().toLowerCase());
         user.setPasswordHash(user.getPassword());
 //        Hibernate.initialize(user.getEvents());
         userService.create(user);

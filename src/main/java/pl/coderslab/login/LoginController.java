@@ -41,7 +41,7 @@ public class LoginController {
         }
 
 //        boolean loggedIn = true;
-        User existingUser = userService.getFirstByEmail(user.getEmail());
+        User existingUser = userService.getFirstByEmail(user.getEmail().toLowerCase());
         if (existingUser == null ||
                 !BCrypt.checkpw(user.getPassword(), existingUser.getPassword())) {
 //            loggedIn = false;
