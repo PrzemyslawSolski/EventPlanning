@@ -48,7 +48,6 @@ public class EventTaskService {
 
         Estimate estimate = new Estimate();
         Event event = eventRepository.getOne(eventId);
-        double brideGuestsRatio = getBrideGuestsRatio(event);
 
         if (eventTasks != null && !eventTasks.isEmpty()) {
             double amount = 0;
@@ -58,17 +57,18 @@ public class EventTaskService {
                 estimate.setTotal(estimate.getTotal() + amount);
                 amountPaid = eventTask.getPrice().getAmountPaid();
                 estimate.setTotalPaid(estimate.getTotalPaid() + amountPaid);
+
                 if (eventTask.getPrice().getType() == 1) {
                     estimate.setTotalConfirmed(estimate.getTotalConfirmed() + amount);
                 }
                 double brideRatio=0;
                 switch (eventTask.getPrice().getSplit()) {
                     case 1: {//1 - bride
-                        brideRatio=1;
+                        brideRatio=1.0;
                         break;
                     }
                     case 2: {//2 - groom
-                        brideRatio=0;
+                        brideRatio=0.0;
                         break;
                     }
                     case 3: {//3 - equal
@@ -76,7 +76,7 @@ public class EventTaskService {
                         break;
                     }
                     case 4: {//4 - guest
-                        brideRatio=brideGuestsRatio;
+                        brideRatio=1.0*getBrideGuestsRatio(event);
                         break;
                     }
                     default: {
@@ -96,13 +96,15 @@ public class EventTaskService {
         }
         roundEstimate(estimate);
 
-        eventTasks = eventTasks
+        session.setAttribute("estimateTasks", removeFullyPaid(eventTasks));
+        session.setAttribute("estimate", estimate);
+    }
+
+    public List<EventTask> removeFullyPaid(List<EventTask> eventTasks){
+        return eventTasks
                 .stream()
                 .filter(et -> et.getPrice().getAmount() - et.getPrice().getAmountPaid() > 0)
-//                .sorted()
                 .collect(Collectors.toList());
-        session.setAttribute("estimateTasks", eventTasks);
-        session.setAttribute("estimate", estimate);
     }
 
     public void setBrideGroomSubtotals(Estimate estimate, double amount, double brideRatio){
