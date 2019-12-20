@@ -19,19 +19,17 @@ public class Event {
     private long id;
     @NotBlank
     private String name;
-    private String bride;//long brideId;
-    private String groom; //long groomId;
+    private String bride;
+    private String groom;
     private long eventAdminId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate ceremonyDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime ceremonyTime;
-    //    private LocalDateTime ceremonyDateTime;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate partyDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime partyTime;
-    //    private LocalDateTime partyDateTime;
     private byte type;// (c)ivil or (r)eligious
     @ManyToOne
     private Venue ceremonyVenue;
@@ -40,12 +38,8 @@ public class Event {
     @ManyToMany
     @JoinTable(name = "event_user")
     private List<User> users = new ArrayList<>();
-
     private int brideGuestsNo;
-
     private int groomGuestsNo;
-
-
 
     public void changeDates(int shift){
         this.setCeremonyDate(this.getCeremonyDate().plusDays(shift));
@@ -55,11 +49,9 @@ public class Event {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
