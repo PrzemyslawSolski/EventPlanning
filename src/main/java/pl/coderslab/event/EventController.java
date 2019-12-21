@@ -95,18 +95,13 @@ public class EventController {
 
         try {
             model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
-        } catch (IllegalArgumentException e) {
-            return "redirect:../add";
-        } catch (InvalidDataAccessApiUsageException e) {
-            return "redirect:../add";
-        } catch (NullPointerException e) {
+        } catch (IllegalArgumentException | NullPointerException | InvalidDataAccessApiUsageException e) {
             return "redirect:../add";
         }
         return "event";
     }
 
     @PostMapping("/edit")
-//    @ResponseBody
     public String editEvent(HttpSession session, @Valid @ModelAttribute Event event, BindingResult result) {
         if (result.hasErrors()) {
             return "event";
