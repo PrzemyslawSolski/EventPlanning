@@ -10,12 +10,12 @@ import java.util.List;
 @Transactional
 public class PriceService {
 
-    private final PriceDao priceDao;
+//    private final PriceDao priceDao;
     private final PriceRepository priceRepository;
 
     @Autowired
-    public PriceService(PriceDao taskDao, PriceRepository priceRepository) {
-        this.priceDao = taskDao;
+    public PriceService( PriceRepository priceRepository) {
+//        this.priceDao = taskDao;
         this.priceRepository = priceRepository;
     }
 
@@ -24,23 +24,23 @@ public class PriceService {
     }
 
     public void create(Price task) {
-        priceDao.create(task);
+        priceRepository.save(task);
     }
 
     public void update(Price task) {
-        priceDao.update(task);
+        priceRepository.save(task);
     }
 
     public Price findOne(long id) {
-        return priceDao.findOne(id);
+        return priceRepository.findById(id).orElse(null);
     }
 
     public List<Price> findAll() {
-        return priceDao.findAll();
+        return priceRepository.findAll();
     }
 
     public void delete(Long id) {
 //        priceDao.deletePriceRelations(id);
-        priceDao.delete(id);
+        priceRepository.deleteById(id);
     }
 }
