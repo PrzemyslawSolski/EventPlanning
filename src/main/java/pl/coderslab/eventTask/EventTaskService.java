@@ -176,12 +176,12 @@ public class EventTaskService {
 
 
     @Autowired
-    public EventTaskService(EventTaskRepository eventTaskRepository, EventRepository eventRepository, PriceRepository priceRepository, TaskRepository taskRepository, EventTaskDao eventTaskDao) {
+    public EventTaskService(EventTaskRepository eventTaskRepository, EventRepository eventRepository, PriceRepository priceRepository, TaskRepository taskRepository) {
         this.eventTaskRepository = eventTaskRepository;
         this.eventRepository = eventRepository;
         this.priceRepository = priceRepository;
         this.taskRepository = taskRepository;
-        this.eventTaskDao = eventTaskDao;
+//        this.eventTaskDao = eventTaskDao;
     }
 
     public EventTask getOne(long id) {
@@ -205,19 +205,19 @@ public class EventTaskService {
     }
 
 
-    private final EventTaskDao eventTaskDao;
+//    private final EventTaskDao eventTaskDao;
 
 
     public void create(EventTask eventTask) {
-        eventTaskDao.create(eventTask);
+        eventTaskRepository.save(eventTask);
     }
 
     public void update(EventTask eventTask) {
-        eventTaskDao.update(eventTask);
+        eventTaskRepository.save(eventTask);
     }
 
     public EventTask findOne(long id) {
-        return eventTaskDao.findOne(id);
+        return eventTaskRepository.findById(id).orElse(null);
     }
 
 //    public List<EventTask> findAll(){
