@@ -10,12 +10,12 @@ import java.util.List;
 @Transactional
 public class TaskService {
 
-    private final TaskDao taskDao;
+//    private final TaskDao taskDao;
     private final TaskRepository taskRepository;
 
     @Autowired
-    public TaskService(TaskDao taskDao, TaskRepository taskRepository) {
-        this.taskDao = taskDao;
+    public TaskService(TaskRepository taskRepository) {
+//        this.taskDao = taskDao;
         this.taskRepository = taskRepository;
     }
 
@@ -24,27 +24,28 @@ public class TaskService {
     }
 
     public List<Task> findAllEventNull(){
-        return taskDao.findAllEventNull();
+//        return taskDao.findAllEventNull();
+        return taskRepository.findByEventNull();
     }
 
     public void create(Task task){
-        taskDao.create(task);
+        taskRepository.save(task);
     }
 
     public void update(Task task){
-        taskDao.update(task);
+        taskRepository.save(task);
     }
 
     public Task findOne(long id){
-        return taskDao.findOne(id);
+        return taskRepository.findById(id).orElse(null);
     }
 
     public List<Task> findAll(){
-        return taskDao.findAll();
+        return taskRepository.findAll();
     }
 
     public void delete(Long id){
 //        taskDao.deleteTaskRelations(id);
-        taskDao.delete(id);
+        taskRepository.deleteById(id);
     }
 }

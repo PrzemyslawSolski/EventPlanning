@@ -9,4 +9,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     @Query("select t from Task t where t.event.id=null or t.event.id = ?1")
     public List<Task> findByEventIdNullOrEventId(long eventId );
+
+    @Query("select t from Task t where t.event.id=null")
+    public List<Task> findByEventNull();
 }

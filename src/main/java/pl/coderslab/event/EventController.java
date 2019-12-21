@@ -3,6 +3,7 @@ package pl.coderslab.event;
 ;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -94,6 +95,10 @@ public class EventController {
 
         try {
             model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
+        } catch (IllegalArgumentException e) {
+            return "redirect:../add";
+        } catch (InvalidDataAccessApiUsageException e) {
+            return "redirect:../add";
         } catch (NullPointerException e) {
             return "redirect:../add";
         }
