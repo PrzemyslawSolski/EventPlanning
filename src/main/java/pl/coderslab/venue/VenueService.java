@@ -12,12 +12,12 @@ import java.util.Set;
 @Transactional
 public class VenueService {
 
-    private final VenueDao venueDao;
+//    private final VenueDao venueDao;
     private final VenueRepository venueRepository;
 
     @Autowired
-    public VenueService(VenueDao venueDao, VenueRepository venueRepository) {
-        this.venueDao = venueDao;
+    public VenueService(VenueRepository venueRepository) {
+//        this.venueDao = venueDao;
         this.venueRepository = venueRepository;
     }
 
@@ -59,23 +59,23 @@ public class VenueService {
     }
 
     public void create(Venue venue) {
-        venueDao.create(venue);
+        venueRepository.save(venue);
     }
 
     public void update(Venue venue) {
-        venueDao.update(venue);
+        venueRepository.save(venue);
     }
 
     public Venue findOne(long id) {
-        return venueDao.findOne(id);
+        return venueRepository.findById(id).orElse(null);
     }
 
     public List<Venue> findAll() {
-        return venueDao.findAll();
+        return venueRepository.findAll();
     }
 
     public void delete(Long id) {
 //        venueDao.deleteVenueRelations(id);
-        venueDao.delete(id);
+        venueRepository.deleteById(id);
     }
 }
