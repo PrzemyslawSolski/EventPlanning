@@ -16,14 +16,14 @@ import java.util.List;
 @Transactional
 public class EventService {
 
-    private final EventDao eventDao;
+//    private final EventDao eventDao;
     private final EventRepository eventRepository;
     private final UserDao userDao;
     private final VenueService venueService;
 
     @Autowired
-    public EventService(EventDao eventDao, EventRepository eventRepository, UserDao userDao, VenueService venueService) {
-        this.eventDao = eventDao;
+    public EventService( EventRepository eventRepository, UserDao userDao, VenueService venueService) {
+//        this.eventDao = eventDao;
         this.eventRepository = eventRepository;
         this.userDao = userDao;
         this.venueService = venueService;
@@ -72,23 +72,23 @@ public class EventService {
     }
 
     public void create(Event event) {
-        eventDao.create(event);
+        eventRepository.save(event);
     }
 
     public void update(Event event) {
-        eventDao.update(event);
+        eventRepository.save(event);
     }
 
-    public Event findOne(long id) {
-        return eventDao.findOne(id);
+    public Event findOne(Long id) {
+        return eventRepository.findById(id).orElse(null);
     }
 
     public List<Event> findAll() {
-        return eventDao.findAll();
+        return eventRepository.findAll();
     }
 
     public void delete(Long id) {
 //        eventDao.deleteEventRelations(id);
-        eventDao.delete(id);
+        eventRepository.deleteById(id);
     }
 }
