@@ -10,12 +10,12 @@ import java.util.List;
 @Transactional
 public class UserService {
 
-    private final UserDao userDao;
+//    private final UserDao userDao;
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserDao userDao, UserRepository userRepository) {
-        this.userDao = userDao;
+    public UserService(UserRepository userRepository) {
+//        this.userDao = userDao;
 
         this.userRepository = userRepository;
     }
@@ -25,23 +25,23 @@ public class UserService {
     }
 
     public void create(User user){
-        userDao.create(user);
+        userRepository.save(user);
     }
 
     public void update(User user){
-        userDao.update(user);
+        userRepository.save(user);
     }
 
     public User findOne(long id){
-        return userDao.findOne(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     public List<User> findAll(){
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     public void delete(Long id){
 //        userDao.deleteVenueRelations(id);
-        userDao.delete(id);
+        userRepository.deleteById(id);
     }
 }
