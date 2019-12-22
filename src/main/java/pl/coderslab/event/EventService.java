@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserDao;
+import pl.coderslab.user.UserRepository;
 import pl.coderslab.venue.Venue;
 import pl.coderslab.venue.VenueService;
 
@@ -18,19 +19,21 @@ public class EventService {
 
 //    private final EventDao eventDao;
     private final EventRepository eventRepository;
-    private final UserDao userDao;
+//    private final UserDao userDao;
     private final VenueService venueService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public EventService( EventRepository eventRepository, UserDao userDao, VenueService venueService) {
+    public EventService(EventRepository eventRepository, UserDao userDao, VenueService venueService, UserRepository userRepository) {
 //        this.eventDao = eventDao;
         this.eventRepository = eventRepository;
-        this.userDao = userDao;
+        this.userRepository = userRepository;
+//        this.userDao = userDao;
         this.venueService = venueService;
     }
 
     public void addUser(HttpSession session, Event event) {
-        User user = userDao.findOne((Long) session.getAttribute("userId"));
+        User user = userRepository.findById((Long) session.getAttribute("userId")).orElse(null);
         if(!event.getUsers().contains(user)) {
             event.getUsers().add(user);
         }

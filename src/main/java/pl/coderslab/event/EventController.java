@@ -92,12 +92,17 @@ public class EventController {
 
     @GetMapping("/edit")
     public String editEvent(HttpSession session, Model model) {
-
-        try {
-            model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
-        } catch (IllegalArgumentException | NullPointerException | InvalidDataAccessApiUsageException e) {
+        Long eventId = (Long) session.getAttribute("eventId");
+        if (eventId == null) {
             return "redirect:../add";
+        } else {
+            model.addAttribute("event", eventService.findOne(eventId));
         }
+//        try {
+//            model.addAttribute("event", eventService.findOne((Long) session.getAttribute("eventId")));
+//        } catch (IllegalArgumentException | NullPointerException | InvalidDataAccessApiUsageException e) {
+//            return "redirect:../add";
+//        }
         return "event";
     }
 
@@ -156,7 +161,7 @@ public class EventController {
     @PostMapping("/addTasks")
     public String addTasks(HttpSession session, @ModelAttribute("TaskToEvents")
             TaskToEventListContainer taskToEventList,
-                         BindingResult result) {
+                           BindingResult result) {
         List<TaskToEvent> taskToEvents = taskToEventList.getTaskToEvents();
         for (TaskToEvent taskToEvent : taskToEvents) {
 //            taskToEvent.setTask(taskService.findOne(taskToEvent.getTask().getId()));
